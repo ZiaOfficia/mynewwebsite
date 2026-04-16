@@ -1,0 +1,94 @@
+/* ── Stats Section ────────────────────────────────────────── */
+.stats-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-section__pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(201,168,76,0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.stats-section__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+/* ── Copy ──────────────────────────────────────────────────── */
+.stats-section__heading {
+  color: var(--white);
+  margin-bottom: var(--space-sm);
+}
+
+.stats-section__sub {
+  color: rgba(255,255,255,0.55);
+  max-width: 380px;
+}
+
+/* ── Grid ──────────────────────────────────────────────────── */
+.stats-section__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(201,168,76,0.15);
+}
+
+/* ── Item ──────────────────────────────────────────────────── */
+.stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: var(--space-xl) var(--space-lg);
+  background: rgba(255,255,255,0.03);
+  text-align: center;
+  transition: background var(--duration) var(--ease);
+}
+
+.stats__item:hover {
+  background: rgba(201,168,76,0.07);
+}
+
+.stats__value {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.15em;
+}
+
+.stats__suffix {
+  font-size: 0.55em;
+  color: var(--gold-light);
+}
+
+.stats__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .stats-section__inner { grid-template-columns: 1fr; gap: var(--space-xl); }
+}
+
+@media (max-width: 640px) {
+  .stats-section__grid { grid-template-columns: 1fr 1fr; }
+  .stats__item { padding: var(--space-lg) var(--space-sm); }
+}
