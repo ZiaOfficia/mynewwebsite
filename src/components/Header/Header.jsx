@@ -95,7 +95,7 @@ export default function Header() {
 
         {/* ── CTA ── */}
         <div className="header__actions">
-          <Link to="/contact" className="btn btn-primary header__cta">
+          <Link to="/contact" className="nh-btn nh-btn--primary header__cta">
             Get a Free Audit
           </Link>
         </div>
@@ -152,7 +152,7 @@ export default function Header() {
               )}
             </div>
           ))}
-          <Link to="/contact" className="btn btn-primary" style={{ marginTop: '1.5rem', alignSelf: 'flex-start' }}>
+          <Link to="/contact" className="nh-btn nh-btn--primary" style={{ marginTop: '1.5rem', alignSelf: 'flex-start' }}>
             Get a Free Audit
           </Link>
         </nav>
