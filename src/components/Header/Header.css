@@ -58,13 +58,30 @@
   flex-shrink: 0;
 }
 
+.header__logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
 .header__logo-text {
   font-family: var(--font-display-cond);
   font-size: 1.35rem;
   font-weight: 900;
   text-transform: uppercase;
   color: var(--white);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.header__logo-tagline {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(204, 31, 53, 0.85);
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
   line-height: 1;
 }
 

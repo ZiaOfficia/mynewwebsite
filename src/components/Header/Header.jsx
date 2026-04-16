@@ -36,7 +36,10 @@ export default function Header() {
           <span className="header__logo-mark">
             {agency.name.charAt(0)}
           </span>
-          <span className="header__logo-text">{agency.name}</span>
+          <span className="header__logo-wordmark">
+            <span className="header__logo-text">{agency.name}</span>
+            <span className="header__logo-tagline">{agency.tagline}</span>
+          </span>
         </Link>
 
         {/* ── Desktop Nav ── */}

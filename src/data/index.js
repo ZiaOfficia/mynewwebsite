@@ -1,12 +1,12 @@
 /* ============================================================
-   DATA LAYER — Squareit Solutions
+   DATA LAYER — MAJ
    ============================================================ */
 
 // ── Agency Info ──────────────────────────────────────────────
 export const agency = {
-  name:        'Squareit Solutions',
-  tagline:     'We Build. We Rank. We Grow.',
-  description: 'Squareit Solutions is a performance-driven digital marketing agency helping businesses grow online through expert Website Development, SEO, Social Media Optimisation, and Google Ads management.',
+  name:        'MAJ',
+  tagline:     'Where Brands Are Built.',
+  description: 'MAJ is a performance-driven digital marketing agency helping businesses grow online through expert Website Development, SEO, Social Media Optimisation, and Google Ads management.',
   email:       'ss4526312@gmail.com',
   phone:       '+91 00000 00000',
   address:     'India',
