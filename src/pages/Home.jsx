@@ -4,7 +4,15 @@ import {
   SiGoogle, SiMeta, SiShopify, SiHubspot, SiSalesforce, SiStripe, SiFigma, SiNotion,
   SiTiktok, SiYoutube, SiSlack, SiCanva, SiSpotify, SiWebflow, SiPinterest, SiTwitch,
   SiMailchimp, SiWoocommerce, SiNetflix, SiAirbnb, SiPaypal, SiSemrush, SiZapier, SiZoom,
+  SiGoogleads, SiWordpress, SiReact, SiNextdotjs, SiTailwindcss, SiDiscord, SiDropbox, SiGithub,
 } from 'react-icons/si';
+import {
+  RiSearchLine, RiGlobalLine, RiCodeSSlashLine, RiLayoutLine, RiEditLine,
+  RiBarChartLine, RiRocketLine, RiTrophyLine, RiTeamLine, RiMegaphoneLine,
+  RiLineChartLine, RiTimeLine, RiCheckDoubleLine, RiLightbulbLine, RiPieChartLine,
+  RiBroadcastLine,
+} from 'react-icons/ri';
+import { FiTrendingUp, FiTarget, FiUsers, FiZap, FiBarChart2 } from 'react-icons/fi';
 import './Home.css';
 
 function useReveal() {
@@ -22,30 +30,38 @@ function useReveal() {
 
 /* ── Brand data ── */
 const ALL_BRANDS = [
-  { name: 'Google',      Icon: SiGoogle,      color: '#4285F4' },
-  { name: 'Meta',        Icon: SiMeta,        color: '#0082FB' },
-  { name: 'Shopify',     Icon: SiShopify,     color: '#96BF48' },
-  { name: 'HubSpot',     Icon: SiHubspot,     color: '#FF7A59' },
-  { name: 'Salesforce',  Icon: SiSalesforce,  color: '#00A1E0' },
-  { name: 'Stripe',      Icon: SiStripe,      color: '#635BFF' },
-  { name: 'Figma',       Icon: SiFigma,       color: '#F24E1E' },
-  { name: 'Notion',      Icon: SiNotion,      color: '#e0e0e0' },
-  { name: 'TikTok',      Icon: SiTiktok,      color: '#FF0050' },
-  { name: 'YouTube',     Icon: SiYoutube,     color: '#FF0000' },
-  { name: 'Slack',       Icon: SiSlack,       color: '#E01E5A' },
-  { name: 'Canva',       Icon: SiCanva,       color: '#00C4CC' },
-  { name: 'Spotify',     Icon: SiSpotify,     color: '#1DB954' },
-  { name: 'Webflow',     Icon: SiWebflow,     color: '#4353FF' },
-  { name: 'Pinterest',   Icon: SiPinterest,   color: '#E60023' },
-  { name: 'Twitch',      Icon: SiTwitch,      color: '#9146FF' },
-  { name: 'Mailchimp',   Icon: SiMailchimp,   color: '#FFE01B' },
-  { name: 'WooCommerce', Icon: SiWoocommerce, color: '#7F54B3' },
-  { name: 'Netflix',     Icon: SiNetflix,     color: '#E50914' },
-  { name: 'Airbnb',      Icon: SiAirbnb,      color: '#FF5A5F' },
-  { name: 'PayPal',      Icon: SiPaypal,      color: '#0070E0' },
-  { name: 'Semrush',     Icon: SiSemrush,     color: '#FF642D' },
-  { name: 'Zapier',      Icon: SiZapier,      color: '#FF4A00' },
-  { name: 'Zoom',        Icon: SiZoom,        color: '#2D8CFF' },
+  { name: 'Google',      Icon: SiGoogle,           color: '#4285F4' },
+  { name: 'Meta',        Icon: SiMeta,             color: '#0082FB' },
+  { name: 'Shopify',     Icon: SiShopify,          color: '#96BF48' },
+  { name: 'HubSpot',     Icon: SiHubspot,          color: '#FF7A59' },
+  { name: 'Salesforce',  Icon: SiSalesforce,       color: '#00A1E0' },
+  { name: 'Stripe',      Icon: SiStripe,           color: '#635BFF' },
+  { name: 'Figma',       Icon: SiFigma,            color: '#F24E1E' },
+  { name: 'Notion',      Icon: SiNotion,           color: '#a0a0a0' },
+  { name: 'TikTok',      Icon: SiTiktok,           color: '#69C9D0' },
+  { name: 'YouTube',     Icon: SiYoutube,          color: '#FF0000' },
+  { name: 'Slack',       Icon: SiSlack,            color: '#E01E5A' },
+  { name: 'Canva',       Icon: SiCanva,            color: '#00C4CC' },
+  { name: 'Spotify',     Icon: SiSpotify,          color: '#1DB954' },
+  { name: 'Webflow',     Icon: SiWebflow,          color: '#4353FF' },
+  { name: 'Pinterest',   Icon: SiPinterest,        color: '#E60023' },
+  { name: 'Twitch',      Icon: SiTwitch,           color: '#9146FF' },
+  { name: 'Mailchimp',   Icon: SiMailchimp,        color: '#FFE01B' },
+  { name: 'WooCommerce', Icon: SiWoocommerce,      color: '#7F54B3' },
+  { name: 'Netflix',     Icon: SiNetflix,          color: '#E50914' },
+  { name: 'Airbnb',      Icon: SiAirbnb,           color: '#FF5A5F' },
+  { name: 'PayPal',      Icon: SiPaypal,           color: '#003087' },
+  { name: 'Semrush',     Icon: SiSemrush,          color: '#FF642D' },
+  { name: 'Zapier',      Icon: SiZapier,           color: '#FF4A00' },
+  { name: 'Zoom',        Icon: SiZoom,             color: '#2D8CFF' },
+  { name: 'Google Ads',  Icon: SiGoogleads,        color: '#FBBC04' },
+  { name: 'WordPress',   Icon: SiWordpress,        color: '#21759B' },
+  { name: 'React',       Icon: SiReact,            color: '#61DAFB' },
+  { name: 'Next.js',     Icon: SiNextdotjs,        color: '#a0a0a0' },
+  { name: 'Tailwind',    Icon: SiTailwindcss,  color: '#38BDF8' },
+  { name: 'Discord',     Icon: SiDiscord,      color: '#5865F2' },
+  { name: 'Dropbox',     Icon: SiDropbox,      color: '#0061FF' },
+  { name: 'GitHub',      Icon: SiGithub,       color: '#a0a0a0' },
 ];
 const GRID_TILES = Array.from({ length: 90 }, (_, i) => ALL_BRANDS[i % ALL_BRANDS.length]);
 
@@ -66,11 +82,50 @@ function HeroSection() {
     });
   }, []);
 
+  /* One-shot glow wave on mount: sweeps top→bottom then bottom→top */
+  const runWave = useCallback(() => {
+    const pts = posRef.current;
+    if (!pts.length) return;
+    const ys       = pts.map((p) => p.cy);
+    const minY     = Math.min(...ys);
+    const maxY     = Math.max(...ys);
+    const span     = maxY - minY;
+    const sigma    = span * 0.18;   // glow band height
+    const HALF     = 2000;          // ms per sweep direction
+    const start    = performance.now();
+
+    function frame(now) {
+      const elapsed = now - start;
+      const half    = elapsed < HALF;
+      const t       = Math.min(half ? elapsed / HALF : (elapsed - HALF) / HALF, 1);
+
+      /* forward: top → bottom; return: bottom → top */
+      const waveY = half
+        ? minY - sigma + t * (span + sigma * 2)
+        : maxY + sigma - t * (span + sigma * 2);
+
+      pts.forEach(({ el, cy }) => {
+        const dist = Math.abs(cy - waveY);
+        el.style.setProperty('--intensity', Math.max(0, 1 - dist / sigma).toFixed(3));
+      });
+
+      if (elapsed < HALF * 2) {
+        rafRef.current = requestAnimationFrame(frame);
+      } else {
+        pts.forEach(({ el }) => el.style.setProperty('--intensity', '0'));
+      }
+    }
+    rafRef.current = requestAnimationFrame(frame);
+  }, []);
+
   useEffect(() => {
-    const t = setTimeout(cachePos, 150);
+    const t = setTimeout(() => {
+      cachePos();
+      setTimeout(runWave, 60);
+    }, 200);
     window.addEventListener('resize', cachePos);
     return () => { clearTimeout(t); window.removeEventListener('resize', cachePos); };
-  }, [cachePos]);
+  }, [cachePos, runWave]);
 
   const onMouseMove = useCallback((e) => {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -162,10 +217,10 @@ function MarqueeSection() {
    ================================================================ */
 function AboutSection() {
   const features = [
-    { icon: '🚀', title: 'Results First',   desc: 'Every strategy built around measurable outcomes, not vanity metrics.' },
-    { icon: '🎯', title: 'Brand Focused',   desc: 'We treat your brand as our own — full transparency, full accountability.' },
-    { icon: '📊', title: 'Data Driven',     desc: 'Real-time reporting so you always know exactly where your money goes.' },
-    { icon: '🤝', title: 'Long Term',       desc: 'We build lasting growth partnerships, not one-off campaigns.' },
+    { Icon: RiRocketLine,    color: '#CC1F35', title: 'Results First',  desc: 'Every strategy built around measurable outcomes, not vanity metrics.' },
+    { Icon: FiTarget,        color: '#4285F4', title: 'Brand Focused',  desc: 'We treat your brand as our own — full transparency, full accountability.' },
+    { Icon: RiBarChartLine,  color: '#1DB954', title: 'Data Driven',    desc: 'Real-time reporting so you always know exactly where your money goes.' },
+    { Icon: FiUsers,         color: '#9146FF', title: 'Long Term',      desc: 'We build lasting growth partnerships, not one-off campaigns.' },
   ];
   return (
     <section className="sec-about">
@@ -195,7 +250,9 @@ function AboutSection() {
           <div className="sec-about__cards">
             {features.map((f, i) => (
               <div key={f.title} className="sec-about__card" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <span className="sec-about__card-icon">{f.icon}</span>
+                <span className="sec-about__card-icon" style={{ color: f.color }}>
+                  <f.Icon size={26} />
+                </span>
                 <div>
                   <h4 className="sec-about__card-title">{f.title}</h4>
                   <p className="sec-about__card-desc">{f.desc}</p>
@@ -214,12 +271,12 @@ function AboutSection() {
    ================================================================ */
 function ServicesSection() {
   const services = [
-    { icon: '🔍', title: 'SEO',               tag: 'Rank & Stay',    desc: 'Technical audits, content strategy, and proven link-building that keeps you on page 1 and growing.', href: '/services/seo' },
-    { icon: '📣', title: 'Social Media',       tag: 'Be Seen',        desc: 'Build your community, grow engagement, and turn followers into loyal paying customers.', href: '/services/smo' },
-    { icon: '📈', title: 'Google Ads',         tag: 'High ROI',       desc: 'High-performance paid campaigns — every rupee tracked, every conversion counted, every result transparent.', href: '/services/google-ads' },
-    { icon: '🖥️', title: 'Web Development',    tag: 'Convert',        desc: 'Fast, mobile-first websites built to rank, load instantly, and turn visitors into enquiries from day one.', href: '/services/web-development' },
-    { icon: '🎯', title: 'Landing Pages',      tag: 'Drive Leads',    desc: 'Purpose-built pages with clear messaging and tested conversion flows that turn ad clicks into real business.', href: '/services' },
-    { icon: '✍️', title: 'Content Marketing',  tag: 'Tell Your Story', desc: 'Strategic content that educates, attracts, and converts — blogs, videos, emails and more.', href: '/services' },
+    { Icon: RiSearchLine,      color: '#4285F4', title: 'SEO',              tag: 'Rank & Stay',     desc: 'Technical audits, content strategy, and proven link-building that keeps you on page 1 and growing.', href: '/services/seo' },
+    { Icon: RiMegaphoneLine,   color: '#FF7A59', title: 'Social Media',     tag: 'Be Seen',         desc: 'Build your community, grow engagement, and turn followers into loyal paying customers.', href: '/services/smo' },
+    { Icon: RiBarChartLine,    color: '#FBBC04', title: 'Google Ads',       tag: 'High ROI',        desc: 'High-performance paid campaigns — every rupee tracked, every conversion counted, every result transparent.', href: '/services/google-ads' },
+    { Icon: RiCodeSSlashLine,  color: '#61DAFB', title: 'Web Development',  tag: 'Convert',         desc: 'Fast, mobile-first websites built to rank, load instantly, and turn visitors into enquiries from day one.', href: '/services/web-development' },
+    { Icon: RiLayoutLine,      color: '#9146FF', title: 'Landing Pages',    tag: 'Drive Leads',     desc: 'Purpose-built pages with clear messaging and tested conversion flows that turn ad clicks into real business.', href: '/services' },
+    { Icon: RiEditLine,        color: '#1DB954', title: 'Content Marketing',tag: 'Tell Your Story', desc: 'Strategic content that educates, attracts, and converts — blogs, videos, emails and more.', href: '/services' },
   ];
 
   return (
@@ -241,7 +298,9 @@ function ServicesSection() {
           {services.map((s, i) => (
             <Link key={s.title} to={s.href} className="sec-svc-card nh-reveal" style={{ transitionDelay: `${i * 0.07}s` }}>
               <div className="sec-svc-card__top">
-                <span className="sec-svc-card__icon">{s.icon}</span>
+                <span className="sec-svc-card__icon" style={{ color: s.color }}>
+                  <s.Icon size={28} />
+                </span>
                 <span className="sec-svc-card__tag">{s.tag}</span>
               </div>
               <h3 className="sec-svc-card__title">{s.title}</h3>
@@ -304,19 +363,22 @@ function ProcessSection() {
 function ResultsSection() {
   const cases = [
     {
-      emoji: '🏢', client: 'TechStart India', service: 'SEO',
+      Icon: RiSearchLine, iconColor: '#4285F4',
+      client: 'TechStart India', service: 'SEO',
       result: '+312%', resultLbl: 'Organic Traffic',
       title: 'From Page 5 to Position 1',
       desc: 'Technical SEO + content strategy took TechStart from invisible to dominating their niche in 6 months.',
     },
     {
-      emoji: '👗', client: 'StyleHub', service: 'Google Ads',
+      Icon: RiBarChartLine, iconColor: '#FBBC04',
+      client: 'StyleHub', service: 'Google Ads',
       result: '4.8x', resultLbl: 'ROAS Achieved',
       title: 'Google Ads ROAS Transformed',
       desc: 'A full account rebuild and creative refresh took their ROAS from 1.2x to 4.8x in just 3 months.',
     },
     {
-      emoji: '🏗️', client: 'GreenBuild Co.', service: 'Website Dev',
+      Icon: RiCodeSSlashLine, iconColor: '#61DAFB',
+      client: 'GreenBuild Co.', service: 'Website Dev',
       result: '2x', resultLbl: 'Monthly Enquiries',
       title: 'New Website Doubled Leads',
       desc: 'A conversion-first redesign with clear CTAs and fast load times doubled their lead volume in month one.',
@@ -340,7 +402,9 @@ function ResultsSection() {
           {cases.map((c, i) => (
             <div key={c.client} className="sec-result-card nh-reveal" style={{ transitionDelay: `${i * 0.15}s` }}>
               <div className="sec-result-card__head">
-                <div className="sec-result-card__avatar">{c.emoji}</div>
+                <div className="sec-result-card__avatar" style={{ color: c.iconColor }}>
+                  <c.Icon size={22} />
+                </div>
                 <div>
                   <p className="sec-result-card__client">{c.client}</p>
                   <p className="sec-result-card__service">{c.service}</p>
@@ -368,7 +432,50 @@ function ResultsSection() {
 }
 
 /* ================================================================
-   SECTION 7 — TESTIMONIALS  (light white)
+   SECTION 7 — CONFIDENCE  (dark navy #0D1B2A)
+   ================================================================ */
+function ConfidenceSection() {
+  return (
+    <section className="sec-confidence">
+      <div className="sec-confidence__glow" />
+      <div className="container sec-confidence__inner nh-reveal">
+        <span className="sec-eyebrow sec-eyebrow--light">At MAJ Digital you will know your brand, find your audience, and be ready for whatever growth you will take.</span>
+
+        <h2 className="sec-confidence__top-line nh-reveal nh-delay-1">
+          BE CONFIDENT IN WHO
+        </h2>
+
+        <div className="sec-confidence__you-row nh-reveal nh-delay-2">
+          <span className="sec-confidence__you-letter">Y</span>
+          <div className="sec-confidence__you-circle">
+            <FiTarget size={48} color="#ffffff" />
+          </div>
+          <span className="sec-confidence__you-letter">U</span>
+        </div>
+
+        <h2 className="sec-confidence__bottom-line nh-reveal nh-delay-3">
+          WILL <span className="sec-red-light">BECOME.</span>
+        </h2>
+        <div className="sec-rule--red sec-confidence__rule nh-reveal nh-delay-3" />
+
+        <p className="sec-body--light sec-confidence__sub nh-reveal nh-delay-4">
+          Endless digital opportunities. Limitless brand potential.<br />
+          We give you the strategy, the execution, and the results to<br />
+          grow into exactly who you're meant to be online.
+        </p>
+
+        <div className="nh-reveal nh-delay-4">
+          <Link to="/contact" className="sec-btn sec-btn--red">
+            Start Your Journey →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ================================================================
+   SECTION 8 — TESTIMONIALS  (light white)
    ================================================================ */
 function TestimonialsSection() {
   const testimonials = [
@@ -467,6 +574,7 @@ export default function Home() {
       <ServicesSection />
       <ProcessSection />
       <ResultsSection />
+      <ConfidenceSection />
       <TestimonialsSection />
       <CTASection />
     </main>
