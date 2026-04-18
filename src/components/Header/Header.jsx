@@ -6,8 +6,9 @@ import { agency, navLinks } from '../../data/index.js';
 export default function Header() {
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
-  const [activeDD, setActiveDD]   = useState(null); // dropdown label
+  const [activeDD, setActiveDD]   = useState(null);
   const location = useLocation();
+  const isHome = location.pathname === '/';
   const timerRef = useRef(null);
 
   // Scroll detection → add shadow/bg
@@ -28,7 +29,7 @@ export default function Header() {
   const closeDD = ()      => { timerRef.current = setTimeout(() => setActiveDD(null), 120); };
 
   return (
-    <header className={`header ${scrolled ? 'header--scrolled' : ''} ${menuOpen ? 'header--open' : ''}`}>
+    <header className={`header ${(scrolled || !isHome) ? 'header--scrolled' : ''} ${menuOpen ? 'header--open' : ''}`}>
       <div className="header__inner container">
 
         {/* ── Logo ── */}
