@@ -113,6 +113,26 @@ h1, h2, h3, h4, h5, h6 {
 .body-sm     { font-size: 0.875rem; line-height: 1.6;  }
 .caption     { font-size: 0.8rem;  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
 
+/* ─── Red First Letter — all main headings (except Home) ─── */
+.nh-hero__heading::first-letter,
+.sec-heading--dark::first-letter,
+.sec-heading--light::first-letter,
+.sec-cta__heading::first-letter,
+.sec-confidence__top-line::first-letter,
+.sec-confidence__bottom-line::first-letter {
+  color: #CC1F35;
+}
+
+/* Reset for Home page — no red first letter */
+.home-page .nh-hero__heading::first-letter,
+.home-page .sec-heading--dark::first-letter,
+.home-page .sec-heading--light::first-letter,
+.home-page .sec-cta__heading::first-letter,
+.home-page .sec-confidence__top-line::first-letter,
+.home-page .sec-confidence__bottom-line::first-letter {
+  color: inherit;
+}
+
 /* ─── Layout Helpers ─────────────────────────────────────── */
 .container {
   width: 100%;

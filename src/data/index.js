@@ -106,7 +106,7 @@ export const services = [
       'Fast Load Times',
       'Lead Capture Integration',
     ],
-    color: '#C9A84C',
+    color: '#06B6D4',
   },
   {
     id:        'seo',

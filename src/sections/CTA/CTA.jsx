@@ -10,7 +10,11 @@ function hexToRgb(hex) {
   return `${r},${g},${b}`;
 }
 
-export default function CTA({ color = '#C9A84C' }) {
+export default function CTA({
+  color = '#C9A84C',
+  quote = '"The distance between where you are and where you want to be is just one decision."',
+  sub   = "One conversation with MAJ Digital unlocks your brand's real potential. Free audit — no lock-ins, no fluff, just results.",
+}) {
   const rgb = hexToRgb(color);
   return (
     <section
@@ -26,13 +30,8 @@ export default function CTA({ color = '#C9A84C' }) {
           <h2 className="display-lg cta-section__heading">
             Your growth story<br />starts right here.
           </h2>
-          <p className="body-lg cta-section__quote">
-            "The distance between where you are and where you want to be is just one decision."
-          </p>
-          <p className="body-lg cta-section__sub">
-            One conversation with MAJ Digital unlocks your brand's real potential.
-            Free audit — no lock-ins, no fluff, just results.
-          </p>
+          <p className="body-lg cta-section__quote">{quote}</p>
+          <p className="body-lg cta-section__sub">{sub}</p>
           <div className="cta-section__actions">
             <Link to="/contact" className="btn cta-section__btn--accent">
               Book Free Strategy Call

@@ -11,10 +11,44 @@ import BlogPage       from './pages/BlogPage.jsx';
 import BlogPostPage   from './pages/BlogPostPage.jsx';
 import ContactPage    from './pages/ContactPage.jsx';
 
+/* ── Page accent colours (must match each page's theme) ──── */
+const PAGE_COLORS = {
+  '/':                         { hex: '#CC1F35', rgb: '204,31,53'   },
+  '/services':                 { hex: '#6366F1', rgb: '99,102,241'  },
+  '/services/web-development': { hex: '#8B5CF6', rgb: '139,92,246'  },
+  '/services/landing-pages':   { hex: '#06B6D4', rgb: '6,182,212'   },
+  '/services/seo':             { hex: '#22C55E', rgb: '34,197,94'   },
+  '/services/smo':             { hex: '#EC4899', rgb: '236,72,153'  },
+  '/services/google-ads':      { hex: '#1A73E8', rgb: '26,115,232'  },
+  '/about':                    { hex: '#F97316', rgb: '249,115,22'  },
+  '/blog':                     { hex: '#0EA5E9', rgb: '14,165,233'  },
+  '/contact':                  { hex: '#D946EF', rgb: '217,70,239'  },
+};
+const DEFAULT_COLOR = PAGE_COLORS['/'];
+
+function getPageColor(pathname) {
+  if (PAGE_COLORS[pathname]) return PAGE_COLORS[pathname];
+  /* match /blog/:slug → blog colour, /services/:slug → service colour via data */
+  if (pathname.startsWith('/blog/'))     return PAGE_COLORS['/blog'];
+  if (pathname.startsWith('/services/')) return PAGE_COLORS['/services'];
+  return DEFAULT_COLOR;
+}
+
 /* ── Scroll to top on route change ────────────────────────── */
 function ScrollReset() {
   const { pathname } = useLocation();
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [pathname]);
+  return null;
+}
+
+/* ── Injects --page-accent on every route change ─────────── */
+function PageAccentInjector() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const { hex, rgb } = getPageColor(pathname);
+    document.documentElement.style.setProperty('--page-accent',     hex);
+    document.documentElement.style.setProperty('--page-accent-rgb', rgb);
+  }, [pathname]);
   return null;
 }
 
@@ -23,6 +57,7 @@ function AppShell() {
   return (
     <>
       <ScrollReset />
+      <PageAccentInjector />
       <Header />
       <Routes>
         <Route path="/"                   element={<Home />}          />

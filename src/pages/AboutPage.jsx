@@ -164,7 +164,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTA color="#F97316" />
+      <CTA
+        color="#F97316"
+        quote='"Behind every great brand is a team that believed in it before the world did. That\'s us."'
+        sub="You now know who we are and what we stand for. Let's talk about what we can build together — free, no pressure."
+      />
       
       <style dangerouslySetInnerHTML={{__html: `
         /* ── Hero overlay: edge vignette, not center blob ── */

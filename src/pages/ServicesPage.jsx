@@ -193,7 +193,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <CTA color="#6366F1" />
+      <CTA
+        color="#6366F1"
+        quote='"Six services. One mission. Zero excuses — your growth starts the moment you say yes."'
+        sub="Stop wondering which service you need. Let's audit your brand for free and build the exact plan that moves you forward."
+      />
     </main>
   );
 }

@@ -68,6 +68,34 @@ export default function ServiceDetail() {
 
   const descParagraphs = (meta?.description || '').trim().split(/\n\n+/).filter(Boolean).map(p => p.trim());
 
+  const CTA_CONTENT = {
+    'web-development': {
+      quote: '"A great website isn\'t built — it\'s engineered. And yours is one conversation away."',
+      sub:   'Your website is your 24/7 salesperson. Let\'s build one that never stops converting.',
+    },
+    'landing-pages': {
+      quote: '"Every click is a chance. Every landing page is your pitch. Make it impossible to leave."',
+      sub:   'One high-converting page can change everything. Let\'s design yours today — free audit included.',
+    },
+    'seo': {
+      quote: '"The best time to rank on Google was yesterday. The second best time is right now."',
+      sub:   'Page 1 doesn\'t happen by accident. Let\'s build your SEO strategy and start climbing today.',
+    },
+    'smo': {
+      quote: '"Your audience is already scrolling. Make sure what they see next is you."',
+      sub:   'Turn passive followers into active buyers. One call with MAJ Digital is all it takes to start.',
+    },
+    'google-ads': {
+      quote: '"Every rupee you spend either works for you or against you. Let\'s make every one count."',
+      sub:   'Stop bleeding ad budget on guesswork. Our Google Ads team turns spend into measurable ROI — fast.',
+    },
+  };
+
+  const ctaContent = CTA_CONTENT[slug] || {
+    quote: '"Success is not a coincidence — it\'s a strategy executed with precision."',
+    sub:   'One conversation with MAJ Digital unlocks your brand\'s real potential. Free audit — no lock-ins, no fluff, just results.',
+  };
+
   return (
     <main className="service-detail-page">
 
@@ -301,7 +329,7 @@ export default function ServiceDetail() {
         </div>
       </section>
 
-      <CTA color={themeColor} />
+      <CTA color={themeColor} quote={ctaContent.quote} sub={ctaContent.sub} />
 
       <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 900px) {

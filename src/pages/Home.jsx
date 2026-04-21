@@ -544,12 +544,11 @@ function CTASection() {
           <span className="sec-red-light">STARTS RIGHT HERE.</span>
         </h2>
         <div className="sec-rule--red sec-cta__rule" />
-        <p style={{ fontStyle: 'italic', color: 'rgba(201,168,76,0.9)', fontSize: '1rem', maxWidth: 540, margin: '0 auto 1rem', lineHeight: 1.65, borderLeft: '3px solid #C9A84C', paddingLeft: '1rem', textAlign: 'left' }}>
-          "The distance between where you are and where you want to be is just one decision."
+        <p style={{ fontStyle: 'italic', color: 'rgba(204,31,53,0.9)', fontSize: '1rem', maxWidth: 540, margin: '0 auto 1rem', lineHeight: 1.65, borderLeft: '3px solid #CC1F35', paddingLeft: '1rem', textAlign: 'left' }}>
+          "Your competitors are already online. The question is — are they ahead of you?"
         </p>
         <p className="sec-body--light sec-cta__sub">
-          One conversation with MAJ Digital unlocks your brand's real potential.
-          Free audit — no lock-ins, no fluff, just results.
+          One free strategy call with MAJ Digital is all it takes to change the direction of your brand. No lock-ins. Just results.
         </p>
         <div className="sec-cta__btns">
           <Link to="/contact" className="sec-btn sec-btn--red">Book Free Strategy Call →</Link>
@@ -571,7 +570,7 @@ function CTASection() {
 export default function Home() {
   useReveal();
   return (
-    <main>
+    <main className="home-page">
       <HeroSection />
       <MarqueeSection />
       <AboutSection />

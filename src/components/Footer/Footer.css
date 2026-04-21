@@ -1,9 +1,14 @@
 /* ── Footer ───────────────────────────────────────────────── */
 .footer {
-  background: linear-gradient(135deg, #07111C 0%, var(--navy-mid) 50%, var(--maroon-dark) 100%);
+  background: linear-gradient(135deg, #07111C 0%, var(--navy-mid) 50%, rgba(var(--page-accent-rgb, 123,18,52), 0.28) 100%);
   color: var(--white);
   position: relative;
   overflow: hidden;
+  box-shadow:
+    0 -1px 0 rgba(var(--page-accent-rgb, 204,31,53), 0.55),
+    0 -4px 14px rgba(var(--page-accent-rgb, 204,31,53), 0.18),
+    0 -1px 0 rgba(204,31,53, 0.30),
+    0 -4px 10px rgba(204,31,53, 0.10);
 }
 
 /* Subtle dot pattern */
@@ -33,11 +38,20 @@
   z-index: 0;
 }
 
-/* Top accent strip */
+/* Top accent strip — page colour + red always present */
 .footer__strip {
   height: 3px;
-  background: linear-gradient(90deg, transparent, var(--red-accent), transparent);
-  opacity: 0.8;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(204,31,53, 0.8) 20%,
+    var(--page-accent, var(--red-accent)) 50%,
+    rgba(204,31,53, 0.8) 80%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 12px rgba(var(--page-accent-rgb, 204,31,53), 0.55),
+    0 0 8px rgba(204,31,53, 0.4);
 }
 
 /* ── Main Area ─────────────────────────────────────────────── */
@@ -113,8 +127,8 @@
 }
 
 .footer__social-link:hover {
-  background: var(--red-accent);
-  border-color: var(--red-accent);
+  background: var(--page-accent, var(--red-accent));
+  border-color: var(--page-accent, var(--red-accent));
   color: var(--white);
   transform: translateY(-2px);
 }
@@ -145,7 +159,7 @@
 }
 
 .footer__link:hover {
-  color: var(--red-accent);
+  color: var(--page-accent, var(--red-accent));
   padding-left: 4px;
 }
 
@@ -196,7 +210,7 @@
 }
 
 .footer__newsletter-form:focus-within {
-  border-color: var(--red-accent);
+  border-color: var(--page-accent, var(--red-accent));
 }
 
 .footer__newsletter-input {
@@ -214,7 +228,7 @@
 .footer__newsletter-input::placeholder { color: rgba(255,255,255,0.3); }
 
 .footer__newsletter-btn {
-  background: var(--red-accent);
+  background: var(--page-accent, var(--red-accent));
   color: var(--white);
   border: none;
   padding: 0.6rem 1rem;
@@ -261,7 +275,7 @@
 }
 
 .footer__link--sm:hover {
-  color: var(--red-accent);
+  color: var(--page-accent, var(--red-accent));
   padding-left: 0 !important;
 }
 
