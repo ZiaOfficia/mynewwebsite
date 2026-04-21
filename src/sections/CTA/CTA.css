@@ -2,12 +2,14 @@
 .cta-section {
   position: relative;
   overflow: hidden;
+  --cta-accent: #C9A84C;
+  --cta-accent-rgb: 201,168,76;
 }
 
 .cta-section__pattern {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(201,168,76,0.08) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(var(--cta-accent-rgb), 0.08) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
 }
@@ -18,7 +20,7 @@
   left: -10%;
   width: 50%;
   height: 140%;
-  background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 65%);
+  background: radial-gradient(ellipse, rgba(var(--cta-accent-rgb), 0.09) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -32,9 +34,27 @@
 }
 
 /* ── Content ───────────────────────────────────────────────── */
+.cta-section__label {
+  color: var(--cta-accent) !important;
+}
+.cta-section__label::before {
+  background: var(--cta-accent) !important;
+}
+
 .cta-section__heading {
   color: var(--white);
   margin-bottom: var(--space-sm);
+}
+
+.cta-section__quote {
+  color: rgba(var(--cta-accent-rgb), 0.85);
+  font-style: italic;
+  font-size: 1rem !important;
+  max-width: 480px;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  border-left: 3px solid var(--cta-accent);
+  padding-left: 1rem;
 }
 
 .cta-section__sub {
@@ -49,9 +69,27 @@
   flex-wrap: wrap;
 }
 
-.cta-section__btn {
-  font-size: 1rem;
+.cta-section__btn--accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 1rem 2.25rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration) var(--ease);
+  white-space: nowrap;
+  background: var(--cta-accent);
+  color: var(--navy);
+  border: 2px solid var(--cta-accent);
+  text-decoration: none;
+}
+.cta-section__btn--accent:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(var(--cta-accent-rgb), 0.38);
 }
 
 /* ── Chips ─────────────────────────────────────────────────── */
@@ -68,7 +106,7 @@
   gap: 1rem;
   padding: 1.25rem 1.5rem;
   background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(201,168,76,0.2);
+  border: 1px solid rgba(var(--cta-accent-rgb), 0.2);
   border-radius: var(--radius-lg);
   text-decoration: none;
   transition: all var(--duration) var(--ease);
@@ -76,8 +114,8 @@
 }
 
 .cta-chip:hover {
-  background: rgba(201,168,76,0.1);
-  border-color: var(--gold);
+  background: rgba(var(--cta-accent-rgb), 0.1);
+  border-color: var(--cta-accent);
   transform: translateX(4px);
 }
 
@@ -88,7 +126,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--cta-accent);
 }
 
 .cta-chip__value {

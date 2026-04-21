@@ -136,7 +136,7 @@ export const services = [
       'Local SEO & Google Business',
       'Monthly Ranking Reports',
     ],
-    color: '#C9A84C',
+    color: '#22C55E',
   },
   {
     id:        'smo',
@@ -166,7 +166,7 @@ export const services = [
       'Social Analytics & Reporting',
       'Paid Social Integration',
     ],
-    color: '#3B82F6',
+    color: '#EC4899',
   },
   {
     id:        'google-ads',
@@ -197,7 +197,7 @@ export const services = [
       'Competitor & Keyword Research',
       'Detailed Monthly Reports',
     ],
-    color: '#EF4444',
+    color: '#1A73E8',
   },
 ];
 
@@ -551,3 +551,93 @@ export const packages = [
     popular:  false,
   },
 ];
+
+// ── Specific Service Pages Data ───────────────────────────────
+export const serviceDetails = {
+  'web-development': {
+    title: 'Website Development',
+    heroStats: [
+      { val: '50+',  lbl: 'Sites Delivered'    },
+      { val: '2x',   lbl: 'Avg. Lead Increase' },
+      { val: '3wk',  lbl: 'Typical Launch'     },
+      { val: '40%',  lbl: 'Bounce Rate Drop'   },
+    ],
+    whyNecessary: 'In today’s digital-first economy, your website is your 24/7 storefront. A slow, outdated out-of-the-box template site creates a poor first impression that drives potential customers straight to your competitors. A professionally developed, strategically built, scalable website acts as your primary engine for growth—establishing absolute authority, loading instantly across any device, and serving as the focal point for all your digital marketing efforts.',
+    howItHelped: 'We redesigned and re-platformed GreenBuild Co. onto a modern tech stack focused entirely on speed and conversion flows. By removing friction from the user journey and implementing clean, SEO-friendly architecture, we reduced bounce rates by 40% immediately upon launch.',
+    revenue: 'The new site doubled lead volume in the first 30 days, resulting in an additional ₹1.2Cr in closed revenue over the next quarter.',
+    packages: [
+      { name: 'Business Site', price: '₹35,000', period: '', tagline: 'For service businesses needing authority.', features: ['Custom UI/UX Design', 'Up to 7 Pages', 'Mobile Responsive', 'Speed Optimised', 'Basic SEO Setup'], cta: 'Get Started' },
+      { name: 'E-commerce', price: '₹65,000', period: '', tagline: 'Start selling online easily.', features: ['WooCommerce/Shopify', 'Payment Gateway', 'Up to 50 Products', 'Advanced Speed Optimisation', 'Inventory Management'], cta: 'Get Started', popular: true },
+      { name: 'Custom Application', price: 'Custom', period: '', tagline: 'Complex web platforms.', features: ['React / Next.js', 'Custom Backend', 'Third-party API Integrations', 'High Performance', 'Advanced Security'], cta: 'Contact Us' }
+    ]
+  },
+  'landing-pages': {
+    title: 'Landing Pages',
+    heroStats: [
+      { val: '80+',  lbl: 'Pages Built'          },
+      { val: '62%',  lbl: 'CPA Reduction'         },
+      { val: '3x',   lbl: 'Lead Increase'         },
+      { val: '95%',  lbl: 'Client Satisfaction'   },
+    ],
+    whyNecessary: 'Driving expensive ad traffic to a generic homepage is the fastest way to burn your marketing budget. Homepages are full of distractions and navigation links. A dedicated landing page is laser-focused on a single objective—whether it’s capturing leads, selling a product, or securing webinar registrations. It matches the messaging of your ad perfectly, ensuring high intent traffic converts at the highest possible rate.',
+    howItHelped: 'For a national education provider, we split-tested their existing ad traffic landing pages against a custom-built, benefit-driven page with clear trust signals and streamlined forms. Our page outperformed the control by generating highly qualified prospects while lowering the CPA.',
+    revenue: 'Decreased Cost Per Acquisition (CPA) by 62% resulting in a 3x increase in total leads with the exact same ad spend.',
+    packages: [
+      { name: 'Single Flow', price: '₹12,000', period: '', tagline: 'One page, one goal.', features: ['Conversion Focused Design', 'Mobile-First Layout', 'Lead Form Setup', 'Speed Optimisation', 'Thank You Page'], cta: 'Get Started' },
+      { name: 'A/B Testing Suite', price: '₹22,000', period: '', tagline: 'Scale your ad campaigns.', features: ['Two Page Variations', 'A/B Test Setup', 'Heatmap Integration', 'Advanced Analytics Tracking', 'Bi-weekly Reporting'], cta: 'Get Started', popular: true },
+      { name: 'Funnel Build', price: 'Custom', period: '', tagline: 'Multi-step conversion flows.', features: ['Squeeze Pages', 'Up-sell/Down-sell Logic', 'Email Sequence Integration', 'Video Sales letters', 'Full CRM Integration'], cta: 'Contact Us' }
+    ]
+  },
+  'seo': {
+    title: 'Search Engine Optimisation',
+    heroStats: [
+      { val: '312%', lbl: 'Traffic Growth'         },
+      { val: '#1',   lbl: 'Rankings Achieved'      },
+      { val: '3-6',  lbl: 'Months to Results'      },
+      { val: '₹50L', lbl: 'Monthly Organic Revenue'},
+    ],
+    whyNecessary: 'Over 68% of all online experiences begin with a search engine. If you aren’t commanding page 1 visibility for the terms your customers are actively searching, you simply don’t exist to them. Unlike paid ads that stop generating traffic the second you stop paying, robust SEO serves as a compounding asset. Over time, it dramatically reduces your blended customer acquisition costs and builds long-term brand equity.',
+    howItHelped: 'TechStart India had great products but zero organic visibility. We overhauled their site architecture, resolved critical Core Web Vitals issues, and executed a targeted link-building and content strategy. They moved from page 5 obscurity to dominating position 1 for their most competitive, high-intent keywords.',
+    revenue: 'Organic traffic grew by 312%, driving over ₹50L in additional unpaid revenue every single month.',
+    packages: [
+      { name: 'Local Dominance', price: '₹18,000', period: '/month', tagline: 'For local businesses.', features: ['Google Business Profile', 'Local Citations', 'On-page Local SEO', '12 Keywords Tracked', 'Monthly Reporting'], cta: 'Get Started' },
+      { name: 'National Growth', price: '₹35,000', period: '/month', tagline: 'Scale across the country.', features: ['Comprehensive Technical SEO', 'High-quality Link Building', 'Content Strategy', '30 Keywords Tracked', 'Competitor Analysis'], cta: 'Get Started', popular: true },
+      { name: 'Enterprise SEO', price: 'Custom', period: '/month', tagline: 'Large sites & e-commerce.', features: ['Advanced Technical Architecture', 'PR & Outreach', 'Content Siloing', 'Unlimited Keywords', 'Dedicated Strategist'], cta: 'Contact Us' }
+    ]
+  },
+  'smo': {
+    title: 'Social Media Optimisation',
+    heroStats: [
+      { val: '40K+', lbl: 'Followers Grown'   },
+      { val: '25%',  lbl: 'Sales Lift'         },
+      { val: '4mo',  lbl: 'Avg. Results Time'  },
+      { val: '3×',   lbl: 'Engagement Boost'   },
+    ],
+    whyNecessary: 'Social media is where consumer trust is built before they even visit your website. It is no longer just an optional branding exercise; it is where active community engagement translates to brand loyalty. Consistent, high-quality, and strategically tuned social content keeps your business top-of-mind, turning passive scroll time into active buying decisions.',
+    howItHelped: 'We took over a struggling D2C brand’s Instagram and Facebook presence. We pivoted from generic product posts to creator-led Reels, educational content, and community challenges. We established a strong aesthetic and a highly engaging daily cadence.',
+    revenue: 'Grew their audience by 40,000 followers organically, contributing directly to a 25% lift in direct-to-consumer sales within 4 months.',
+    packages: [
+      { name: 'Essential Presence', price: '₹15,000', period: '/month', tagline: 'Keep your brand active.', features: ['2 Platforms Managed', '10 Static Posts / Month', 'Basic Community Management', 'Profile Optimisation', 'Monthly Reporting'], cta: 'Get Started' },
+      { name: 'Engagement Driver', price: '₹25,000', period: '/month', tagline: 'Build real community.', features: ['3 Platforms Managed', '15 Posts + 4 Reels', 'Proactive Community Management', 'Hashtag Strategy', 'Content Calendar'], cta: 'Get Started', popular: true },
+      { name: 'Viral Scale', price: 'Custom', period: '/month', tagline: 'For maximum organic reach.', features: ['Unlimited Platforms', 'Video-heavy Content', 'Influencer Outreach', 'Trend Capitalization', 'Advanced Analytics'], cta: 'Contact Us' }
+    ]
+  },
+  'google-ads': {
+    title: 'Google Ads Management',
+    heroStats: [
+      { val: '4.8x', lbl: 'ROAS Achieved'         },
+      { val: '3x',   lbl: 'Net Sales Growth'       },
+      { val: '0%',   lbl: 'Wasted Spend'           },
+      { val: '100%', lbl: 'Spend Transparency'     },
+    ],
+    whyNecessary: 'Google Ads allows you to jump straight to the top of search results the instant someone searches for your exact exact product or service. This is the highest-intent traffic available on the internet. However, a poorly managed campaign will drain your budget on irrelevant clicks. Proper professional management ensures every rupee is meticulously tracked, refined, and directed towards keywords that produce actual paying customers.',
+    howItHelped: 'StyleHub was running their own ads and bleeding budget on broad-match terms. We executed a complete account rebuild—implementing strict negative keyword lists, restructuring ad groups, and utilizing data-driven smart bidding layered over tight audience targeting.',
+    revenue: 'Turned a failing 1.2x ROAS into a highly profitable 4.8x ROAS, tripling their net sales while keeping ad spend completely flat.',
+    packages: [
+      { name: 'Search Focused', price: '₹15,000', period: '/month', tagline: 'Capture high-intent searches.', features: ['Search Network Campaigns', 'Keyword Research', 'Ad Copy Creation', 'Conversion Tracking', 'Up to ₹1L Ad Spend'], cta: 'Get Started' },
+      { name: 'Omni-Channel Lead Gen', price: '₹25,000', period: '/month', tagline: 'Dominate all Google properties.', features: ['Search, Display & Discovery', 'Remarketing Setup', 'A/B Testing Ads', 'Landing Page Consult', 'Up to ₹3L Ad Spend'], cta: 'Get Started', popular: true },
+      { name: 'Performance Max Pro', price: 'Custom', period: '/month', tagline: 'For high-volume e-commerce.', features: ['Shopping & PMax Campaigns', 'Feed Optimisation', 'Advanced Audience Signals', 'ROAS Bidding', 'Unlimited Spend Management'], cta: 'Contact Us' }
+    ]
+  }
+};
+

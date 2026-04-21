@@ -275,7 +275,7 @@ function ServicesSection() {
     { Icon: RiMegaphoneLine,   color: '#FF7A59', title: 'Social Media',     tag: 'Be Seen',         desc: 'Build your community, grow engagement, and turn followers into loyal paying customers.', href: '/services/smo' },
     { Icon: RiBarChartLine,    color: '#FBBC04', title: 'Google Ads',       tag: 'High ROI',        desc: 'High-performance paid campaigns — every rupee tracked, every conversion counted, every result transparent.', href: '/services/google-ads' },
     { Icon: RiCodeSSlashLine,  color: '#61DAFB', title: 'Web Development',  tag: 'Convert',         desc: 'Fast, mobile-first websites built to rank, load instantly, and turn visitors into enquiries from day one.', href: '/services/web-development' },
-    { Icon: RiLayoutLine,      color: '#9146FF', title: 'Landing Pages',    tag: 'Drive Leads',     desc: 'Purpose-built pages with clear messaging and tested conversion flows that turn ad clicks into real business.', href: '/services' },
+    { Icon: RiLayoutLine,      color: '#9146FF', title: 'Landing Pages',    tag: 'Drive Leads',     desc: 'Purpose-built pages with clear messaging and tested conversion flows that turn ad clicks into real business.', href: '/services/landing-pages' },
     { Icon: RiEditLine,        color: '#1DB954', title: 'Content Marketing',tag: 'Tell Your Story', desc: 'Strategic content that educates, attracts, and converts — blogs, videos, emails and more.', href: '/services' },
   ];
 
@@ -538,17 +538,21 @@ function CTASection() {
       <div className="sec-cta__glow-1" />
       <div className="sec-cta__glow-2" />
       <div className="container sec-cta__inner nh-reveal">
-        <span className="sec-eyebrow sec-eyebrow--light">Ready to grow?</span>
+        <span className="sec-eyebrow sec-eyebrow--light">You're One Click Away</span>
         <h2 className="sec-cta__heading">
-          LET'S BUILD SOMETHING<br />
-          <span className="sec-red-light">REMARKABLE.</span>
+          YOUR GROWTH STORY<br />
+          <span className="sec-red-light">STARTS RIGHT HERE.</span>
         </h2>
         <div className="sec-rule--red sec-cta__rule" />
+        <p style={{ fontStyle: 'italic', color: 'rgba(201,168,76,0.9)', fontSize: '1rem', maxWidth: 540, margin: '0 auto 1rem', lineHeight: 1.65, borderLeft: '3px solid #C9A84C', paddingLeft: '1rem', textAlign: 'left' }}>
+          "The distance between where you are and where you want to be is just one decision."
+        </p>
         <p className="sec-body--light sec-cta__sub">
-          Free audit. No long-term lock-ins. Dedicated account manager from day one.
+          One conversation with MAJ Digital unlocks your brand's real potential.
+          Free audit — no lock-ins, no fluff, just results.
         </p>
         <div className="sec-cta__btns">
-          <Link to="/contact" className="sec-btn sec-btn--red">Get Your Free Audit →</Link>
+          <Link to="/contact" className="sec-btn sec-btn--red">Book Free Strategy Call →</Link>
           <Link to="/services" className="sec-btn sec-btn--outline-light">Explore Services</Link>
         </div>
         <div className="sec-cta__trust">

@@ -5,6 +5,7 @@ import Header     from './components/Header/Header.jsx';
 import Footer     from './components/Footer/Footer.jsx';
 import Home       from './pages/Home.jsx';
 import ServicesPage   from './pages/ServicesPage.jsx';
+import ServiceDetail  from './pages/ServiceDetail.jsx';
 import AboutPage      from './pages/AboutPage.jsx';
 import BlogPage       from './pages/BlogPage.jsx';
 import BlogPostPage   from './pages/BlogPostPage.jsx';
@@ -26,7 +27,7 @@ function AppShell() {
       <Routes>
         <Route path="/"                   element={<Home />}          />
         <Route path="/services"           element={<ServicesPage />}  />
-        <Route path="/services/:slug"     element={<ServicesPage />}  />
+        <Route path="/services/:slug"     element={<ServiceDetail />}  />
         <Route path="/about"              element={<AboutPage />}     />
         <Route path="/blog"               element={<BlogPage />}      />
         <Route path="/blog/:slug"         element={<BlogPostPage />}  />
