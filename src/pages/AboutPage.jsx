@@ -166,7 +166,7 @@ export default function AboutPage() {
 
       <CTA
         color="#F97316"
-        quote='"Behind every great brand is a team that believed in it before the world did. That\'s us."'
+        quote={`"Behind every great brand is a team that believed in it before the world did. That's us."`}
         sub="You now know who we are and what we stand for. Let's talk about what we can build together — free, no pressure."
       />
       

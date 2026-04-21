@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import Loader     from './components/Loader/Loader.jsx';
-import Header     from './components/Header/Header.jsx';
-import Footer     from './components/Footer/Footer.jsx';
+import Loader        from './components/Loader/Loader.jsx';
+import Header        from './components/Header/Header.jsx';
+import Footer        from './components/Footer/Footer.jsx';
+import EnquirePanel  from './components/EnquirePanel/EnquirePanel.jsx';
 import Home       from './pages/Home.jsx';
 import ServicesPage   from './pages/ServicesPage.jsx';
 import ServiceDetail  from './pages/ServiceDetail.jsx';
@@ -59,6 +60,7 @@ function AppShell() {
       <ScrollReset />
       <PageAccentInjector />
       <Header />
+      <EnquirePanel />
       <Routes>
         <Route path="/"                   element={<Home />}          />
         <Route path="/services"           element={<ServicesPage />}  />
