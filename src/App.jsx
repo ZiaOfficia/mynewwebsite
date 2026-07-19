@@ -11,8 +11,9 @@ import OfferBanner from './components/OfferBanner/OfferBanner.jsx';
 import Home       from './pages/Home.jsx';
 import ServiceDetail  from './pages/ServiceDetail.jsx';
 import AboutPage      from './pages/AboutPage.jsx';
-import BlogPage       from './pages/BlogPage.jsx';
-import BlogPostPage   from './pages/BlogPostPage.jsx';
+// Blog hidden for now — restore these imports with the routes below
+// import BlogPage       from './pages/BlogPage.jsx';
+// import BlogPostPage   from './pages/BlogPostPage.jsx';
 import ContactPage    from './pages/ContactPage.jsx';
 
 /* ── Page accent colours (must match each page's theme) ──── */
@@ -151,8 +152,9 @@ function AppShell() {
             <Route path="/services"           element={<Navigate to="/" replace />} />
             <Route path="/services/:slug"     element={<ServiceDetail />}  />
             <Route path="/about"              element={<AboutPage />}     />
+            {/* Blog hidden for now — restore when ready
             <Route path="/blog"               element={<BlogPage />}      />
-            <Route path="/blog/:slug"         element={<BlogPostPage />}  />
+            <Route path="/blog/:slug"         element={<BlogPostPage />}  /> */}
             <Route path="/contact"            element={<ContactPage />}   />
             {/* Fallback */}
             <Route path="*"                   element={<NotFound />}      />

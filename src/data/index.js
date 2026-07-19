@@ -43,7 +43,8 @@ export const navLinks = [
     ],
   },
   { label: 'About',   href: '/about'   },
-  { label: 'Blog',    href: '/blog'    },
+  // Blog hidden for now — restore when ready
+  // { label: 'Blog',    href: '/blog'    },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -237,32 +238,48 @@ export const whyUs = [
 export const team = [
   {
     id:    1,
-    name:  'Founder & CEO',
+    name:  'Jaan-e-Ala',
     role:  'Founder & CEO',
     bio:   'Visionary leader with deep expertise in digital marketing strategy, passionate about helping Indian businesses scale online.',
     image: null,
   },
   {
     id:    2,
+    name:  'Farah Naz',
+    role:  'Co-Founder',
+    bio:   'Drives the agency\'s vision and client success — turning ambitious growth goals into clear, actionable digital strategies.',
+    image: null,
+  },
+  {
+    id:    3,
+    name:  'Hameeda',
+    role:  'Co-Founder',
+    bio:   'Leads operations and creative direction, making sure every project ships on time and every brand story lands with impact.',
+    image: null,
+  },
+  /* Hidden for now — restore when the team grows
+  {
+    id:    4,
     name:  'SEO Head',
     role:  'Head of SEO',
     bio:   'Technical SEO specialist with a proven track record of ranking competitive keywords and driving sustainable organic growth.',
     image: null,
   },
   {
-    id:    3,
+    id:    5,
     name:  'Social Media Lead',
     role:  'Social Media Lead',
     bio:   'Creative strategist behind our clients\' social success — from viral content ideas to community engagement that converts.',
     image: null,
   },
   {
-    id:    4,
+    id:    6,
     name:  'PPC Specialist',
     role:  'Google Ads Specialist',
     bio:   'Certified Google Ads expert obsessed with optimising campaigns for the lowest cost per acquisition and highest ROAS.',
     image: null,
   },
+  */
 ];
 
 // ── Testimonials ──────────────────────────────────────────────

@@ -123,6 +123,7 @@ export default function ContactPage() {
             </h3>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {/* Email & phone hidden for now
               <div>
                 <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#D946EF', marginBottom: '0.4rem' }}>Email</p>
                 <a href={`mailto:${agency.email}`} style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem', textDecoration: 'none' }}>{agency.email}</a>
@@ -130,7 +131,7 @@ export default function ContactPage() {
               <div>
                 <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#D946EF', marginBottom: '0.4rem' }}>Phone</p>
                 <a href={`tel:${agency.phone}`} style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem', textDecoration: 'none' }}>{agency.phone}</a>
-              </div>
+              </div> */}
               <div>
                 <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#D946EF', marginBottom: '0.4rem' }}>Address</p>
                 <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem', lineHeight: 1.5 }}>{agency.address}</p>
