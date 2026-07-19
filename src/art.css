@@ -1,0 +1,255 @@
+/* ============================================================
+   CULTURAL ART LAYER — HiBrands
+   Textures & ornament drawn from world craft traditions:
+   Palestinian tatreez, Islamic geometry, Japanese seigaiha &
+   sumi ink, African mudcloth, Indian kolam, Moroccan zellige.
+   Pure decoration — content, markup and flow are untouched.
+   ============================================================ */
+
+:root {
+  /* handmade-paper grain (SVG turbulence — reads as real fibre) */
+  --art-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+  /* Palestinian tatreez cross-stitch band */
+  --art-tatreez: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><g stroke='%23CC1F35' stroke-width='2.4' stroke-linecap='square'><path d='M4 4l7 7M11 4l-7 7'/><path d='M18 18l7 7M25 18l-7 7' stroke='%234169E1'/></g></svg>");
+  /* Islamic 8-fold star lattice */
+  --art-star8: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><g fill='none' stroke='%23C9A84C' stroke-width='1'><rect x='17' y='17' width='30' height='30'/><rect x='17' y='17' width='30' height='30' transform='rotate(45 32 32)'/><circle cx='32' cy='32' r='30' stroke-opacity='0.3'/></g></svg>");
+  /* Japanese seigaiha waves */
+  --art-seigaiha: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='24'><g fill='none' stroke='%230D1B2A' stroke-width='1.3'><path d='M0 24a24 24 0 0 1 48 0M6 24a18 18 0 0 1 36 0M12 24a12 12 0 0 1 24 0M18 24a6 6 0 0 1 12 0'/><path d='M-24 12a24 24 0 0 1 48 0M-18 12a18 18 0 0 1 36 0' opacity='0.5'/><path d='M24 12a24 24 0 0 1 48 0M30 12a18 18 0 0 1 36 0' opacity='0.5'/></g></svg>");
+  /* African mudcloth dashes */
+  --art-mudcloth: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36'><g stroke='%23F7F5F0' stroke-width='2'><path d='M0 6h9M13 6h9M26 6h10M5 18h11M20 18h12M0 30h7M11 30h13M28 30h8'/></g></svg>");
+  /* Moroccan zellige quatrefoil */
+  --art-quatrefoil: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M20 3c4.5 0 7 3 7 7 4 0 7 2.5 7 7s-3 7-7 7c0 4-2.5 7-7 7s-7-3-7-7c-4 0-7-2.5-7-7s3-7 7-7c0-4 2.5-7 7-7z' fill='none' stroke='%234169E1' stroke-width='1.2'/></svg>");
+  /* sumi-e / calligraphic brush stroke (turbulence-roughened ink) */
+  --art-brush: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='620' height='140'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.09' numOctaves='3' seed='7'/><feDisplacementMap in='SourceGraphic' scale='16'/></filter><path d='M24 84 C160 26 330 122 596 58' fill='none' stroke='%23C9A84C' stroke-width='15' stroke-linecap='round' filter='url(%23b)'/></svg>");
+}
+
+@keyframes artDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 128px 128px; }
+}
+
+/* ── HOME ─────────────────────────────────────────────────── */
+
+/* Who We Are — Palestinian tatreez embroidery bands on paper */
+.sec-about { position: relative; }
+.sec-about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--art-grain);
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.sec-about::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 14px;
+  height: 28px;
+  background: var(--art-tatreez);
+  background-repeat: repeat-x;
+  opacity: 0.5;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  pointer-events: none;
+}
+
+/* Services — Islamic geometric lattice drifting over deep navy */
+.sec-services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--art-star8);
+  opacity: 0.09;
+  animation: artDrift 90s linear infinite;
+  pointer-events: none;
+}
+.sec-services::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(560px 320px at 12% 8%, rgba(65,105,225,0.16), transparent 70%),
+    radial-gradient(520px 300px at 90% 92%, rgba(204,31,53,0.14), transparent 70%);
+  pointer-events: none;
+}
+
+/* Process — Japanese sumi ink wash on warm washi paper */
+.sec-process { position: relative; overflow: hidden; }
+.sec-process::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    var(--art-grain),
+    radial-gradient(420px 300px at 88% 12%, rgba(13,27,42,0.06), transparent 70%),
+    radial-gradient(360px 260px at 6% 86%, rgba(65,105,225,0.07), transparent 70%);
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.sec-process::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 48px;
+  background: var(--art-seigaiha);
+  background-repeat: repeat-x;
+  background-position: bottom;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* Results — African mudcloth borders on near-black */
+.sec-results::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 10px;
+  height: 36px;
+  background: var(--art-mudcloth);
+  background-repeat: repeat-x;
+  opacity: 0.16;
+  pointer-events: none;
+}
+.sec-results::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 10px;
+  height: 36px;
+  background: var(--art-mudcloth);
+  background-repeat: repeat-x;
+  opacity: 0.16;
+  transform: scaleY(-1);
+  pointer-events: none;
+}
+
+/* Confidence — Moroccan zellige field */
+.sec-confidence::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--art-quatrefoil);
+  opacity: 0.1;
+  animation: artDrift 120s linear infinite reverse;
+  pointer-events: none;
+}
+
+/* Testimonials — Indian kolam dot field on paper */
+.sec-testi { position: relative; }
+.sec-testi::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    var(--art-grain),
+    radial-gradient(rgba(204,31,53,0.14) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(65,105,225,0.12) 1.5px, transparent 1.5px);
+  background-size: 240px 240px, 36px 36px, 36px 36px;
+  background-position: 0 0, 0 0, 18px 18px;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.sec-testi__inner,
+.sec-about__inner { position: relative; z-index: 1; }
+
+/* Testimonial cards — hand-framed like miniature paintings */
+.sec-testi-card {
+  border: 1px solid rgba(201,168,76,0.45);
+  box-shadow: 0 18px 44px rgba(13,27,42,0.1);
+  position: relative;
+}
+.sec-testi-card::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Home CTA — calligraphic gold brush stroke */
+.sec-cta::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(620px, 92vw);
+  height: 140px;
+  transform: translate(-50%, -50%);
+  background: var(--art-brush) center / contain no-repeat;
+  opacity: 0.14;
+  pointer-events: none;
+}
+.sec-cta::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 12px;
+  height: 30px;
+  background: var(--art-tatreez);
+  background-repeat: repeat-x;
+  opacity: 0.3;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 25%, #000 75%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 25%, #000 75%, transparent);
+  pointer-events: none;
+}
+
+/* ── INNER PAGES (About / Services / Blog / Contact / Detail) ── */
+
+.section--navy,
+.section--navy-mid { position: relative; }
+.section--navy::before,
+.section--navy-mid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--art-star8);
+  opacity: 0.07;
+  animation: artDrift 110s linear infinite;
+  pointer-events: none;
+}
+
+.section--off-white,
+.section--white { position: relative; }
+.section--off-white::before,
+.section--white::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--art-grain);
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.section--off-white > .container,
+.section--white > .container,
+.section--navy > .container,
+.section--navy-mid > .container { position: relative; z-index: 1; }
+
+/* Cards & pricing — gallery-frame treatment */
+.card,
+.pricing-card,
+.blog-list-card {
+  border: 1px solid rgba(201,168,76,0.35);
+  position: relative;
+}
+.pricing-card::after,
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(201,168,76,0.22);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Elegant tatreez rule under page heros */
+.page-wrapper { position: relative; }
+
+/* ── Motion restraint ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sec-services::before,
+  .sec-confidence::before,
+  .section--navy::before,
+  .section--navy-mid::before { animation: none; }
+}

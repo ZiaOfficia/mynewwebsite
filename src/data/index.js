@@ -1,12 +1,12 @@
 /* ============================================================
-   DATA LAYER — MAJ
+   DATA LAYER — HiBrands
    ============================================================ */
 
 // ── Agency Info ──────────────────────────────────────────────
 export const agency = {
-  name:        'MAJ',
-  tagline:     'Where Brands Are Built.',
-  description: 'MAJ is a performance-driven digital marketing agency helping businesses grow online through expert Website Development, SEO, Social Media Optimisation, and Google Ads management.',
+  name:        'HiBrands',
+  tagline:     'Say Hi to Growth.',
+  description: 'HiBrands is a performance-driven digital marketing agency where businesses say hi to real growth — through expert Website Development, SEO, Social Media Optimisation, and Google Ads management.',
   email:       'ss4526312@gmail.com',
   phone:       '+91 00000 00000',
   address:     'India',
@@ -58,7 +58,7 @@ export const services = [
     tagline:   'Websites Built to Convert.',
     summary:   'We design and develop fast, mobile-first websites that look great, rank well, and turn visitors into customers — built on the latest tech stack tailored to your business goals.',
     description: `
-      Your website is your most valuable digital asset. At Squareit Solutions, we design and develop
+      Your website is your most valuable digital asset. At HiBrands, we design and develop
       custom websites that are not just visually stunning but are engineered for performance and conversions.
 
       Every site we build is fully responsive, lightning-fast, and structured with SEO best practices
@@ -89,7 +89,7 @@ export const services = [
     summary:   'We craft laser-focused landing pages that guide visitors towards a single action — generating leads, sign-ups, or sales — with persuasive copy and conversion-optimised design.',
     description: `
       A great landing page is the backbone of every successful ad campaign or lead generation effort.
-      At Squareit Solutions, we build landing pages that are purpose-built to convert.
+      At HiBrands, we build landing pages that are purpose-built to convert.
 
       From compelling headlines and benefit-driven copy to strategic CTAs and trust signals, every
       element is designed with your target audience in mind. We A/B test layouts and messaging
@@ -118,7 +118,7 @@ export const services = [
     summary:   'Our data-driven SEO strategies put your business in front of the right people at the right time — driving consistent organic traffic that grows month on month.',
     description: `
       Search Engine Optimisation is the most sustainable way to grow your online presence.
-      At Squareit Solutions, we take a comprehensive approach to SEO — combining technical excellence,
+      At HiBrands, we take a comprehensive approach to SEO — combining technical excellence,
       content strategy, and authority building to deliver lasting rankings.
 
       We begin with a deep-dive audit of your website, identifying technical gaps, content opportunities,
@@ -148,7 +148,7 @@ export const services = [
     summary:   'We build and manage your brand\'s social media presence with engaging content, community management, and strategic growth tactics across all major platforms.',
     description: `
       Social media is where your customers spend their time — and we make sure your brand shows up
-      impressively. Squareit Solutions provides full-service social media optimisation to grow your
+      impressively. HiBrands provides full-service social media optimisation to grow your
       following, drive engagement, and convert fans into loyal customers.
 
       We create platform-specific content calendars, design eye-catching creatives, manage your
@@ -178,7 +178,7 @@ export const services = [
     summary:   'We manage high-performance Google Ads campaigns that drive targeted traffic, qualified leads, and measurable ROI — with full transparency and no wasted spend.',
     description: `
       Google Ads is the fastest way to put your business in front of high-intent customers actively
-      searching for what you offer. At Squareit Solutions, we manage campaigns that are meticulously
+      searching for what you offer. At HiBrands, we manage campaigns that are meticulously
       optimised to maximise your return on every rupee spent.
 
       From keyword research and compelling ad copy to bid strategy, audience targeting, and
@@ -269,7 +269,7 @@ export const team = [
 export const testimonials = [
   {
     id:      1,
-    quote:   'Squareit Solutions completely transformed our online presence. Within 4 months, our organic traffic tripled and we\'re now ranking on page 1 for all our target keywords. Best investment we\'ve made.',
+    quote:   'HiBrands completely transformed our online presence. Within 4 months, our organic traffic tripled and we\'re now ranking on page 1 for all our target keywords. Best investment we\'ve made.',
     author:  'Rajesh Kumar',
     company: 'TechStart India',
     service: 'SEO',
@@ -277,7 +277,7 @@ export const testimonials = [
   },
   {
     id:      2,
-    quote:   'Our Google Ads ROAS went from 1.2x to 4.8x in just 3 months after switching to Squareit Solutions. The team is transparent, proactive, and genuinely understands performance marketing.',
+    quote:   'Our Google Ads ROAS went from 1.2x to 4.8x in just 3 months after switching to HiBrands. The team is transparent, proactive, and genuinely understands performance marketing.',
     author:  'Priya Sharma',
     company: 'StyleHub',
     service: 'Google Ads',
@@ -320,7 +320,7 @@ export const blogPosts = [
     title:      '10 SEO Mistakes That Are Silently Killing Your Google Rankings',
     excerpt:    'Most businesses unknowingly sabotage their own SEO with these common mistakes. Find out what they are and exactly how to fix them before they cost you more traffic.',
     category:   'SEO',
-    author:     'Squareit Solutions',
+    author:     'HiBrands',
     date:       '2024-03-10',
     readTime:   '6 min read',
     image:      null,
@@ -365,7 +365,7 @@ SEO success comes from getting the fundamentals right. Audit your site today aga
     title:      'How to Double Your Google Ads ROAS Without Increasing Your Budget',
     excerpt:    'Getting more from your Google Ads spend doesn\'t always mean spending more. These proven optimisation tactics will help you squeeze maximum ROI from every rupee.',
     category:   'Google Ads',
-    author:     'Squareit Solutions',
+    author:     'HiBrands',
     date:       '2024-03-22',
     readTime:   '7 min read',
     image:      null,
@@ -379,7 +379,7 @@ SEO success comes from getting the fundamentals right. Audit your site today aga
     title:      '7 Landing Page Elements That Dramatically Increase Conversions',
     excerpt:    'Your ad might be perfect but if your landing page isn\'t optimised, you\'re burning budget. Here are the 7 elements every high-converting landing page must have.',
     category:   'Web Design',
-    author:     'Squareit Solutions',
+    author:     'HiBrands',
     date:       '2024-04-05',
     readTime:   '5 min read',
     image:      null,
@@ -393,7 +393,7 @@ SEO success comes from getting the fundamentals right. Audit your site today aga
     title:      'The Instagram Growth Strategy That\'s Actually Working in 2024',
     excerpt:    'Organic reach is declining but these proven Instagram strategies are still delivering real follower growth and engagement for brands in any niche.',
     category:   'Social Media',
-    author:     'Squareit Solutions',
+    author:     'HiBrands',
     date:       '2024-04-18',
     readTime:   '8 min read',
     image:      null,
@@ -407,7 +407,7 @@ SEO success comes from getting the fundamentals right. Audit your site today aga
     title:      'Local SEO in India: The Complete Guide to Dominating Google Maps',
     excerpt:    'If your business serves a local area, ranking on Google Maps can be your single biggest source of new customers. Here\'s exactly how to do it.',
     category:   'SEO',
-    author:     'Squareit Solutions',
+    author:     'HiBrands',
     date:       '2024-05-02',
     readTime:   '9 min read',
     image:      null,
@@ -421,7 +421,7 @@ SEO success comes from getting the fundamentals right. Audit your site today aga
     title:      'Website Speed & SEO: Why Slow Sites Are Losing Customers Every Day',
     excerpt:    'Every second of load time costs you conversions and rankings. Learn how to diagnose your site\'s speed issues and fix them without a full redesign.',
     category:   'Web Design',
-    author:     'Squareit Solutions',
+    author:     'HiBrands',
     date:       '2024-05-15',
     readTime:   '6 min read',
     image:      null,

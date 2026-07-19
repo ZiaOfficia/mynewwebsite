@@ -93,7 +93,7 @@ export default function AboutPage() {
             </h2>
             <div className="sec-rule--red" />
             <p className="sec-body--dark">
-              MAJ Digital was founded with a simple belief: every business deserves a
+              HiBrands was founded with a simple belief: every business deserves a
               powerful digital presence. We saw too many great businesses struggling online —
               not because of a bad product, but because of weak websites, invisible search rankings,
               and poorly managed ad spend. We set out to fix that.

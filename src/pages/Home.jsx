@@ -1,13 +1,14 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  SiGoogle, SiMeta, SiShopify, SiHubspot, SiSalesforce, SiStripe, SiFigma, SiNotion,
-  SiTiktok, SiYoutube, SiSlack, SiCanva, SiSpotify, SiWebflow, SiPinterest, SiTwitch,
+  SiGoogle, SiMeta, SiShopify, SiHubspot, SiStripe, SiFigma, SiNotion,
+  SiTiktok, SiYoutube, SiFramer, SiSpotify, SiWebflow, SiPinterest, SiTwitch,
   SiMailchimp, SiWoocommerce, SiNetflix, SiAirbnb, SiPaypal, SiSemrush, SiZapier, SiZoom,
   SiGoogleads, SiWordpress, SiReact, SiNextdotjs, SiTailwindcss, SiDiscord, SiDropbox, SiGithub,
 } from 'react-icons/si';
+import { FaSalesforce, FaSlack } from 'react-icons/fa';
 import {
-  RiSearchLine, RiGlobalLine, RiCodeSSlashLine, RiLayoutLine, RiEditLine,
+  RiSearchLine, RiGlobalLine, RiCodeSSlashLine, RiLayoutLine,
   RiBarChartLine, RiRocketLine, RiTrophyLine, RiTeamLine, RiMegaphoneLine,
   RiLineChartLine, RiTimeLine, RiCheckDoubleLine, RiLightbulbLine, RiPieChartLine,
   RiBroadcastLine,
@@ -34,14 +35,14 @@ const ALL_BRANDS = [
   { name: 'Meta',        Icon: SiMeta,             color: '#0082FB' },
   { name: 'Shopify',     Icon: SiShopify,          color: '#96BF48' },
   { name: 'HubSpot',     Icon: SiHubspot,          color: '#FF7A59' },
-  { name: 'Salesforce',  Icon: SiSalesforce,       color: '#00A1E0' },
+  { name: 'Salesforce',  Icon: FaSalesforce,       color: '#00A1E0' },
   { name: 'Stripe',      Icon: SiStripe,           color: '#635BFF' },
   { name: 'Figma',       Icon: SiFigma,            color: '#F24E1E' },
   { name: 'Notion',      Icon: SiNotion,           color: '#a0a0a0' },
   { name: 'TikTok',      Icon: SiTiktok,           color: '#69C9D0' },
   { name: 'YouTube',     Icon: SiYoutube,          color: '#FF0000' },
-  { name: 'Slack',       Icon: SiSlack,            color: '#E01E5A' },
-  { name: 'Canva',       Icon: SiCanva,            color: '#00C4CC' },
+  { name: 'Slack',       Icon: FaSlack,            color: '#E01E5A' },
+  { name: 'Framer',      Icon: SiFramer,           color: '#0055FF' },
   { name: 'Spotify',     Icon: SiSpotify,          color: '#1DB954' },
   { name: 'Webflow',     Icon: SiWebflow,          color: '#4353FF' },
   { name: 'Pinterest',   Icon: SiPinterest,        color: '#E60023' },
@@ -170,7 +171,7 @@ function HeroSection() {
           <div className="nh-hero__underline nh-reveal nh-delay-1" />
           <p className="nh-hero__sub nh-reveal nh-delay-2">
             Your brand. Your audience. Your digital future —<br />
-            made measurable by MAJ Digital.
+            say hi to growth with HiBrands.
           </p>
         </div>
       </div>
@@ -233,9 +234,9 @@ function AboutSection() {
           </h2>
           <div className="sec-rule--red" />
           <p className="sec-body--dark">
-            MAJ Digital accepts and amplifies your brand for who you are and who you want
-            to become. We find which channels you excel in, which campaigns you love, and
-            which way your brand will grow fastest.
+            At HiBrands, every partnership starts with a simple hi. We get to know your
+            brand for who you are and who you want to become — which channels you excel in,
+            which campaigns you love, and which way your brand will grow fastest.
           </p>
           <p className="sec-body--dark">
             From stunning websites to Google page-1 rankings and high-ROI ad campaigns —
@@ -271,12 +272,11 @@ function AboutSection() {
    ================================================================ */
 function ServicesSection() {
   const services = [
+    { Icon: RiCodeSSlashLine,  color: '#61DAFB', title: 'Web Development',  tag: 'Convert',         desc: 'Fast, mobile-first websites built to rank, load instantly, and turn visitors into enquiries from day one.', href: '/services/web-development' },
+    { Icon: RiLayoutLine,      color: '#9146FF', title: 'Landing Pages',    tag: 'Drive Leads',     desc: 'Purpose-built pages with clear messaging and tested conversion flows that turn ad clicks into real business.', href: '/services/landing-pages' },
     { Icon: RiSearchLine,      color: '#4285F4', title: 'SEO',              tag: 'Rank & Stay',     desc: 'Technical audits, content strategy, and proven link-building that keeps you on page 1 and growing.', href: '/services/seo' },
     { Icon: RiMegaphoneLine,   color: '#FF7A59', title: 'Social Media',     tag: 'Be Seen',         desc: 'Build your community, grow engagement, and turn followers into loyal paying customers.', href: '/services/smo' },
     { Icon: RiBarChartLine,    color: '#FBBC04', title: 'Google Ads',       tag: 'High ROI',        desc: 'High-performance paid campaigns — every rupee tracked, every conversion counted, every result transparent.', href: '/services/google-ads' },
-    { Icon: RiCodeSSlashLine,  color: '#61DAFB', title: 'Web Development',  tag: 'Convert',         desc: 'Fast, mobile-first websites built to rank, load instantly, and turn visitors into enquiries from day one.', href: '/services/web-development' },
-    { Icon: RiLayoutLine,      color: '#9146FF', title: 'Landing Pages',    tag: 'Drive Leads',     desc: 'Purpose-built pages with clear messaging and tested conversion flows that turn ad clicks into real business.', href: '/services/landing-pages' },
-    { Icon: RiEditLine,        color: '#1DB954', title: 'Content Marketing',tag: 'Tell Your Story', desc: 'Strategic content that educates, attracts, and converts — blogs, videos, emails and more.', href: '/services' },
   ];
 
   return (
@@ -287,8 +287,8 @@ function ServicesSection() {
         <div className="sec-services__header nh-reveal">
           <span className="sec-eyebrow sec-eyebrow--light">What We Do</span>
           <h2 className="sec-heading--light">
-            SIX SERVICES.<br />
-            <span className="sec-red-light">ONE MISSION.</span>
+            FIVE SERVICES.<br />
+            <span className="sec-royal-light">ONE MISSION.</span>
           </h2>
           <div className="sec-rule--red" />
           <p className="sec-body--light">Every tool in our arsenal aimed at one thing — making your brand impossible to ignore online.</p>
@@ -310,9 +310,6 @@ function ServicesSection() {
           ))}
         </div>
 
-        <div className="sec-services__cta nh-reveal">
-          <Link to="/services" className="sec-btn sec-btn--outline-light">View All Services</Link>
-        </div>
       </div>
     </section>
   );
@@ -392,7 +389,7 @@ function ResultsSection() {
           <span className="sec-eyebrow sec-eyebrow--light">Case Studies</span>
           <h2 className="sec-heading--light">
             POWERED BY DATA.<br />
-            <span className="sec-red-light">DRIVEN BY RESULTS.</span>
+            <span className="sec-royal-light">DRIVEN BY RESULTS.</span>
           </h2>
           <div className="sec-rule--red" />
           <p className="sec-body--light">Real campaigns. Real businesses. Real growth.</p>
@@ -439,7 +436,7 @@ function ConfidenceSection() {
     <section className="sec-confidence">
       <div className="sec-confidence__glow" />
       <div className="container sec-confidence__inner nh-reveal">
-        <span className="sec-eyebrow sec-eyebrow--light">At MAJ Digital you will know your brand, find your audience, and be ready for whatever growth you will take.</span>
+        <span className="sec-eyebrow sec-eyebrow--light">At HiBrands you will know your brand, find your audience, and be ready for whatever growth you will take.</span>
 
         <h2 className="sec-confidence__top-line nh-reveal nh-delay-1">
           BE CONFIDENT IN WHO
@@ -481,7 +478,7 @@ function TestimonialsSection() {
   const testimonials = [
     {
       name: 'Rahul Sharma', role: 'CEO, TechStart India',
-      text: 'MAJ Digital completely transformed our online presence. We went from page 5 to position 1 in just 6 months — and leads have never been higher.',
+      text: 'HiBrands completely transformed our online presence. We went from page 5 to position 1 in just 6 months — and leads have never been higher.',
       rating: 5,
     },
     {
@@ -502,7 +499,7 @@ function TestimonialsSection() {
           <span className="sec-eyebrow sec-eyebrow--dark">Client Stories</span>
           <h2 className="sec-heading--dark">
             WHAT OUR CLIENTS<br />
-            <span className="sec-red-dark">ARE SAYING.</span>
+            <span className="sec-royal-dark">ARE SAYING.</span>
           </h2>
           <div className="sec-rule--red" />
         </div>
@@ -548,7 +545,7 @@ function CTASection() {
           "Your competitors are already online. The question is — are they ahead of you?"
         </p>
         <p className="sec-body--light sec-cta__sub">
-          One free strategy call with MAJ Digital is all it takes to change the direction of your brand. No lock-ins. Just results.
+          Say hi — one free strategy call with HiBrands is all it takes to change the direction of your brand. No lock-ins. Just results.
         </p>
         <div className="sec-cta__btns">
           <Link to="/contact" className="sec-btn sec-btn--red">Book Free Strategy Call →</Link>

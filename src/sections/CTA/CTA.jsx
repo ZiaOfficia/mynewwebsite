@@ -11,9 +11,9 @@ function hexToRgb(hex) {
 }
 
 export default function CTA({
-  color = '#C9A84C',
+  color = '#4169E1',
   quote = '"The distance between where you are and where you want to be is just one decision."',
-  sub   = "One conversation with MAJ Digital unlocks your brand's real potential. Free audit — no lock-ins, no fluff, just results.",
+  sub   = "Just say hi — one conversation with HiBrands unlocks your brand's real potential. Free audit — no lock-ins, no fluff, just results.",
 }) {
   const rgb = hexToRgb(color);
   return (

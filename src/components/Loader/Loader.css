@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--navy);
+  background: radial-gradient(ellipse at 50% 40%, #10233a 0%, var(--navy) 55%, #07111C 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@
 .loader__pattern {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(201,168,76,0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
 }
@@ -43,45 +43,99 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Logo ─────────────────────────────────────────────────── */
-.loader__logo {
-  animation: logoSpin 0.8s cubic-bezier(0,0,0.2,1) both;
-}
-@keyframes logoSpin {
-  from { opacity: 0; transform: rotate(-15deg) scale(0.8); }
-  to   { opacity: 1; transform: rotate(0) scale(1); }
+/* ── HB Monogram ──────────────────────────────────────────── */
+.loader__monogram {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(5rem, 14vw, 7.5rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  background: radial-gradient(
+    circle at 50% 55%,
+    rgba(65,105,225,0.14) 0%,
+    rgba(204,31,53,0.06) 50%,
+    transparent 72%
+  );
+  border-radius: 50%;
+  padding: 1.5rem 2.2rem;
 }
 
-/* ── Name ─────────────────────────────────────────────────── */
+.loader__monogram-h,
+.loader__monogram-b {
+  display: inline-block;
+  opacity: 0;
+}
+.loader__monogram-h {
+  color: var(--red-accent);
+  text-shadow: 0 10px 46px rgba(204,31,53,0.4);
+  animation: monoInLeft 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s forwards;
+}
+.loader__monogram-b {
+  color: var(--royal-light);
+  margin-left: -0.06em;
+  text-shadow: 0 10px 46px rgba(65,105,225,0.45);
+  animation: monoInRight 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.22s forwards;
+}
+
+@keyframes monoInLeft {
+  from { opacity: 0; transform: translateX(-0.35em) scale(0.92); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes monoInRight {
+  from { opacity: 0; transform: translateX(0.35em) scale(0.92); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Wordmark ─────────────────────────────────────────────── */
 .loader__name {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
   font-weight: 700;
-  color: var(--white);
-  letter-spacing: 0.04em;
-  margin-top: 0.25rem;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  display: flex;
+  gap: 0.45em;
+  margin: 0;
+}
+
+.loader__word          { display: inline-flex; }
+.loader__word--hi      { color: var(--red-accent); font-style: italic; }
+.loader__word--brands  { color: var(--royal-light); }
+
+.loader__letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em) rotate(4deg);
+  animation: loaderLetter 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes loaderLetter {
+  to { opacity: 1; transform: translateY(0) rotate(0); }
 }
 
 /* ── Progress Bar ─────────────────────────────────────────── */
 .loader__bar-track {
-  width: 160px;
+  width: 180px;
   height: 2px;
   background: rgba(255,255,255,0.12);
   border-radius: 2px;
   overflow: hidden;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .loader__bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  background: linear-gradient(90deg, var(--red-accent), var(--royal));
   border-radius: 2px;
-  transition: width 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: loaderBar 2.2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
 }
 
-.loader__bar-fill--done {
-  width: 100%;
+@keyframes loaderBar {
+  to { width: 100%; }
 }
 
 /* ── Tagline ──────────────────────────────────────────────── */
@@ -89,11 +143,10 @@
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: rgba(255,255,255,0.45);
   margin-top: 0.25rem;
-  opacity: 0.85;
 }
 
 /* ── Curtain overlay strip ────────────────────────────────── */
@@ -103,6 +156,12 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--gold), transparent 40%, var(--gold));
+  background: linear-gradient(90deg, var(--red-accent), transparent 40%, var(--royal));
   opacity: 0.5;
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .loader__letter { animation-duration: 0.01s; }
+  .loader__inner  { animation-duration: 0.01s; }
 }

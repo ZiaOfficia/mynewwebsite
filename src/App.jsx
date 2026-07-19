@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { LazyMotion, domAnimation, MotionConfig, AnimatePresence, m } from 'framer-motion';
+import Lenis from 'lenis';
 import Loader        from './components/Loader/Loader.jsx';
 import Header        from './components/Header/Header.jsx';
 import Footer        from './components/Footer/Footer.jsx';
 import EnquirePanel  from './components/EnquirePanel/EnquirePanel.jsx';
+import { BookingProvider } from './components/BookingModal/BookingContext.jsx';
 import Home       from './pages/Home.jsx';
-import ServicesPage   from './pages/ServicesPage.jsx';
 import ServiceDetail  from './pages/ServiceDetail.jsx';
 import AboutPage      from './pages/AboutPage.jsx';
 import BlogPage       from './pages/BlogPage.jsx';
@@ -35,10 +37,76 @@ function getPageColor(pathname) {
   return DEFAULT_COLOR;
 }
 
-/* ── Scroll to top on route change ────────────────────────── */
-function ScrollReset() {
+/* ── Buttery smooth scrolling (off for reduced motion) ────── */
+function SmoothScroll() {
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const lenis = new Lenis({ lerp: 0.12 });
+    window.__lenis = lenis;
+    let raf = requestAnimationFrame(function loop(t) {
+      lenis.raf(t);
+      raf = requestAnimationFrame(loop);
+    });
+    return () => { cancelAnimationFrame(raf); lenis.destroy(); window.__lenis = undefined; };
+  }, []);
+  return null;
+}
+
+/* ── Top scroll progress bar — red into royal blue ────────── */
+function ScrollProgress() {
+  const ref = useRef(null);
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      if (ref.current) ref.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+  return <div ref={ref} className="scroll-progress" style={{ transform: 'scaleX(0)' }} />;
+}
+
+/* ── Royal-blue last letter on headings that open with the red
+      first letter (Home opts out of the red first letter) ──── */
+const ACCENT_HEADINGS =
+  '.nh-hero__heading, .sec-heading--dark, .sec-heading--light, ' +
+  '.sec-cta__heading, .sec-confidence__top-line, .sec-confidence__bottom-line';
+
+function RoyalLastLetter() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [pathname]);
+  useEffect(() => {
+    if (pathname === '/') return;
+    /* delay > page-transition exit so the new page's DOM is mounted */
+    const id = setTimeout(() => {
+      document.querySelectorAll(ACCENT_HEADINGS).forEach((el) => {
+        if (el.closest('.home-page') || el.querySelector('.accent-last')) return;
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        let last = null;
+        while (walker.nextNode()) {
+          if (walker.currentNode.textContent.trim()) last = walker.currentNode;
+        }
+        if (!last) return;
+        const m = last.textContent.match(/^([\s\S]*?)([A-Za-z0-9][^A-Za-z0-9]*)$/);
+        if (!m) return;
+        const span = document.createElement('span');
+        span.className = 'accent-last';
+        span.textContent = m[2];
+        last.textContent = m[1];
+        last.parentNode.insertBefore(span, last.nextSibling);
+      });
+    }, 450);
+    return () => clearTimeout(id);
+  }, [pathname]);
   return null;
 }
 
@@ -55,25 +123,42 @@ function PageAccentInjector() {
 
 /* ── App Shell ─────────────────────────────────────────────── */
 function AppShell() {
+  const location = useLocation();
   return (
-    <>
-      <ScrollReset />
+    <BookingProvider>
       <PageAccentInjector />
+      <RoyalLastLetter />
+      <SmoothScroll />
+      <ScrollProgress />
       <Header />
       <EnquirePanel />
-      <Routes>
-        <Route path="/"                   element={<Home />}          />
-        <Route path="/services"           element={<ServicesPage />}  />
-        <Route path="/services/:slug"     element={<ServiceDetail />}  />
-        <Route path="/about"              element={<AboutPage />}     />
-        <Route path="/blog"               element={<BlogPage />}      />
-        <Route path="/blog/:slug"         element={<BlogPostPage />}  />
-        <Route path="/contact"            element={<ContactPage />}   />
-        {/* Fallback */}
-        <Route path="*"                   element={<NotFound />}      />
-      </Routes>
+      <AnimatePresence
+        mode="wait"
+        initial={false}
+        onExitComplete={() => window.scrollTo({ top: 0, behavior: 'instant' })}
+      >
+        <m.div
+          key={location.pathname}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        >
+          <Routes location={location}>
+            <Route path="/"                   element={<Home />}          />
+            <Route path="/services"           element={<Navigate to="/" replace />} />
+            <Route path="/services/:slug"     element={<ServiceDetail />}  />
+            <Route path="/about"              element={<AboutPage />}     />
+            <Route path="/blog"               element={<BlogPage />}      />
+            <Route path="/blog/:slug"         element={<BlogPostPage />}  />
+            <Route path="/contact"            element={<ContactPage />}   />
+            {/* Fallback */}
+            <Route path="*"                   element={<NotFound />}      />
+          </Routes>
+        </m.div>
+      </AnimatePresence>
       <Footer />
-    </>
+    </BookingProvider>
   );
 }
 
@@ -111,15 +196,19 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {loading && <Loader onComplete={() => setLoading(false)} />}
-      {/* Page content fades in once loader exits */}
-      <div style={{
-        opacity: loading ? 0 : 1,
-        transition: 'opacity 0.4s ease',
-        pointerEvents: loading ? 'none' : 'auto',
-      }}>
-        <AppShell />
-      </div>
+      <LazyMotion features={domAnimation} strict>
+        <MotionConfig reducedMotion="user">
+          {loading && <Loader onComplete={() => setLoading(false)} />}
+          {/* Page content fades in once loader exits */}
+          <div style={{
+            opacity: loading ? 0 : 1,
+            transition: 'opacity 0.4s ease',
+            pointerEvents: loading ? 'none' : 'auto',
+          }}>
+            <AppShell />
+          </div>
+        </MotionConfig>
+      </LazyMotion>
     </BrowserRouter>
   );
 }

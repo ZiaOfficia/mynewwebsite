@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import './Header.css';
 import { agency, navLinks } from '../../data/index.js';
+import BrandName from '../BrandName.jsx';
 
 export default function Header() {
   const [scrolled, setScrolled]   = useState(false);
@@ -35,10 +36,10 @@ export default function Header() {
         {/* ── Logo ── */}
         <Link to="/" className="header__logo">
           <span className="header__logo-mark">
-            {agency.name.charAt(0)}
+            H<span className="logo-hb-b">B</span>
           </span>
           <span className="header__logo-wordmark">
-            <span className="header__logo-text">{agency.name}</span>
+            <span className="header__logo-text"><BrandName name={agency.name} /></span>
             <span className="header__logo-tagline">{agency.tagline}</span>
           </span>
         </Link>
@@ -99,7 +100,7 @@ export default function Header() {
 
         {/* ── CTA ── */}
         <div className="header__actions">
-          <Link to="/contact" className="nh-btn nh-btn--primary header__cta">
+          <Link to="/contact" className="btn header__cta">
             Get a Free Audit
           </Link>
         </div>
@@ -156,7 +157,7 @@ export default function Header() {
               )}
             </div>
           ))}
-          <Link to="/contact" className="nh-btn nh-btn--primary" style={{ marginTop: '1.5rem', alignSelf: 'flex-start' }}>
+          <Link to="/contact" className="btn header__cta" style={{ marginTop: '1.5rem', alignSelf: 'flex-start' }}>
             Get a Free Audit
           </Link>
         </nav>

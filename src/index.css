@@ -30,6 +30,11 @@
   --purple-mid:  #8B3AAE;
   --purple-pale: #E8D5F5;
   --red-accent:  #CC1F35;
+  --royal:       #4169E1;
+  --royal-dark:  #2C4FC4;
+  --royal-light: #6E8BFF;
+  --royal-pale:  #E9EEFF;
+  --royal-rgb:   65,105,225;
   --lime:        #D4F742;
   --cream:       #F5F0E8;
   --cream-dark:  #EDE7DD;
@@ -112,6 +117,20 @@ h1, h2, h3, h4, h5, h6 {
 .body-md     { font-size: 1rem;    line-height: 1.7;  }
 .body-sm     { font-size: 0.875rem; line-height: 1.6;  }
 .caption     { font-size: 0.8rem;  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+
+/* ─── Brand Wordmark — "Hi" red, "Brands" royal blue ─────── */
+.brand-name__hi     { color: var(--red-accent); }
+.brand-name__brands { color: var(--royal-light); }
+
+/* "HB" logo mark — B carries a royal tint inside the red box */
+.logo-hb-b { color: var(--royal-pale); }
+
+/* ─── Royal Last Letter — pairs with the red first letter ── */
+.accent-last { color: var(--royal); }
+.sec-heading--light .accent-last,
+.sec-cta__heading .accent-last,
+.sec-confidence__top-line .accent-last,
+.sec-confidence__bottom-line .accent-last { color: var(--royal-light); }
 
 /* ─── Red First Letter — all main headings (except Home) ─── */
 .nh-hero__heading::first-letter,
@@ -258,7 +277,7 @@ h1, h2, h3, h4, h5, h6 {
 .divider {
   width: 56px;
   height: 3px;
-  background: var(--gold);
+  background: linear-gradient(90deg, var(--red-accent), var(--royal));
   margin: var(--space-sm) 0 var(--space-lg);
   border-radius: 2px;
 }
@@ -339,11 +358,29 @@ h1, h2, h3, h4, h5, h6 {
 .delay-5 { animation-delay: 0.5s; }
 .delay-6 { animation-delay: 0.6s; }
 
+/* ─── Scroll Progress Bar — red into royal ───────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red-accent), var(--royal));
+  transform-origin: 0 50%;
+  z-index: 1050;
+  pointer-events: none;
+}
+
+/* ─── Lenis smooth scroll ────────────────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
 /* ─── Scrollbar ──────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--off-white); }
 ::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+::-webkit-scrollbar-thumb:hover { background: var(--royal); }
 
 /* ─── Selection ──────────────────────────────────────────── */
-::selection { background: var(--gold); color: var(--navy); }
+::selection { background: var(--royal); color: var(--white); }

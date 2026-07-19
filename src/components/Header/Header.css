@@ -83,7 +83,8 @@
   background: var(--red-accent);
   color: var(--white);
   font-family: var(--font-display-cond);
-  font-size: 1.4rem;
+  font-size: 1.05rem;
+  letter-spacing: -0.03em;
   font-weight: 900;
   border-radius: 6px;
   flex-shrink: 0;
@@ -110,7 +111,7 @@
   font-size: 0.6rem;
   font-weight: 400;
   font-style: italic;
-  color: rgba(204, 31, 53, 0.85);
+  color: var(--royal-light);
   letter-spacing: 0.18em;
   text-transform: lowercase;
   line-height: 1;
@@ -236,6 +237,18 @@
 .header__cta {
   font-size: 0.82rem;
   padding: 0.6rem 1.3rem;
+  background: var(--page-accent, var(--red-accent));
+  border: 2px solid var(--page-accent, var(--red-accent));
+  color: var(--white);
+  box-shadow: 0 0 14px rgba(var(--page-accent-rgb, 204,31,53), 0.35);
+}
+
+.header__cta:hover {
+  background: transparent;
+  border-color: var(--page-accent, var(--red-accent));
+  color: var(--white);
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(var(--page-accent-rgb, 204,31,53), 0.55);
 }
 
 /* ── Hamburger ─────────────────────────────────────────────── */

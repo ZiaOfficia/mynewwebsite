@@ -1,5 +1,5 @@
 /* ================================================================
-   HOME PAGE — MAJ Digital
+   HOME PAGE — HiBrands
    ================================================================ */
 
 /* ── Shared reveal animations ─────────────────────────────────── */
@@ -162,7 +162,7 @@
 .nh-hero__underline {
   width: 120px;
   height: 4px;
-  background: var(--red-accent);
+  background: linear-gradient(90deg, var(--red-accent), var(--royal));
   border-radius: 2px;
   margin-bottom: 2rem;
 }
@@ -201,6 +201,9 @@
   color: var(--red-accent);
   line-height: 1;
   letter-spacing: -0.01em;
+}
+.nh-hero__stat-item:nth-child(even) .nh-hero__stat-val {
+  color: var(--royal-light);
   text-shadow: 0 0 24px rgba(204,31,53,0.45);
 }
 .nh-hero__stat-lbl {
@@ -258,12 +261,14 @@
 
 .sec-red-light { color: #CC1F35; }
 .sec-red-dark  { color: #CC1F35; }
+.sec-royal-light { color: var(--royal-light); }
+.sec-royal-dark  { color: var(--royal-dark); }
 
 /* Rule */
 .sec-rule--red {
   width: 64px;
   height: 4px;
-  background: #CC1F35;
+  background: linear-gradient(90deg, #CC1F35, var(--royal));
   border-radius: 2px;
   margin-bottom: 2rem;
 }
@@ -341,7 +346,7 @@
    SECTION 2 — MARQUEE TICKER  (red #CC1F35)
    ================================================================ */
 .sec-marquee {
-  background: #CC1F35;
+  background: linear-gradient(90deg, #CC1F35 0%, var(--royal-dark) 100%);
   padding: 1.4rem 0;
   overflow: hidden;
 }
@@ -481,11 +486,14 @@
 }
 .sec-services__header .sec-body--light { max-width: 520px; }
 
+/* 5 cards, no holes: first two span half the row, last three a third */
 .sec-services__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 1.25rem;
 }
+.sec-services__grid > :nth-child(-n+2) { grid-column: span 3; }
+.sec-services__grid > :nth-child(n+3)  { grid-column: span 2; }
 
 .sec-svc-card {
   display: flex;
@@ -561,9 +569,13 @@
 
 @media (max-width: 1024px) {
   .sec-services__grid { grid-template-columns: repeat(2, 1fr); }
+  .sec-services__grid > :nth-child(-n+2) { grid-column: span 1; }
+  .sec-services__grid > :nth-child(n+3)  { grid-column: span 1; }
+  .sec-services__grid > :nth-child(5)    { grid-column: span 2; }
 }
 @media (max-width: 640px) {
   .sec-services__grid { grid-template-columns: 1fr; }
+  .sec-services__grid > * { grid-column: auto !important; }
 }
 
 
@@ -613,7 +625,7 @@
 .sec-process__connector {
   flex: 1;
   height: 2px;
-  background: linear-gradient(to right, #CC1F35, rgba(204,31,53,0.15));
+  background: linear-gradient(to right, #CC1F35, var(--royal));
   margin-left: 1rem;
 }
 
@@ -946,7 +958,7 @@
 .sec-testi-card__avatar {
   width: 44px; height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0D1B2A 0%, #CC1F35 100%);
+  background: linear-gradient(135deg, var(--royal-dark) 0%, #CC1F35 100%);
   display: flex;
   align-items: center;
   justify-content: center;

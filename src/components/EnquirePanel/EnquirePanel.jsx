@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './EnquirePanel.css';
+import BrandName from '../BrandName.jsx';
 
 const SERVICES = [
   'Web Development',
@@ -39,10 +40,11 @@ export default function EnquirePanel() {
   });
   const { pathname } = useLocation();
 
-  /* Lock body scroll when panel is open */
+  /* Lock body scroll when panel is open (incl. Lenis smooth scroll) */
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    if (open) window.__lenis?.stop(); else window.__lenis?.start();
+    return () => { document.body.style.overflow = ''; window.__lenis?.start(); };
   }, [open]);
 
   /* Close on Escape */
@@ -83,7 +85,7 @@ export default function EnquirePanel() {
       />
 
       {/* ── Panel ── */}
-      <aside className={`eq-panel${open ? ' eq-panel--open' : ''}`} role="dialog" aria-modal="true" aria-label="Enquiry Form">
+      <aside className={`eq-panel${open ? ' eq-panel--open' : ''}`} role="dialog" aria-modal="true" aria-label="Enquiry Form" data-lenis-prevent>
 
         {/* Close */}
         <button className="eq-close" onClick={handleClose} aria-label="Close">
@@ -96,22 +98,22 @@ export default function EnquirePanel() {
 
           {/* ── Left Branding Column ── */}
           <div className="eq-brand">
-            {/* Big M */}
+            {/* Big H */}
             <div className="eq-brand__m-wrap">
-              <span className="eq-brand__m">M</span>
+              <span className="eq-brand__m">H<span className="logo-hb-b">B</span></span>
               <div className="eq-brand__m-glow" />
             </div>
 
             <div className="eq-brand__logo">
-              <div className="eq-brand__logo-mark">M</div>
+              <div className="eq-brand__logo-mark">H<span className="logo-hb-b">B</span></div>
               <div className="eq-brand__logo-text">
-                <span className="eq-brand__name">MAJ Digital</span>
-                <span className="eq-brand__tagline">results that speak</span>
+                <span className="eq-brand__name"><BrandName /></span>
+                <span className="eq-brand__tagline">say hi to growth</span>
               </div>
             </div>
 
             <p className="eq-brand__pitch">
-              Tell us about your goals and we'll build a free custom strategy — no lock-ins, no fluff, just a clear path to growth.
+              Say hi, tell us about your goals, and we'll build a free custom strategy — no lock-ins, no fluff, just a clear path to growth.
             </p>
 
             <ul className="eq-brand__perks">
@@ -236,7 +238,7 @@ export default function EnquirePanel() {
                     </svg>
                   </button>
 
-                  <p className="eq-form__note">By submitting you agree to be contacted by MAJ Digital. No spam, ever.</p>
+                  <p className="eq-form__note">By submitting you agree to be contacted by HiBrands. No spam, ever.</p>
                 </form>
               </>
             )}

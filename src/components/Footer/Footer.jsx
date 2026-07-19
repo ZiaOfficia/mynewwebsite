@@ -1,6 +1,21 @@
 import { Link } from 'react-router-dom';
 import './Footer.css';
 import { agency, navLinks, services } from '../../data/index.js';
+import BrandName from '../BrandName.jsx';
+
+/* Decorative greetings — visual texture only, hidden from screen readers */
+const GREETINGS = [
+  { word: 'Welcome',          top: '10%', left: '6%',  size: 1.5, delay: 0 },
+  { word: 'नमस्ते',            top: '64%', left: '12%', size: 1.2, delay: 2 },
+  { word: 'Bienvenue',        top: '22%', left: '30%', size: 1.0, delay: 4 },
+  { word: 'أهلاً وسهلاً',       top: '72%', left: '40%', size: 1.4, delay: 1 },
+  { word: 'ようこそ',          top: '12%', left: '58%', size: 1.1, delay: 3 },
+  { word: '欢迎',             top: '58%', left: '68%', size: 1.5, delay: 5 },
+  { word: 'Bienvenido',       top: '30%', left: '80%', size: 1.0, delay: 2.5 },
+  { word: 'Willkommen',       top: '80%', left: '78%', size: 0.9, delay: 4.5 },
+  { word: 'Bem-vindo',        top: '86%', left: '22%', size: 1.0, delay: 1.5 },
+  { word: 'Добро пожаловать', top: '40%', left: '48%', size: 0.85, delay: 3.5 },
+];
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -10,14 +25,30 @@ export default function Footer() {
       {/* ── Top pattern strip ── */}
       <div className="footer__strip" />
 
+      {/* ── Decorative background layers ── */}
+      <div className="footer__map" aria-hidden="true" />
+      <div className="footer__blob footer__blob--red" aria-hidden="true" />
+      <div className="footer__blob footer__blob--blue" aria-hidden="true" />
+      <div className="footer__greetings" aria-hidden="true">
+        {GREETINGS.map((g) => (
+          <span
+            key={g.word}
+            className="footer__greeting"
+            style={{ top: g.top, left: g.left, fontSize: `${g.size}rem`, animationDelay: `${g.delay}s` }}
+          >
+            {g.word}
+          </span>
+        ))}
+      </div>
+
       <div className="footer__main">
         <div className="container footer__grid">
 
           {/* ── Brand col ── */}
           <div className="footer__brand">
             <Link to="/" className="footer__logo">
-              <span className="footer__logo-mark">{agency.name.charAt(0)}</span>
-              <span className="footer__logo-text">{agency.name}</span>
+              <span className="footer__logo-mark">H<span className="logo-hb-b">B</span></span>
+              <span className="footer__logo-text"><BrandName name={agency.name} /></span>
             </Link>
             <p className="footer__tagline">{agency.description}</p>
             <div className="footer__socials">

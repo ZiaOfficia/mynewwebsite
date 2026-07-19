@@ -138,12 +138,14 @@
 
 .eq-brand__m {
   font-family: var(--font-display-cond);
-  font-size: clamp(12rem, 18vw, 22rem);
+  font-size: clamp(8rem, 12vw, 14rem);
   font-weight: 900;
   color: rgba(204,31,53,0.08);
   line-height: 1;
   letter-spacing: -0.04em;
 }
+
+.eq-brand__m .logo-hb-b { color: rgba(65,105,225,0.1); }
 
 .eq-brand__m-glow {
   position: absolute;
@@ -170,7 +172,8 @@
   background: var(--red-accent);
   color: #fff;
   font-family: var(--font-display-cond);
-  font-size: 1.5rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
   font-weight: 900;
   border-radius: 8px;
   display: flex;
@@ -492,7 +495,7 @@
   }
 
   .eq-brand__m {
-    font-size: 10rem;
+    font-size: 7rem;
   }
 
   .eq-form-wrap {

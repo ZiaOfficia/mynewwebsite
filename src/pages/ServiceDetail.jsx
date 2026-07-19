@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import { serviceDetails, services } from '../data/index.js';
 import CTA from '../sections/CTA/CTA.jsx';
+import { useBooking } from '../components/BookingModal/BookingContext.jsx';
 import './Home.css';
 import './ServiceDetail.css';
 import {
@@ -43,6 +44,7 @@ const hexToRgba = (hex, alpha) => {
 
 export default function ServiceDetail() {
   const { slug } = useParams();
+  const { openBooking } = useBooking();
   const service = serviceDetails[slug];
   const meta    = services.find((s) => s.slug === slug);
   const themeColor = meta?.color || '#CC1F35';
@@ -83,7 +85,7 @@ export default function ServiceDetail() {
     },
     'smo': {
       quote: '"Your audience is already scrolling. Make sure what they see next is you."',
-      sub:   'Turn passive followers into active buyers. One call with MAJ Digital is all it takes to start.',
+      sub:   'Turn passive followers into active buyers. One call with HiBrands is all it takes to start.',
     },
     'google-ads': {
       quote: '"Every rupee you spend either works for you or against you. Let\'s make every one count."',
@@ -93,7 +95,7 @@ export default function ServiceDetail() {
 
   const ctaContent = CTA_CONTENT[slug] || {
     quote: '"Success is not a coincidence — it\'s a strategy executed with precision."',
-    sub:   'One conversation with MAJ Digital unlocks your brand\'s real potential. Free audit — no lock-ins, no fluff, just results.',
+    sub:   'Just say hi — one conversation with HiBrands unlocks your brand\'s real potential. Free audit — no lock-ins, no fluff, just results.',
   };
 
   return (
@@ -319,9 +321,9 @@ export default function ServiceDetail() {
                   ))}
                 </ul>
                 <div className="sd-pricing-bottom">
-                  <Link to="/contact" className={`sec-btn ${pkg.popular ? 'sec-btn--red' : 'sec-btn--outline-dark'}`}>
+                  <button onClick={openBooking} className={`sec-btn ${pkg.popular ? 'sec-btn--red' : 'sec-btn--outline-dark'}`}>
                     {pkg.cta}
-                  </Link>
+                  </button>
                 </div>
               </div>
             ))}

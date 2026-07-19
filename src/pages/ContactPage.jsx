@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { agency, services } from '../data/index.js';
+import { submitToSheet } from '../lib/sheets.js';
 import {
   RiMailLine, RiPhoneLine, RiMessage2Line, RiMapPin2Line, RiTeamLine,
   RiTimeLine, RiRocketLine, RiTrophyLine, RiLightbulbLine, RiGlobalLine,
@@ -33,7 +34,9 @@ export default function ContactPage() {
   const [form, setForm] = useState({
     name: '', email: '', phone: '', company: '', service: '', budget: '', message: ''
   });
-  const [sent, setSent] = useState(false);
+  const [sent, setSent]       = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
 
   useEffect(() => {
     const els = document.querySelectorAll('.nh-reveal, .nh-reveal-left');
@@ -48,9 +51,27 @@ export default function ContactPage() {
 
   const handleChange = (e) => { setForm({ ...form, [e.target.name]: e.target.value }); };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+    setSending(true);
+    setSendError('');
+    try {
+      await submitToSheet({
+        formType: 'contact',
+        fullName: form.name,
+        email:    form.email,
+        phone:    form.phone,
+        company:  form.company,
+        service:  form.service,
+        budget:   form.budget,
+        message:  form.message,
+      });
+      setSent(true);
+    } catch {
+      setSendError('Something went wrong. Please try again.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -189,8 +210,11 @@ export default function ContactPage() {
                   <textarea name="message" required value={form.message} onChange={handleChange} placeholder="Tell us about your goals..." style={{ minHeight: '140px', resize: 'vertical' }} />
                 </div>
                 <div style={{ gridColumn: 'span 2', marginTop: '1rem' }}>
-                  <button type="submit" className="sec-btn sec-btn--red" style={{ width: '100%', justifyContent: 'center', fontSize: '1.1rem', padding: '1.2rem' }}>
-                    Send Message →
+                  {sendError && (
+                    <p style={{ color: '#FF8A97', fontSize: '0.85rem', marginBottom: '0.75rem', textAlign: 'center' }}>{sendError}</p>
+                  )}
+                  <button type="submit" className="sec-btn sec-btn--red" disabled={sending} style={{ width: '100%', justifyContent: 'center', fontSize: '1.1rem', padding: '1.2rem', opacity: sending ? 0.6 : 1, cursor: sending ? 'not-allowed' : 'pointer' }}>
+                    {sending ? 'Sending…' : 'Send Message →'}
                   </button>
                 </div>
               </form>
