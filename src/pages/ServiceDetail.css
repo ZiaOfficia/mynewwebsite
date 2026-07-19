@@ -3,7 +3,7 @@
    ================================================================ */
 
 .sd-hero__inner {
-  padding-top: calc(var(--header-h) + 3rem) !important;
+  padding-top: calc(var(--header-h) + var(--offer-h, 0px) + 3rem) !important;
   padding-bottom: 5rem !important;
 }
 
@@ -85,7 +85,8 @@
 
 .sd-pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+  justify-content: center;
   gap: 2rem;
   max-width: 1100px;
   margin: 0 auto;
@@ -172,6 +173,17 @@
   font-weight: 900;
   color: #CC1F35;
   line-height: 1;
+}
+
+.sd-price-old {
+  font-family: var(--font-display-cond);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gray-500);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  line-height: 1;
+  margin-right: 0.35rem;
 }
 
 .sd-price-period {

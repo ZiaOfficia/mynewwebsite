@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: calc(var(--header-h) + var(--space-xl)) 0 var(--space-2xl);
+  padding: calc(var(--header-h) + var(--offer-h, 0px) + var(--space-xl)) 0 var(--space-2xl);
 }
 
 /* ── BG Layers ─────────────────────────────────────────────── */

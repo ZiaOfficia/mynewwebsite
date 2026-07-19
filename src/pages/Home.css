@@ -135,7 +135,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: calc(var(--header-h) + 2rem);
+  padding-top: calc(var(--header-h) + var(--offer-h, 0px) + 2rem);
   padding-bottom: 2rem;
 }
 
@@ -149,7 +149,7 @@
 .nh-hero__heading {
   font-family: var(--font-display-cond);
   font-weight: 900;
-  font-size: clamp(5rem, 13vw, 13rem);
+  font-size: clamp(3.2rem, 13vw, 13rem);
   line-height: 0.88;
   text-transform: uppercase;
   color: var(--white);
@@ -168,11 +168,12 @@
 }
 
 .nh-hero__sub {
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 2.6vw, 1.15rem);
   color: rgba(255,255,255,0.6);
   max-width: 500px;
   line-height: 1.65;
   text-align: center;
+  padding: 0 1rem;
 }
 
 .nh-hero__stats-bar {
@@ -225,6 +226,12 @@
   .nh-hero__brand-icon  { width: 22px; height: 22px; }
   .nh-hero__stats-bar { grid-template-columns: repeat(2, 1fr); }
   .nh-hero__stat-item:nth-child(2) { border-right: none; }
+  /* stats bar is absolutely positioned at the bottom and 2 rows tall
+     on phones — keep the centered hero text clear of it */
+  .nh-hero__content { padding-bottom: 11rem; }
+  .nh-hero__heading { margin-bottom: 1.25rem; }
+  .nh-hero__underline { margin-bottom: 1.25rem; }
+  .nh-hero__stat-item { padding: 1.1rem 0.75rem; }
 }
 
 

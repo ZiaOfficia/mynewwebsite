@@ -324,7 +324,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Page Wrapper ───────────────────────────────────────── */
 .page-wrapper {
-  padding-top: var(--header-h);
+  padding-top: calc(var(--header-h) + var(--offer-h, 0px));
   min-height: 100vh;
 }
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, useLocation } from 'react-router-dom';
 import { serviceDetails, services } from '../data/index.js';
 import CTA from '../sections/CTA/CTA.jsx';
 import { useBooking } from '../components/BookingModal/BookingContext.jsx';
@@ -44,6 +44,7 @@ const hexToRgba = (hex, alpha) => {
 
 export default function ServiceDetail() {
   const { slug } = useParams();
+  const { hash } = useLocation();
   const { openBooking } = useBooking();
   const service = serviceDetails[slug];
   const meta    = services.find((s) => s.slug === slug);
@@ -65,6 +66,19 @@ export default function ServiceDetail() {
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [slug]);
+
+  /* Arriving with /services/:slug#pricing → scroll to the pricing section
+     once the page-transition (300ms exit + scroll reset) has finished */
+  useEffect(() => {
+    if (hash !== '#pricing') return;
+    const id = setTimeout(() => {
+      const el = document.getElementById('pricing');
+      if (!el) return;
+      if (window.__lenis) window.__lenis.scrollTo(el, { offset: -90 });
+      else el.scrollIntoView({ behavior: 'smooth' });
+    }, 550);
+    return () => clearTimeout(id);
+  }, [hash, slug]);
 
   if (!service) return <Navigate to="/services" replace />;
 
@@ -287,7 +301,7 @@ export default function ServiceDetail() {
       </section>
 
       {/* ── PRICING ── */}
-      <section className="sec-pricing-sd">
+      <section className="sec-pricing-sd" id="pricing">
         <div className="container">
           <div className="sec-services__header nh-reveal" style={{ marginBottom: '3rem' }}>
             <span className="sec-eyebrow sec-eyebrow--dark">Pricing Plans</span>
@@ -307,6 +321,7 @@ export default function ServiceDetail() {
                 <div className="sd-pricing-top">
                   <h3 className="sd-pricing-name">{pkg.name}</h3>
                   <div className="sd-pricing-price">
+                    {pkg.oldPrice && <span className="sd-price-old">{pkg.oldPrice}</span>}
                     <span className="sd-price-val">{pkg.price}</span>
                     <span className="sd-price-period">{pkg.period}</span>
                   </div>

@@ -85,7 +85,7 @@ export default function ContactPage() {
         ))}
       </div>
       
-      <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: 'calc(var(--header-h) + 4rem)', paddingBottom: '7rem' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: 'calc(var(--header-h) + var(--offer-h, 0px) + 4rem)', paddingBottom: '7rem' }}>
         
         <div style={{ textAlign: 'center', marginBottom: '3rem' }} className="nh-reveal">
           <span className="sec-eyebrow sec-eyebrow--light">Get in Touch</span>

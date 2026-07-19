@@ -566,8 +566,8 @@ export const serviceDetails = {
     howItHelped: 'We redesigned and re-platformed GreenBuild Co. onto a modern tech stack focused entirely on speed and conversion flows. By removing friction from the user journey and implementing clean, SEO-friendly architecture, we reduced bounce rates by 40% immediately upon launch.',
     revenue: 'The new site doubled lead volume in the first 30 days, resulting in an additional ₹1.2Cr in closed revenue over the next quarter.',
     packages: [
-      { name: 'Business Site', price: '₹35,000', period: '', tagline: 'For service businesses needing authority.', features: ['Custom UI/UX Design', 'Up to 7 Pages', 'Mobile Responsive', 'Speed Optimised', 'Basic SEO Setup'], cta: 'Get Started' },
-      { name: 'E-commerce', price: '₹65,000', period: '', tagline: 'Start selling online easily.', features: ['WooCommerce/Shopify', 'Payment Gateway', 'Up to 50 Products', 'Advanced Speed Optimisation', 'Inventory Management'], cta: 'Get Started', popular: true },
+      { name: 'Business Site', price: '₹14,999', period: '', tagline: 'For service businesses needing authority.', features: ['Custom UI/UX Design', 'Up to 7 Pages', 'Mobile Responsive', 'Speed Optimised', 'Basic SEO Setup'], cta: 'Get Started' },
+      { name: 'E-commerce', price: '₹29,999', period: '', tagline: 'Start selling online easily.', features: ['WooCommerce/Shopify', 'Payment Gateway', 'Up to 50 Products', 'Advanced Speed Optimisation', 'Inventory Management'], cta: 'Get Started', popular: true },
       { name: 'Custom Application', price: 'Custom', period: '', tagline: 'Complex web platforms.', features: ['React / Next.js', 'Custom Backend', 'Third-party API Integrations', 'High Performance', 'Advanced Security'], cta: 'Contact Us' }
     ]
   },
@@ -583,8 +583,7 @@ export const serviceDetails = {
     howItHelped: 'For a national education provider, we split-tested their existing ad traffic landing pages against a custom-built, benefit-driven page with clear trust signals and streamlined forms. Our page outperformed the control by generating highly qualified prospects while lowering the CPA.',
     revenue: 'Decreased Cost Per Acquisition (CPA) by 62% resulting in a 3x increase in total leads with the exact same ad spend.',
     packages: [
-      { name: 'Single Flow', price: '₹12,000', period: '', tagline: 'One page, one goal.', features: ['Conversion Focused Design', 'Mobile-First Layout', 'Lead Form Setup', 'Speed Optimisation', 'Thank You Page'], cta: 'Get Started' },
-      { name: 'A/B Testing Suite', price: '₹22,000', period: '', tagline: 'Scale your ad campaigns.', features: ['Two Page Variations', 'A/B Test Setup', 'Heatmap Integration', 'Advanced Analytics Tracking', 'Bi-weekly Reporting'], cta: 'Get Started', popular: true },
+      { name: 'Single Flow', price: '₹3,999', oldPrice: '₹6,999', period: '', tagline: 'One page, one goal.', features: ['Conversion Focused Design', 'Mobile-First Layout', 'Lead Form Setup', 'Speed Optimisation', 'Thank You Page'], cta: 'Get Started', popular: true },
       { name: 'Funnel Build', price: 'Custom', period: '', tagline: 'Multi-step conversion flows.', features: ['Squeeze Pages', 'Up-sell/Down-sell Logic', 'Email Sequence Integration', 'Video Sales letters', 'Full CRM Integration'], cta: 'Contact Us' }
     ]
   },
