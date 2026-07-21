@@ -1,4 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#0D1B2A"/>
-  <text x="16" y="22" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#C9A84C" text-anchor="middle">A</text>
+  <defs>
+    <clipPath id="hb-clip"><rect width="32" height="32" rx="4"/></clipPath>
+    <radialGradient id="hb-blue" cx="80%" cy="84%" r="70%">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#4F46E5" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#4F46E5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g clip-path="url(#hb-clip)">
+    <rect width="32" height="32" fill="#CC1F35"/>
+    <rect width="32" height="32" fill="url(#hb-blue)"/>
+  </g>
+  <text x="16" y="17" font-family="Arial Black,Arial,Helvetica,sans-serif" font-size="17" font-weight="900" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" letter-spacing="-0.5">HB</text>
 </svg>

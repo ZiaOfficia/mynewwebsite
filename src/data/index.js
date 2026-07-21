@@ -107,7 +107,7 @@ export const services = [
       'Fast Load Times',
       'Lead Capture Integration',
     ],
-    color: '#06B6D4',
+    color: '#4F46E5',
   },
   {
     id:        'seo',
@@ -167,7 +167,7 @@ export const services = [
       'Social Analytics & Reporting',
       'Paid Social Integration',
     ],
-    color: '#EC4899',
+    color: '#1877F2',
   },
   {
     id:        'google-ads',
@@ -584,7 +584,7 @@ export const serviceDetails = {
     revenue: 'The new site doubled lead volume in the first 30 days, resulting in an additional ₹1.2Cr in closed revenue over the next quarter.',
     packages: [
       { name: 'Business Site', price: '₹14,999', period: '', tagline: 'For service businesses needing authority.', features: ['Custom UI/UX Design', 'Up to 7 Pages', 'Mobile Responsive', 'Speed Optimised', 'Basic SEO Setup'], cta: 'Get Started' },
-      { name: 'E-commerce', price: '₹29,999', period: '', tagline: 'Start selling online easily.', features: ['WooCommerce/Shopify', 'Payment Gateway', 'Up to 50 Products', 'Advanced Speed Optimisation', 'Inventory Management'], cta: 'Get Started', popular: true },
+      { name: 'E-commerce', price: '₹29,999', period: '', tagline: 'Start selling online easily.', features: ['React / Next.js / Node.js', 'Payment Gateway', 'Up to 50 Products', 'Advanced Speed Optimisation', 'Inventory Management'], cta: 'Get Started', popular: true },
       { name: 'Custom Application', price: 'Custom', period: '', tagline: 'Complex web platforms.', features: ['React / Next.js', 'Custom Backend', 'Third-party API Integrations', 'High Performance', 'Advanced Security'], cta: 'Contact Us' }
     ]
   },
@@ -616,8 +616,7 @@ export const serviceDetails = {
     howItHelped: 'TechStart India had great products but zero organic visibility. We overhauled their site architecture, resolved critical Core Web Vitals issues, and executed a targeted link-building and content strategy. They moved from page 5 obscurity to dominating position 1 for their most competitive, high-intent keywords.',
     revenue: 'Organic traffic grew by 312%, driving over ₹50L in additional unpaid revenue every single month.',
     packages: [
-      { name: 'Local Dominance', price: '₹18,000', period: '/month', tagline: 'For local businesses.', features: ['Google Business Profile', 'Local Citations', 'On-page Local SEO', '12 Keywords Tracked', 'Monthly Reporting'], cta: 'Get Started' },
-      { name: 'National Growth', price: '₹35,000', period: '/month', tagline: 'Scale across the country.', features: ['Comprehensive Technical SEO', 'High-quality Link Building', 'Content Strategy', '30 Keywords Tracked', 'Competitor Analysis'], cta: 'Get Started', popular: true },
+      { name: 'National Growth', price: '₹4,999', period: '/month', tagline: 'Scale across the country.', features: ['Comprehensive Technical SEO', 'High-quality Link Building', 'Content Strategy', '30 Keywords Tracked', 'Competitor Analysis'], cta: 'Get Started', popular: true },
       { name: 'Enterprise SEO', price: 'Custom', period: '/month', tagline: 'Large sites & e-commerce.', features: ['Advanced Technical Architecture', 'PR & Outreach', 'Content Siloing', 'Unlimited Keywords', 'Dedicated Strategist'], cta: 'Contact Us' }
     ]
   },

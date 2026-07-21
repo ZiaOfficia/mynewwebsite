@@ -12,6 +12,11 @@ import {
   RiMoneyDollarCircleLine, RiShieldCheckLine, RiQuestionLine,
 } from 'react-icons/ri';
 import { FiTarget, FiTrendingUp, FiZap } from 'react-icons/fi';
+import {
+  SiInstagram, SiWhatsapp, SiFacebook, SiYoutube, SiX,
+  SiTiktok, SiSnapchat, SiPinterest, SiTelegram, SiThreads,
+} from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa';
 
 const DETAIL_ICONS = [
   { name: 'SEO',         Icon: RiSearchLine     },
@@ -33,6 +38,25 @@ const DETAIL_ICONS = [
   { name: 'Speed',       Icon: FiZap            },
 ];
 
+/* SMO uses real platform icons in their own brand colours so the page reads
+   as "social media" at a glance instead of one flat accent. */
+const SOCIAL_ICONS = [
+  { name: 'Instagram', Icon: SiInstagram, color: '#E1306C' },
+  { name: 'WhatsApp',  Icon: SiWhatsapp,  color: '#25D366' },
+  { name: 'Facebook',  Icon: SiFacebook,  color: '#1877F2' },
+  { name: 'YouTube',   Icon: SiYoutube,   color: '#FF0000' },
+  { name: 'LinkedIn',  Icon: FaLinkedin,  color: '#0A66C2' },
+  { name: 'X',         Icon: SiX,         color: '#FFFFFF' },
+  { name: 'TikTok',    Icon: SiTiktok,    color: '#69C9D0' },
+  { name: 'Snapchat',  Icon: SiSnapchat,  color: '#FFFC00' },
+  { name: 'Pinterest', Icon: SiPinterest, color: '#E60023' },
+  { name: 'Telegram',  Icon: SiTelegram,  color: '#26A5E4' },
+  { name: 'Threads',   Icon: SiThreads,   color: '#F5F5F5' },
+];
+
+/* Rotated through SMO tiles/stats so each one carries a different platform's colour */
+const TILE_COLORS = ['#1877F2', '#E1306C', '#25D366', '#FF0000', '#0A66C2'];
+
 const hexToRgba = (hex, alpha) => {
   let raw = hex.replace('#', '');
   if (raw.length === 3) raw = raw[0]+raw[0]+raw[1]+raw[1]+raw[2]+raw[2];
@@ -52,9 +76,12 @@ export default function ServiceDetail() {
 
   /* Google Ads gets a tri-color scheme: blue (major) + yellow + green */
   const isGoogleAds  = slug === 'google-ads';
-  const accentColor  = themeColor;                            // primary / major
-  const checkColor   = isGoogleAds ? '#34A853' : themeColor; // green  → check icons
-  const numberColor  = isGoogleAds ? '#FBBC04' : themeColor; // yellow → stats / pricing numbers
+  /* SMO gets a tri-color scheme: Facebook (major/base) + Instagram + WhatsApp — no flat pink base */
+  const isSMO        = slug === 'smo';
+  const accentColor  = themeColor;                                                    // primary / major
+  const checkColor   = isGoogleAds ? '#34A853' : isSMO ? '#25D366' : themeColor;      // green      → check icons
+  const numberColor  = isGoogleAds ? '#FBBC04' : isSMO ? '#E1306C' : themeColor;      // yellow/pink → stats / pricing numbers
+  const heroIcons    = isSMO ? SOCIAL_ICONS : DETAIL_ICONS;
 
   useEffect(() => {
     const els = document.querySelectorAll('.nh-reveal, .nh-reveal-left');
@@ -118,8 +145,8 @@ export default function ServiceDetail() {
       {/* ── HERO ── */}
       <section className="nh-hero sd-hero">
         <div className="nh-hero__brands" aria-hidden="true" style={{ pointerEvents: 'none' }}>
-          {Array.from({ length: 90 }, (_, i) => DETAIL_ICONS[i % DETAIL_ICONS.length]).map((item, i) => (
-            <div key={i} className="nh-hero__brand-chip" style={{ '--brand-color': themeColor }}>
+          {Array.from({ length: 90 }, (_, i) => heroIcons[i % heroIcons.length]).map((item, i) => (
+            <div key={i} className="nh-hero__brand-chip" style={{ '--brand-color': item.color || themeColor }}>
               <item.Icon className="nh-hero__brand-icon" />
               <span className="nh-hero__brand-label">{item.name}</span>
             </div>
@@ -143,9 +170,14 @@ export default function ServiceDetail() {
 
         {/* Stats bar */}
         <div className="nh-hero__stats-bar nh-reveal nh-delay-4">
-          {(service.heroStats || []).map((s) => (
+          {(service.heroStats || []).map((s, i) => (
             <div key={s.lbl} className="nh-hero__stat-item">
-              <span className="nh-hero__stat-val">{s.val}</span>
+              <span
+                className="nh-hero__stat-val"
+                style={isSMO ? { '--stat-color': TILE_COLORS[i % TILE_COLORS.length] } : undefined}
+              >
+                {s.val}
+              </span>
               <span className="nh-hero__stat-lbl">{s.lbl}</span>
             </div>
           ))}
@@ -210,12 +242,15 @@ export default function ServiceDetail() {
                 { Icon: RiLightbulbLine,   label: 'Strategic Approach'},
                 { Icon: FiTrendingUp,      label: 'Measurable Growth' },
                 { Icon: RiGlobalLine,      label: 'Long-term Impact'  },
-              ].map(({ Icon, label }) => (
-                <div key={label} style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${hexToRgba(accentColor, 0.25)}`, borderRadius: '14px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'center', textAlign: 'center' }}>
-                  <Icon style={{ color: accentColor, fontSize: '2rem' }} />
-                  <span style={{ color: '#ffffff', fontFamily: 'var(--font-display-cond)', fontSize: '0.95rem', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.05em' }}>{label}</span>
-                </div>
-              ))}
+              ].map(({ Icon, label }, i) => {
+                const tileColor = isSMO ? TILE_COLORS[i % TILE_COLORS.length] : accentColor;
+                return (
+                  <div key={label} style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${hexToRgba(tileColor, 0.25)}`, borderRadius: '14px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'center', textAlign: 'center' }}>
+                    <Icon style={{ color: tileColor, fontSize: '2rem' }} />
+                    <span style={{ color: '#ffffff', fontFamily: 'var(--font-display-cond)', fontSize: '0.95rem', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.05em' }}>{label}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -316,7 +351,13 @@ export default function ServiceDetail() {
 
           <div className="sd-pricing-grid">
             {service.packages.map((pkg, i) => (
-              <div key={i} className={`sd-pricing-card nh-reveal ${pkg.popular ? 'sd-pricing-card--popular' : ''}`} style={{ transitionDelay: `${i * 0.15}s` }}>
+              <div
+                key={i}
+                className={`sd-pricing-card nh-reveal ${pkg.popular ? 'sd-pricing-card--popular' : ''}`}
+                style={isSMO
+                  ? { transitionDelay: `${i * 0.15}s`, '--pkg-color': TILE_COLORS[i % TILE_COLORS.length] }
+                  : { transitionDelay: `${i * 0.15}s` }}
+              >
                 {pkg.popular && <div className="sd-pricing-badge">Most Popular</div>}
                 <div className="sd-pricing-top">
                   <h3 className="sd-pricing-name">{pkg.name}</h3>
@@ -420,6 +461,67 @@ export default function ServiceDetail() {
 
         /* Results glow: blue */
         .service-detail-page .sec-results__glow { background: radial-gradient(circle, rgba(26,115,232,0.14) 0%, transparent 70%) !important; }
+        ` : ''}
+
+        ${isSMO ? `
+        /* ── SMO: no single flat "base" colour — Facebook (major) + Instagram + WhatsApp, blended ── */
+
+        /* Hero glow: Facebook + Instagram split */
+        .service-detail-page .nh-hero__glow--1 { background: radial-gradient(circle, rgba(24,119,242,0.30) 0%, transparent 70%) !important; }
+        .service-detail-page .nh-hero__glow--2 { background: radial-gradient(circle, rgba(225,48,108,0.20) 0%, transparent 70%) !important; }
+
+        /* Headline accent: brightened tri-platform gradient, fully opaque.
+           drop-shadow (not text-shadow) is used because background-clip:text
+           glyphs are painted, so text-shadow would render behind nothing. */
+        .service-detail-page .nh-hero__red {
+          background: linear-gradient(90deg, #4A9BFF 0%, #FF4D8D 52%, #3DEB7F 100%) !important;
+          -webkit-background-clip: text !important;
+          background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+          color: transparent !important;
+          opacity: 1 !important;
+          text-shadow: none !important;
+          filter:
+            drop-shadow(0 2px 10px rgba(6,12,21,0.95))
+            drop-shadow(0 0 26px rgba(255,77,141,0.35)) !important;
+        }
+        .service-detail-page .nh-hero__underline { background: linear-gradient(90deg, #1877F2 0%, #E1306C 50%, #25D366 100%) !important; }
+
+        /* Stat numbers: each one takes a different platform colour (set inline per stat) */
+        .service-detail-page .nh-hero__stat-val {
+          color: var(--stat-color, #E1306C) !important;
+          text-shadow: 0 0 24px color-mix(in srgb, var(--stat-color, #E1306C) 45%, transparent) !important;
+        }
+
+        /* Section rules: Facebook blue */
+        .service-detail-page .sec-rule--red { background: #1877F2 !important; }
+
+        /* Red text accents: Facebook blue */
+        .service-detail-page .sec-red-light,
+        .service-detail-page .sec-red-dark { color: #1877F2 !important; }
+
+        /* Feature check icons: WhatsApp green */
+        .service-detail-page .sd-feature-icon { color: #25D366 !important; }
+
+        /* Pricing: each card carries a different platform colour (set inline per card) */
+        .service-detail-page .sd-pricing-name { color: var(--pkg-color, #E1306C) !important; }
+        .service-detail-page .sd-price-val { color: var(--pkg-color, #1877F2) !important; }
+        .service-detail-page .sd-pricing-badge { background: #25D366 !important; }
+        .service-detail-page .sd-pricing-card--popular {
+          border-image: linear-gradient(90deg, #1877F2, #E1306C, #25D366) 1 !important;
+          box-shadow: 0 0 30px rgba(24,119,242,0.2), 0 0 60px rgba(225,48,108,0.12), 0 0 60px rgba(37,211,102,0.08) !important;
+        }
+
+        /* CTA button: gradient across all three, not flat */
+        .service-detail-page .sec-btn--red { background: linear-gradient(90deg, #1877F2 0%, #E1306C 55%, #25D366 100%) !important; border-color: transparent !important; }
+        .service-detail-page .sec-btn--red:hover { filter: brightness(0.88); }
+
+        /* Results glow: blended */
+        .service-detail-page .sec-results__glow {
+          background:
+            radial-gradient(circle at 35% 50%, rgba(24,119,242,0.14) 0%, transparent 60%),
+            radial-gradient(circle at 65% 50%, rgba(225,48,108,0.12) 0%, transparent 60%) !important;
+        }
         ` : ''}
       `}} />
     </main>

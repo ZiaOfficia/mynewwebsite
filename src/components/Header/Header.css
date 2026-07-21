@@ -74,13 +74,20 @@
   text-decoration: none;
 }
 
+/* Matches favicon.svg: red mark with a royal-blue glimpse bleeding in from
+   the bottom-right corner, both letters solid white. */
 .header__logo-mark {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 38px;
   height: 38px;
-  background: var(--red-accent);
+  background:
+    radial-gradient(ellipse 70% 70% at 80% 84%,
+      rgba(79,70,229,1)    0%,
+      rgba(79,70,229,0.55) 55%,
+      rgba(79,70,229,0)   100%),
+    var(--red-accent);
   color: var(--white);
   font-family: var(--font-display-cond);
   font-size: 1.05rem;
@@ -89,6 +96,8 @@
   border-radius: 6px;
   flex-shrink: 0;
 }
+
+.header__logo-mark .logo-hb-b { color: var(--white); }
 
 .header__logo-wordmark {
   display: flex;
