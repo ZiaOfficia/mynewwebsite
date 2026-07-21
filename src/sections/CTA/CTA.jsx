@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './CTA.css';
+import { agency } from '../../data/index.js';
 
 function hexToRgb(hex) {
   if (!hex || hex.startsWith('var(')) return '201,168,76';
@@ -44,11 +45,11 @@ export default function CTA({
 
         {/* ── Contact chips ── */}
         <div className="cta-section__chips">
-          <a href="mailto:ss4526312@gmail.com" className="cta-chip">
+          <a href={`mailto:${agency.email}`} className="cta-chip">
             <span className="cta-chip__icon">✉</span>
             <div>
               <p className="cta-chip__label">Email Us</p>
-              <p className="cta-chip__value">ss4526312@gmail.com</p>
+              <p className="cta-chip__value">{agency.email}</p>
             </div>
           </a>
           <a href="tel:+910000000000" className="cta-chip">

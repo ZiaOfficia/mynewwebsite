@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './EnquirePanel.css';
 import BrandName from '../BrandName.jsx';
+import { agency } from '../../data/index.js';
 
 const SERVICES = [
   'Web Development',
@@ -131,9 +132,9 @@ export default function EnquirePanel() {
             </ul>
 
             <div className="eq-brand__contacts">
-              <a href="mailto:ss4526312@gmail.com" className="eq-contact-chip">
+              <a href={`mailto:${agency.email}`} className="eq-contact-chip">
                 <span>✉</span>
-                <span>ss4526312@gmail.com</span>
+                <span>{agency.email}</span>
               </a>
               <a href="tel:+910000000000" className="eq-contact-chip">
                 <span>📞</span>

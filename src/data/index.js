@@ -7,7 +7,7 @@ export const agency = {
   name:        'HiBrands',
   tagline:     'Say Hi to Growth.',
   description: 'HiBrands is a performance-driven digital marketing agency where businesses say hi to real growth — through expert Website Development, SEO, Social Media Optimisation, and Google Ads management.',
-  email:       'ss4526312@gmail.com',
+  email:       'hello@hibrands.in',
   phone:       '+91 00000 00000',
   address:     'India',
   social: {
