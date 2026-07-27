@@ -7,7 +7,6 @@ import Header        from './components/Header/Header.jsx';
 import Footer        from './components/Footer/Footer.jsx';
 import EnquirePanel  from './components/EnquirePanel/EnquirePanel.jsx';
 import { BookingProvider } from './components/BookingModal/BookingContext.jsx';
-import OfferBanner from './components/OfferBanner/OfferBanner.jsx';
 import Home       from './pages/Home.jsx';
 import ServiceDetail  from './pages/ServiceDetail.jsx';
 import AboutPage      from './pages/AboutPage.jsx';
@@ -133,7 +132,6 @@ function AppShell() {
       <SmoothScroll />
       <ScrollProgress />
       <Header />
-      <OfferBanner />
       <EnquirePanel />
       <AnimatePresence
         mode="wait"

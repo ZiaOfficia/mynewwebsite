@@ -42,6 +42,16 @@ export const navLinks = [
       { label: 'Google Ads',          href: '/services/google-ads',       desc: 'High-ROI paid campaigns'          },
     ],
   },
+  {
+    label: 'Offers',
+    href:  '/services',
+    highlight: true,
+    dropdown: [
+      { label: 'Landing Page',      href: '/services/landing-pages#pricing',  desc: '₹3,999 · was ₹6,999'   },
+      { label: 'Business Website',  href: '/services/web-development#pricing', desc: '₹9,999 · was ₹24,999'  },
+      { label: 'E-commerce Website', href: '/services/web-development#pricing', desc: '₹19,999 · was ₹49,999' },
+    ],
+  },
   { label: 'About',   href: '/about'   },
   // Blog hidden for now — restore when ready
   // { label: 'Blog',    href: '/blog'    },
@@ -583,8 +593,8 @@ export const serviceDetails = {
     howItHelped: 'We redesigned and re-platformed GreenBuild Co. onto a modern tech stack focused entirely on speed and conversion flows. By removing friction from the user journey and implementing clean, SEO-friendly architecture, we reduced bounce rates by 40% immediately upon launch.',
     revenue: 'The new site doubled lead volume in the first 30 days, resulting in an additional ₹1.2Cr in closed revenue over the next quarter.',
     packages: [
-      { name: 'Business Site', price: '₹14,999', period: '', tagline: 'For service businesses needing authority.', features: ['Custom UI/UX Design', 'Up to 7 Pages', 'Mobile Responsive', 'Speed Optimised', 'Basic SEO Setup'], cta: 'Get Started' },
-      { name: 'E-commerce', price: '₹29,999', period: '', tagline: 'Start selling online easily.', features: ['React / Next.js / Node.js', 'Payment Gateway', 'Up to 50 Products', 'Advanced Speed Optimisation', 'Inventory Management'], cta: 'Get Started', popular: true },
+      { name: 'Business Site', oldPrice: '₹24,999', price: '₹9,999', period: '', tagline: 'For service businesses needing authority.', features: ['Custom UI/UX Design', 'Up to 7 Pages', 'Mobile Responsive', 'Speed Optimised', 'Basic SEO Setup'], cta: 'Get Started' },
+      { name: 'E-commerce', oldPrice: '₹49,999', price: '₹19,999', period: '', tagline: 'Start selling online easily.', features: ['React / Next.js / Node.js', 'Payment Gateway', 'Up to 50 Products', 'Advanced Speed Optimisation', 'Inventory Management'], cta: 'Get Started', popular: true },
       { name: 'Custom Application', price: 'Custom', period: '', tagline: 'Complex web platforms.', features: ['React / Next.js', 'Custom Backend', 'Third-party API Integrations', 'High Performance', 'Advanced Security'], cta: 'Contact Us' }
     ]
   },

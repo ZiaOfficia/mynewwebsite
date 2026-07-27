@@ -173,6 +173,34 @@
   color: var(--page-accent, var(--red-accent)) !important;
 }
 
+/* ── Highlighted "Offers" tab ─────────────────────────────────
+   Filled, glowing pill in the current page accent, with a soft pulse. */
+.header__nav-item--highlight .header__nav-link--btn {
+  color: #fff;
+  font-weight: 900;
+  background: linear-gradient(135deg,
+    rgba(var(--page-accent-rgb, 204,31,53), 0.95) 0%,
+    rgba(var(--page-accent-rgb, 204,31,53), 0.7) 100%);
+  box-shadow: 0 4px 16px rgba(var(--page-accent-rgb, 204,31,53), 0.45);
+  animation: offers-pulse 2.2s ease-in-out infinite;
+}
+
+.header__nav-item--highlight .header__nav-link--btn:hover {
+  color: #fff;
+  background: linear-gradient(135deg,
+    rgba(var(--page-accent-rgb, 204,31,53), 1) 0%,
+    rgba(var(--page-accent-rgb, 204,31,53), 0.82) 100%);
+}
+
+@keyframes offers-pulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(var(--page-accent-rgb, 204,31,53), 0.40); }
+  50%      { box-shadow: 0 4px 24px rgba(var(--page-accent-rgb, 204,31,53), 0.75); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__nav-item--highlight .header__nav-link--btn { animation: none; }
+}
+
 .header__nav-chevron {
   transition: transform var(--duration) var(--ease);
 }
@@ -187,10 +215,15 @@
   left: 50%;
   transform: translateX(-50%) translateY(8px);
   min-width: 320px;
-  background: linear-gradient(135deg, #07111C 0%, rgba(var(--page-accent-rgb, 123,18,52), 0.35) 100%);
-  border: 1px solid rgba(var(--page-accent-rgb, 204,31,53), 0.22);
+  /* Bold frosted glass — opaque enough that the page behind is not visible */
+  background:
+    linear-gradient(135deg, rgba(7,17,28,0.94) 0%, rgba(var(--page-accent-rgb, 123,18,52), 0.55) 100%),
+    rgba(7,17,28,0.85);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1.5px solid rgba(var(--page-accent-rgb, 204,31,53), 0.45);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl), 0 0 24px rgba(var(--page-accent-rgb, 204,31,53), 0.08);
+  box-shadow: var(--shadow-xl), 0 0 34px rgba(var(--page-accent-rgb, 204,31,53), 0.28);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
@@ -216,26 +249,36 @@
   gap: 2px;
   padding: 0.75rem 0.9rem;
   border-radius: var(--radius-md);
-  transition: background var(--duration) var(--ease);
+  transition: background var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease),
+              transform var(--duration) var(--ease);
 }
 
+/* Hover picks up the current page's accent colour, bold and solid */
 .header__dd-item:hover {
-  background: rgba(var(--page-accent-rgb, 204,31,53), 0.12);
+  background: rgba(var(--page-accent-rgb, 204,31,53), 0.92);
+  box-shadow: 0 6px 20px rgba(var(--page-accent-rgb, 204,31,53), 0.45);
+  transform: translateY(-1px);
 }
 
 .header__dd-label {
   font-family: var(--font-display-cond);
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 900;
   text-transform: uppercase;
   color: var(--white);
   letter-spacing: 0.02em;
 }
 
 .header__dd-desc {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.55);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.78);
 }
+
+/* Keep text fully legible on the bold accent hover */
+.header__dd-item:hover .header__dd-label { color: #fff; }
+.header__dd-item:hover .header__dd-desc  { color: rgba(255,255,255,0.95); }
 
 /* ── CTA ───────────────────────────────────────────────────── */
 .header__actions {

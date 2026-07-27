@@ -50,7 +50,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <li
                 key={link.label}
-                className={`header__nav-item ${link.dropdown ? 'header__nav-item--has-dd' : ''}`}
+                className={`header__nav-item ${link.dropdown ? 'header__nav-item--has-dd' : ''} ${link.highlight ? 'header__nav-item--highlight' : ''}`}
                 onMouseEnter={() => link.dropdown && openDD(link.label)}
                 onMouseLeave={() => link.dropdown && closeDD()}
               >
