@@ -92,15 +92,15 @@ export default function Footer() {
           <div className="footer__col">
             <h4 className="footer__col-heading">Get in Touch</h4>
             <ul className="footer__contact-list">
-              {/* Email & phone hidden for now
+              {/* Email hidden for now
               <li>
                 <span className="footer__contact-icon">✉</span>
                 <a href={`mailto:${agency.email}`} className="footer__link">{agency.email}</a>
-              </li>
+              </li> */}
               <li>
                 <span className="footer__contact-icon">📞</span>
                 <a href={`tel:${agency.phone}`} className="footer__link">{agency.phone}</a>
-              </li> */}
+              </li>
               <li>
                 <span className="footer__contact-icon">📍</span>
                 <span className="footer__contact-text">{agency.address}</span>
