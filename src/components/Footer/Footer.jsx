@@ -80,11 +80,9 @@ export default function Footer() {
             <h4 className="footer__col-heading">Company</h4>
             <ul className="footer__col-list">
               <li><Link to="/about"         className="footer__link">About Us</Link></li>
-              <li><Link to="/case-studies"  className="footer__link">Case Studies</Link></li>
               {/* Blog hidden for now
               <li><Link to="/blog"          className="footer__link">Blog</Link></li> */}
               <li><Link to="/contact"       className="footer__link">Contact</Link></li>
-              <li><Link to="/careers"       className="footer__link">Careers</Link></li>
             </ul>
           </div>
 
@@ -106,20 +104,6 @@ export default function Footer() {
                 <span className="footer__contact-text">{agency.address}</span>
               </li>
             </ul>
-
-            {/* Newsletter */}
-            <div className="footer__newsletter">
-              <p className="footer__newsletter-label">Get marketing tips</p>
-              <form className="footer__newsletter-form" onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="footer__newsletter-input"
-                  aria-label="Email address"
-                />
-                <button type="submit" className="footer__newsletter-btn">→</button>
-              </form>
-            </div>
           </div>
         </div>
       </div>
