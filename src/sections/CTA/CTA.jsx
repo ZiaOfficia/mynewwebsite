@@ -52,11 +52,11 @@ export default function CTA({
               <p className="cta-chip__value">{agency.email}</p>
             </div>
           </a>
-          <a href="tel:+910000000000" className="cta-chip">
+          <a href={`tel:${agency.phone}`} className="cta-chip">
             <span className="cta-chip__icon">📞</span>
             <div>
               <p className="cta-chip__label">Call Us</p>
-              <p className="cta-chip__value">+91 00000 00000</p>
+              <p className="cta-chip__value">{agency.phone}</p>
             </div>
           </a>
         </div>

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './EnquirePanel.css';
 import BrandName from '../BrandName.jsx';
 import { agency } from '../../data/index.js';
+import { submitToSheet } from '../../lib/sheets.js';
 
 const SERVICES = [
   'Web Development',
@@ -35,6 +36,8 @@ const TIMELINES = [
 export default function EnquirePanel() {
   const [open, setOpen]       = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
   const [form, setForm]       = useState({
     name: '', email: '', phone: '',
     service: '', budget: '', timeline: '', message: '',
@@ -57,14 +60,32 @@ export default function EnquirePanel() {
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSending(true);
+    setSendError('');
+    try {
+      await submitToSheet({
+        formType: 'enquiry',
+        fullName: form.name.trim(),
+        email:    form.email.trim(),
+        phone:    form.phone.trim(),
+        service:  form.service,
+        budget:   form.budget,
+        timeline: form.timeline,
+        message:  form.message.trim(),
+      });
+      setSubmitted(true);
+    } catch {
+      setSendError('Something went wrong. Please try again.');
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleClose = () => {
     setOpen(false);
-    setTimeout(() => setSubmitted(false), 600);
+    setTimeout(() => { setSubmitted(false); setSendError(''); }, 600);
   };
 
   return (
@@ -136,9 +157,9 @@ export default function EnquirePanel() {
                 <span>✉</span>
                 <span>{agency.email}</span>
               </a>
-              <a href="tel:+910000000000" className="eq-contact-chip">
+              <a href={`tel:${agency.phone}`} className="eq-contact-chip">
                 <span>📞</span>
-                <span>+91 00000 00000</span>
+                <span>{agency.phone}</span>
               </a>
             </div>
 
@@ -232,8 +253,17 @@ export default function EnquirePanel() {
                     />
                   </div>
 
-                  <button type="submit" className="eq-btn eq-btn--primary eq-btn--submit">
-                    Send My Enquiry
+                  {sendError && (
+                    <p style={{ color: '#FF8A97', fontSize: '0.85rem', textAlign: 'center', margin: 0 }}>{sendError}</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="eq-btn eq-btn--primary eq-btn--submit"
+                    disabled={sending}
+                    style={{ opacity: sending ? 0.6 : 1, cursor: sending ? 'not-allowed' : 'pointer' }}
+                  >
+                    {sending ? 'Sending…' : 'Send My Enquiry'}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                       <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
