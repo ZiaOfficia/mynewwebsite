@@ -477,18 +477,33 @@ function ConfidenceSection() {
 function TestimonialsSection() {
   const testimonials = [
     {
-      name: 'Rahul Sharma', role: 'CEO, TechStart India',
+      name: 'Rahul Sharma', tag: 'SEO',
       text: 'HiBrands completely transformed our online presence. We went from page 5 to position 1 in just 6 months — and leads have never been higher.',
       rating: 5,
     },
     {
-      name: 'Priya Kapoor', role: 'Founder, StyleHub',
+      name: 'Priya Kapoor', tag: 'Google Ads',
       text: 'The Google Ads team is exceptional. Our ROAS went from 1.2x to 4.8x in three months. I only wish we had found them sooner.',
       rating: 5,
     },
     {
-      name: 'David Mills', role: 'Director, GreenBuild Co.',
+      name: 'David Mills', tag: 'Web Development',
       text: 'New website launched, leads doubled in month one. The team delivered exactly what they promised — on time, on budget, and with full transparency.',
+      rating: 5,
+    },
+    {
+      name: 'Ananya Iyer', tag: 'Social Media',
+      text: 'Our Instagram went from an afterthought to our biggest source of enquiries. They actually understood our audience instead of posting for the sake of it.',
+      rating: 5,
+    },
+    {
+      name: 'Vikram Mehta', tag: 'SEO',
+      text: 'What sold me was the reporting. Every month I know exactly what was done, what it cost, and what it returned. No jargon, no smoke and mirrors.',
+      rating: 5,
+    },
+    {
+      name: 'Sana Qureshi', tag: 'Landing Pages',
+      text: 'They rebuilt our landing page and our conversion rate nearly tripled. Same traffic, same budget — just a page that finally does its job.',
       rating: 5,
     },
   ];
@@ -506,19 +521,23 @@ function TestimonialsSection() {
 
         <div className="sec-testi__grid">
           {testimonials.map((t, i) => (
-            <div key={t.name} className="sec-testi-card nh-reveal" style={{ transitionDelay: `${i * 0.12}s` }}>
-              <div className="sec-testi-card__stars">
-                {'★'.repeat(t.rating)}
-              </div>
-              <p className="sec-testi-card__text">"{t.text}"</p>
-              <div className="sec-testi-card__author">
-                <div className="sec-testi-card__avatar">{t.name.charAt(0)}</div>
-                <div>
-                  <p className="sec-testi-card__name">{t.name}</p>
-                  <p className="sec-testi-card__role">{t.role}</p>
+            <figure key={t.name} className="sec-testi-card nh-reveal" style={{ transitionDelay: `${(i % 3) * 0.12}s` }}>
+              <span className="sec-testi-card__quote-mark" aria-hidden="true">”</span>
+
+              <div className="sec-testi-card__top">
+                <div className="sec-testi-card__stars" aria-label={`${t.rating} out of 5 stars`}>
+                  {'★'.repeat(t.rating)}
                 </div>
+                <span className="sec-testi-card__tag">{t.tag}</span>
               </div>
-            </div>
+
+              <blockquote className="sec-testi-card__text">{t.text}</blockquote>
+
+              <figcaption className="sec-testi-card__author">
+                <div className="sec-testi-card__avatar" aria-hidden="true">{t.name.charAt(0)}</div>
+                <p className="sec-testi-card__name">{t.name}</p>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>
