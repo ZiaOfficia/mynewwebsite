@@ -1,0 +1,20 @@
+# https://hibrands.in/robots.txt
+# HiBrands — Digital Marketing Agency
+
+User-agent: *
+Allow: /
+
+# Vite build output must stay crawlable — Google renders JavaScript and
+# needs the hashed JS/CSS bundles to see the page content.
+Allow: /assets/
+
+# Vercel deployment internals — no indexable content.
+Disallow: /api/
+Disallow: /_vercel/
+
+# Strip tracking parameters from crawl paths to avoid duplicate URLs.
+Disallow: /*?*utm_
+Disallow: /*?*fbclid=
+Disallow: /*?*gclid=
+
+Sitemap: https://hibrands.in/sitemap.xml

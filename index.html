@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="HiBrands — Say Hi to Growth. Website Development, SEO, SMO & Google Ads Agency in India." />
-    <title>HiBrands | Say Hi to Growth.</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0D1B2A" />
+
+    <!-- Font origins: resolve DNS and open the TLS connection before the
+         stylesheet request is discovered. dns-prefetch is the fallback for
+         browsers that ignore preconnect. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Everything between these markers is replaced per route by
+         scripts/prerender.js. The values below are the fallback for any
+         route that was not prerendered. Do not remove the markers. -->
+    <!--seo-head-start-->
+    <title>HiBrands | Digital Marketing Agency in India</title>
+    <meta name="description" content="HiBrands is a performance-driven digital marketing agency. SEO, Google Ads, web development and social media that turn traffic into revenue." />
+    <link rel="canonical" href="https://hibrands.in/" />
+    <!--seo-head-end-->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

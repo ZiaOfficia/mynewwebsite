@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../seo/SEO.jsx';
 import {
   SiGoogle, SiMeta, SiShopify, SiHubspot, SiStripe, SiFigma, SiNotion,
   SiTiktok, SiYoutube, SiFramer, SiSpotify, SiWebflow, SiPinterest, SiTwitch,
@@ -587,6 +588,7 @@ export default function Home() {
   useReveal();
   return (
     <main className="home-page">
+      <SEO pathname="/" />
       <HeroSection />
       <MarqueeSection />
       <AboutSection />

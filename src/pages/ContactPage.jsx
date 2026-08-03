@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { agency, services } from '../data/index.js';
 import { submitToSheet } from '../lib/sheets.js';
+import SEO from '../seo/SEO.jsx';
 import {
   RiMailLine, RiPhoneLine, RiMessage2Line, RiMapPin2Line, RiTeamLine,
   RiTimeLine, RiRocketLine, RiTrophyLine, RiLightbulbLine, RiGlobalLine,
@@ -76,6 +77,7 @@ export default function ContactPage() {
 
   return (
     <main className="contact-page-dark" style={{ background: '#060c15', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
+      <SEO pathname="/contact" />
       <div className="nh-hero__brands" aria-hidden="true" style={{ pointerEvents: 'none', position: 'fixed', inset: 0, zIndex: 0 }}>
         {CONTACT_TILES.map((item, i) => (
           <div key={i} className="nh-hero__brand-chip" style={{ '--brand-color': item.color }}>

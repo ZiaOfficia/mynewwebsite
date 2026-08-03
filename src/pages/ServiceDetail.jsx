@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useParams, Navigate, useLocation } from 'react-router-dom';
 import { serviceDetails, services } from '../data/index.js';
+import SEO from '../seo/SEO.jsx';
+import { serviceSchema } from '../seo/schema.js';
+import { getRouteSeo } from '../seo/seo.config.js';
 import CTA from '../sections/CTA/CTA.jsx';
 import { useBooking } from '../components/BookingModal/BookingContext.jsx';
 import './Home.css';
@@ -107,9 +110,15 @@ export default function ServiceDetail() {
     return () => clearTimeout(id);
   }, [hash, slug]);
 
-  if (!service) return <Navigate to="/services" replace />;
+  if (!service) return <Navigate to="/" replace />;
 
   const descParagraphs = (meta?.description || '').trim().split(/\n\n+/).filter(Boolean).map(p => p.trim());
+
+  /* Falls back to the service copy when seo.config.js has no entry —
+     keeps a new service page from shipping with an empty description. */
+  const seoDescription =
+    getRouteSeo(`/services/${slug}`)?.description ||
+    (descParagraphs[0] || '').slice(0, 160);
 
   const CTA_CONTENT = {
     'web-development': {
@@ -141,6 +150,14 @@ export default function ServiceDetail() {
 
   return (
     <main className="service-detail-page">
+      <SEO
+        pathname={`/services/${slug}`}
+        schema={[serviceSchema({
+          name:        service.title,
+          description: seoDescription,
+          pathname:    `/services/${slug}`,
+        })]}
+      />
 
       {/* ── HERO ── */}
       <section className="nh-hero sd-hero">

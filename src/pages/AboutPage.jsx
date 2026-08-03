@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { team, stats } from '../data/index.js';
+import SEO from '../seo/SEO.jsx';
 import CTA from '../sections/CTA/CTA.jsx';
 import {
   RiTeamLine, RiTrophyLine, RiLightbulbLine, RiRocketLine, RiBarChartLine,
@@ -43,6 +44,7 @@ export default function AboutPage() {
 
   return (
     <main className="about-page-dark">
+      <SEO pathname="/about" />
       {/* ── Page Hero ── */}
       <section className="nh-hero sd-hero">
         <div className="nh-hero__brands" aria-hidden="true" style={{ pointerEvents: 'none' }}>

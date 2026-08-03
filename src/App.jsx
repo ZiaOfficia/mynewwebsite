@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { LazyMotion, domAnimation, MotionConfig, AnimatePresence, m } from 'framer-motion';
 import Lenis from 'lenis';
 import Loader        from './components/Loader/Loader.jsx';
@@ -14,6 +14,7 @@ import AboutPage      from './pages/AboutPage.jsx';
 // import BlogPage       from './pages/BlogPage.jsx';
 // import BlogPostPage   from './pages/BlogPostPage.jsx';
 import ContactPage    from './pages/ContactPage.jsx';
+import SEO            from './seo/SEO.jsx';
 
 /* ── Page accent colours (must match each page's theme) ──── */
 const PAGE_COLORS = {
@@ -37,6 +38,11 @@ function getPageColor(pathname) {
   if (pathname.startsWith('/services/')) return PAGE_COLORS['/services'];
   return DEFAULT_COLOR;
 }
+
+/* useLayoutEffect logs a warning during renderToString — swap to useEffect
+   on the server, where neither one runs anyway. */
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 /* ── Buttery smooth scrolling (off for reduced motion) ────── */
 function SmoothScroll() {
@@ -178,6 +184,11 @@ function NotFound() {
       padding: '2rem',
       background: 'var(--navy)',
     }}>
+      <SEO
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist or has been moved."
+        noindex
+      />
       <span style={{ fontSize: '4rem' }}>🔍</span>
       <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,6vw,4.5rem)', color: 'var(--white)' }}>
         Page Not Found
@@ -192,25 +203,36 @@ function NotFound() {
   );
 }
 
-/* ── Root with Loader ──────────────────────────────────────── */
+/* ── Root with Loader ───────────────────────────────────────
+   Router-free so the same tree can mount under BrowserRouter
+   (src/main.jsx) or StaticRouter (src/entry-server.jsx).
+
+   The loader is skipped during prerendering: static HTML must
+   contain the page content, not a splash screen. import.meta.env.SSR
+   is statically replaced at build time, so the branch is compiled
+   away in the client bundle.
+   ──────────────────────────────────────────────────────────── */
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  /* Starts false so the client's first render matches the prerendered HTML
+     exactly — a mismatch would make React throw away the static markup and
+     re-render the whole tree. The loader is switched on in a layout effect,
+     which runs after hydration but before paint, so it is never seen missing. */
+  const [loading, setLoading] = useState(false);
+  useIsomorphicLayoutEffect(() => { setLoading(true); }, []);
 
   return (
-    <BrowserRouter>
-      <LazyMotion features={domAnimation} strict>
-        <MotionConfig reducedMotion="user">
-          {loading && <Loader onComplete={() => setLoading(false)} />}
-          {/* Page content fades in once loader exits */}
-          <div style={{
-            opacity: loading ? 0 : 1,
-            transition: 'opacity 0.4s ease',
-            pointerEvents: loading ? 'none' : 'auto',
-          }}>
-            <AppShell />
-          </div>
-        </MotionConfig>
-      </LazyMotion>
-    </BrowserRouter>
+    <LazyMotion features={domAnimation} strict>
+      <MotionConfig reducedMotion="user">
+        {loading && <Loader onComplete={() => setLoading(false)} />}
+        {/* Page content fades in once loader exits */}
+        <div style={{
+          opacity: loading ? 0 : 1,
+          transition: 'opacity 0.4s ease',
+          pointerEvents: loading ? 'none' : 'auto',
+        }}>
+          <AppShell />
+        </div>
+      </MotionConfig>
+    </LazyMotion>
   );
 }
