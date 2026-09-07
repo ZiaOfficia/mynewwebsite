@@ -28,6 +28,12 @@ export const ROUTE_SEO = {
     priority:    1.0,
     changefreq:  'weekly',
   },
+  '/projects': {
+    title:       'Our Projects — Websites & Landing Pages',
+    description: 'A portfolio of live websites and landing pages built by HiBrands — wedding decor, psychiatry, confectionery, non-profit, real estate, education and industrial clients. Open any of them.',
+    priority:    0.8,
+    changefreq:  'monthly',
+  },
   '/about': {
     title:       'About Us — Who We Are',
     description: 'Meet the team behind HiBrands. A founder-led digital marketing agency built on transparent reporting, no lock-in contracts and measurable growth for every client.',

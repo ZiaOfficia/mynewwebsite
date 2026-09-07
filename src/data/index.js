@@ -7,7 +7,7 @@ export const agency = {
   name:        'HiBrands',
   tagline:     'Say Hi to Growth.',
   description: 'HiBrands is a performance-driven digital marketing agency where businesses say hi to real growth — through expert Website Development, SEO, Social Media Optimisation, and Google Ads management.',
-  email:       'hello@hibrands.in',
+  email:       'hibrands.in@gmail.com',
   phone:       '+91 90649 90515',
   address:     'India',
   social: {
@@ -52,6 +52,7 @@ export const navLinks = [
       { label: 'E-commerce Website', href: '/services/web-development#pricing', desc: '₹19,999 · was ₹49,999' },
     ],
   },
+  { label: 'Projects', href: '/projects' },
   { label: 'About',   href: '/about'   },
   // Blog hidden for now — restore when ready
   // { label: 'Blog',    href: '/blog'    },
@@ -494,6 +495,103 @@ export const caseStudies = [
     image:    null,
   },
 ];
+
+// ── Projects / Portfolio ──────────────────────────────────────
+/* Descriptions are written from each live site — do not embellish.
+   `accent` is a decorative hue sampled from the project's own brand and
+   is used only for badges, tags and hover glows, never for page chrome.
+   `preview` matches a file in src/assets/projects/<slug>.jpg, captured by
+   `npm run previews`. If the file is absent the card renders a branded
+   placeholder instead of a broken or invented screenshot. */
+export const projects = [
+  {
+    slug:     'elegantize',
+    name:     'Elegantize Weddings',
+    category: 'Website',
+    url:      'https://elegantize.com/',
+    accent:   '#C7A35A',
+    tags:     ['Weddings', 'Luxury Decor', 'Portfolio'],
+    description:
+      'Luxury wedding decor and design studio serving New York and New Jersey. The site presents mandaps, ceremony and reception stages, ceiling draping and floral centerpieces as a browsable portfolio, with enquiries captured around the couple\'s wedding date.',
+  },
+  {
+    slug:     'paramount-psychiatry',
+    name:     'Paramount Psychiatry',
+    category: 'Website',
+    url:      'https://paramountpsychiatrynj.com/',
+    accent:   '#33607F',
+    tags:     ['Healthcare', 'Psychiatry', 'Appointments'],
+    description:
+      'Practice website for Dr. Pooja Tandon, MD, offering compassionate, evidence-based psychiatric care in Manalapan, New Jersey. Content is organised by condition — anxiety, mood, ADHD, sleep, trauma, women\'s and geriatric mental health — around a clear appointment request.',
+  },
+  {
+    slug:     'dumuzi',
+    name:     'Dumuzi',
+    category: 'Website',
+    url:      'https://www.dumuzi.in/',
+    accent:   '#C79A5B',
+    tags:     ['E-commerce', 'Luxury', 'Gifting'],
+    description:
+      'Handcrafted confectionery house creating premium confections since 2013. A complete storefront covering signature collections, best sellers, customisable gift boxes, corporate gifting and bespoke commissions, with cart and checkout built in.',
+  },
+  {
+    slug:     'aaghazz-foundation',
+    name:     'Aaghaz Foundation',
+    category: 'Website',
+    url:      'https://aaghazzia.vercel.app/',
+    ctaLabel: 'View Project',
+    accent:   '#F2683C',
+    tags:     ['Non-Profit', 'Education', 'Scholarships'],
+    /* The site's enquiry form lives on its own /contact route. */
+    secondary: { label: 'Enquire Now', url: 'https://aaghazzia.vercel.app/contact' },
+    description:
+      'Non-profit founded in Lucknow in 2004 that supports meritorious students from economically weak backgrounds across India through scholarships, financial aid, mentorship and learning centres. Built with programme pages, success stories, a gallery and an enquiry flow for donors and volunteers.',
+  },
+  {
+    slug:     'max-miracle-buildcare',
+    name:     'Max Miracle Buildcare',
+    category: 'Landing Page',
+    url:      'https://www.maxmiraclebuildcare.com/',
+    accent:   '#C9A227',
+    tags:     ['Real Estate', 'Lead Generation', 'RERA'],
+    description:
+      'Campaign page for Miracle Homes Phase II — a RERA and bank approved gated society of 3 BHK apartments in Lucknow\'s State Capital Region. Amenities, construction quality and location proof feed two conversion goals: brochure downloads and site-visit callbacks.',
+  },
+  {
+    slug:     'nios-admission',
+    name:     'NIOS Admission',
+    category: 'Landing Page',
+    url:      'https://niosadmissionoffice.com/',
+    accent:   '#4F46E5',
+    tags:     ['Education', 'Admissions', 'Counselling'],
+    description:
+      'Admission and coaching page for NIOS Class 10 and 12 — aimed at dropouts, re-attempters and students who want to finish faster. Streams, TMA support and mock tests all funnel into one free counselling enquiry.',
+  },
+  {
+    slug:     'adstube-promotion',
+    name:     'Adstube Promotion',
+    category: 'Landing Page',
+    url:      'https://grow.adstube.in/',
+    accent:   '#E5322D',
+    tags:     ['Marketing', 'YouTube', 'Packages'],
+    description:
+      'Promotion service that grows YouTube channels through Google Ads, positioned on real, bot-free reach and subscribers. Tiered packages, transparent reporting and a free consultation carry the page to sign-up.',
+  },
+  {
+    slug:     'watertech',
+    name:     'Watertech',
+    category: 'Landing Page',
+    url:      'https://watertechlandingpage.vercel.app/',
+    accent:   '#17A9DE',
+    tags:     ['Industrial', 'B2B', 'Quote Requests'],
+    description:
+      'Water and wastewater treatment specialists — RO systems, softeners, DM, UF and media filtration plants, STP, ETP and ZLD — serving industry, institutions and municipalities. Experience and certification build the case for a free consultation or custom quote.',
+  },
+];
+
+/* Filter tabs for the Projects page, in display order. */
+export const projectCategories = ['All', 'Websites', 'Landing Pages'];
+
 
 // ── FAQ ───────────────────────────────────────────────────────
 export const faqs = [

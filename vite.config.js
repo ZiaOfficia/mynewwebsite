@@ -4,6 +4,15 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
 
+  server: {
+    watch: {
+      /* Build output, not source. dist-ssr in particular is created and then
+         deleted by the prerender step, and watching it crashes the dev server
+         with EBUSY if anyone runs a build while `npm run dev` is up. */
+      ignored: ['**/dist/**', '**/dist-ssr/**'],
+    },
+  },
+
   build: {
     /* Split the vendor chunk so a copy change doesn't invalidate the whole
        bundle in returning visitors' caches. Client build only — the SSR

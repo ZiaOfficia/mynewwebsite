@@ -1,0 +1,532 @@
+/* ============================================================
+   PROJECTS — portfolio of client websites and landing pages
+   ============================================================
+   Built on the existing system: the dark navy of the results
+   section, the condensed display face, the gold/red accents and
+   the reveal classes from Home.css. Everything new here is the
+   browser-frame preview and the filter, both scoped to
+   .projects-page so no other route is affected.
+
+   Each card exposes --card-accent, sampled from that client's own
+   brand. It is allowed to tint the badge, the tags and the hover
+   glow — never the page chrome, which stays HiBrands.
+   ============================================================ */
+
+.projects-page {
+  background: #060c15;
+}
+
+/* ── Hero ─────────────────────────────────────────────────
+   Structure comes from .nh-hero / .sd-hero, shared with the About and
+   service pages. Only the accent colour, the logo tiles and the strip
+   along the bottom are page-specific. */
+
+/* Gold rather than the default red, matching this route's page accent. */
+.pj-hero .nh-hero__red { color: var(--gold); }
+.pj-hero .nh-hero__underline {
+  background: linear-gradient(90deg, var(--gold), var(--royal));
+}
+
+/* The stock overlay is a centre blob that swallows the tiles. A vertical
+   vignette keeps the logos readable at the edges — the same treatment the
+   About page applies to its hero. */
+.pj-hero .nh-hero__overlay {
+  background:
+    /* pool of shadow under the headline so it stays readable … */
+    radial-gradient(
+      ellipse 58% 44% at 50% 47%,
+      rgba(6, 12, 21, 0.94) 0%,
+      rgba(6, 12, 21, 0.78) 42%,
+      rgba(6, 12, 21, 0.25) 72%,
+      transparent 88%
+    ),
+    /* … over a vignette that still lets the logos read at the edges */
+    linear-gradient(
+      180deg,
+      rgba(6, 12, 21, 0.88) 0%,
+      rgba(6, 12, 21, 0.44) 20%,
+      rgba(6, 12, 21, 0.36) 50%,
+      rgba(6, 12, 21, 0.58) 78%,
+      rgba(6, 12, 21, 0.93) 100%
+    );
+}
+/* .container is unpositioned, so the overlay (z-index 2) would otherwise
+   paint over the headline and grey it out. Lift the content above it —
+   then the overlay only ever darkens the tiles behind. */
+.pj-hero .sd-hero__inner {
+  position: relative;
+  z-index: 3;
+}
+.pj-hero .nh-hero__heading {
+  text-shadow: 0 2px 32px rgba(6, 12, 21, 0.85), 0 0 8px rgba(6, 12, 21, 0.6);
+}
+
+/* Client logos are images, not icon fonts, so they need a box to sit in.
+   contain keeps square marks and wide wordmarks equally at home. */
+.pj-hero__logo {
+  width: 46px;
+  height: 30px;
+  object-fit: contain;
+  object-position: center;
+  filter: none;
+}
+.pj-hero__monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 30px;
+  font-family: var(--font-display-cond);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--brand-color);
+}
+
+/* Sectors we've worked in, pulled from the project tags. Deliberately
+   qualitative — a headline count would make the work look finite.
+   Takes the place of the stats bar the other heroes carry. */
+.pj-hero__sectors {
+  display: block;
+  padding: 1.5rem 1.5rem 1.6rem;
+  text-align: center;
+}
+.pj-hero__sectors-lbl {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 0.75rem;
+}
+.pj-hero__sectors-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0.7rem;
+  row-gap: 0.5rem;
+  font-family: var(--font-display-cond);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.72);
+}
+/* "Real Estate" must not break across the two words. */
+.pj-hero__sector { white-space: nowrap; }
+.pj-hero__sep {
+  color: var(--gold);
+  opacity: 0.7;
+}
+.pj-hero__sectors-more { color: var(--gold); }
+
+/* ── Work section ─────────────────────────────────────────── */
+.pj-work {
+  position: relative;
+  padding: 6rem 0 7rem;
+  overflow: hidden;
+}
+.pj-work__glow {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: 8%;
+  left: 78%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.10) 0%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+.pj-work__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Filter ───────────────────────────────────────────────── */
+.pj-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 3.5rem;
+}
+.pj-filter {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  transition: color var(--duration) var(--ease),
+              border-color var(--duration) var(--ease),
+              background var(--duration) var(--ease);
+}
+.pj-filter:hover {
+  color: var(--white);
+  border-color: rgba(201, 168, 76, 0.55);
+}
+.pj-filter--active {
+  color: var(--navy);
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ── Grid ─────────────────────────────────────────────────── */
+.pj-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.pj-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--duration-lg) var(--ease),
+              border-color var(--duration-lg) var(--ease),
+              box-shadow var(--duration-lg) var(--ease),
+              background var(--duration-lg) var(--ease);
+}
+.pj-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(var(--card-accent-rgb), 0.45);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45),
+              0 0 0 1px rgba(var(--card-accent-rgb), 0.12);
+}
+
+/* ── Browser-window preview ───────────────────────────────── */
+.pj-frame {
+  display: block;
+  text-decoration: none;
+  background: #0b1220;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.pj-chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.95rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.pj-chrome__dots {
+  display: flex;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+.pj-chrome__dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+}
+.pj-chrome__dots span:first-child { background: rgba(255, 96, 92, 0.75); }
+.pj-chrome__dots span:nth-child(2) { background: rgba(255, 189, 68, 0.75); }
+.pj-chrome__dots span:nth-child(3) { background: rgba(0, 202, 78, 0.7); }
+.pj-chrome__url {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pj-chrome__open {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  transition: color var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+.pj-card:hover .pj-chrome__open {
+  color: var(--card-accent);
+  transform: translate(2px, -2px);
+}
+
+.pj-shot {
+  position: relative;
+  aspect-ratio: 1200 / 750;
+  overflow: hidden;
+  background: #0b1220;
+}
+.pj-shot__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.7s var(--ease);
+}
+.pj-card:hover .pj-shot__img { transform: scale(1.04); }
+
+/* Accent wash that only shows on hover — keeps the shot honest at rest. */
+.pj-shot__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--card-accent-rgb), 0.10) 0%,
+    rgba(6, 12, 21, 0) 45%,
+    rgba(6, 12, 21, 0.55) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-lg) var(--ease);
+  pointer-events: none;
+}
+.pj-card:hover .pj-shot__veil { opacity: 1; }
+
+/* Placeholder for a project with no captured screenshot yet. It is
+   labelled as such — it must never be mistaken for the real site. */
+.pj-shot--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(var(--card-accent-rgb), 0.22) 0%, transparent 62%),
+    #0b1220;
+}
+.pj-shot__monogram {
+  font-family: var(--font-display-cond);
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--card-accent);
+}
+.pj-shot__note {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Card body ────────────────────────────────────────────── */
+.pj-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.75rem;
+}
+.pj-badge {
+  align-self: flex-start;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--card-accent);
+  background: rgba(var(--card-accent-rgb), 0.12);
+  border: 1px solid rgba(var(--card-accent-rgb), 0.3);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  margin-bottom: 1rem;
+}
+.pj-card__name {
+  font-family: var(--font-display-cond);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.85rem;
+}
+.pj-card__desc {
+  font-size: 0.94rem;
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.58);
+}
+.pj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pj-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.65rem;
+}
+
+/* ── Card actions ─────────────────────────────────────────── */
+.pj-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: auto;
+  padding-top: 1.6rem;
+}
+.pj-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display-cond);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color var(--duration) var(--ease), gap var(--duration) var(--ease);
+}
+.pj-cta svg { transition: transform var(--duration) var(--ease); }
+.pj-card:hover .pj-cta { color: var(--card-accent); }
+.pj-cta:hover { color: var(--card-accent); gap: 0.75rem; }
+.pj-cta:hover svg { transform: translate(2px, -2px); }
+.pj-cta--ghost {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.85rem;
+}
+.pj-card:hover .pj-cta--ghost { color: rgba(255, 255, 255, 0.6); }
+.pj-cta--ghost:hover { color: var(--card-accent); }
+
+/* Keyboard focus has to stay visible on a dark card. */
+.pj-frame:focus-visible,
+.pj-cta:focus-visible,
+.pj-filter:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── "More projects" card ─────────────────────────────────── */
+.pj-card--more {
+  --card-accent: var(--gold);
+  --card-accent-rgb: 201, 168, 76;
+  border-style: dashed;
+  border-color: rgba(201, 168, 76, 0.28);
+  background: rgba(201, 168, 76, 0.035);
+}
+.pj-card--more:hover {
+  border-style: solid;
+  background: rgba(201, 168, 76, 0.07);
+}
+.pj-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 340px;
+  padding: 3rem 2rem;
+  text-align: center;
+  text-decoration: none;
+}
+.pj-more__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  color: var(--gold);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  background: rgba(201, 168, 76, 0.08);
+  margin-bottom: 1.6rem;
+  transition: transform var(--duration-lg) var(--ease),
+              background var(--duration-lg) var(--ease);
+}
+.pj-card--more:hover .pj-more__mark {
+  transform: rotate(90deg) scale(1.06);
+  background: rgba(201, 168, 76, 0.16);
+}
+.pj-more__title {
+  font-family: var(--font-display-cond);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.9rem;
+}
+.pj-more__desc {
+  max-width: 380px;
+  font-size: 0.94rem;
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.58);
+  margin-bottom: 1.9rem;
+}
+.pj-more__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display-cond);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold);
+  border-radius: 999px;
+  padding: 0.85rem 1.75rem;
+  transition: background var(--duration) var(--ease), gap var(--duration) var(--ease);
+}
+.pj-card--more:hover .pj-more__cta {
+  background: var(--gold-light);
+  gap: 0.75rem;
+}
+.pj-more:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-lg);
+}
+
+/* ── Closing note ─────────────────────────────────────────── */
+.pj-note {
+  margin-top: 4rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (min-width: 760px) {
+  .pj-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 759px) {
+  .pj-hero__sectors { padding: 1.1rem 1rem 1.2rem; }
+  .pj-hero__sectors-list { font-size: 0.95rem; column-gap: 0.5rem; }
+  .pj-hero__logo, .pj-hero__monogram { width: 34px; height: 24px; }
+  .pj-more { min-height: 280px; padding: 2.5rem 1.5rem; }
+  .pj-work { padding: 4rem 0 5rem; }
+  .pj-grid { gap: 2rem; }
+  .pj-card__body { padding: 1.4rem; }
+  .pj-card__name { font-size: 1.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pj-card,
+  .pj-shot__img,
+  .pj-cta,
+  .pj-cta svg,
+  .pj-chrome__open { transition: none; }
+  .pj-card:hover { transform: none; }
+  .pj-card:hover .pj-shot__img { transform: none; }
+}

@@ -80,6 +80,7 @@ export default function Footer() {
             <h4 className="footer__col-heading">Company</h4>
             <ul className="footer__col-list">
               <li><Link to="/about"         className="footer__link">About Us</Link></li>
+              <li><Link to="/projects"      className="footer__link">Projects</Link></li>
               {/* Blog hidden for now
               <li><Link to="/blog"          className="footer__link">Blog</Link></li> */}
               <li><Link to="/contact"       className="footer__link">Contact</Link></li>

@@ -10,6 +10,7 @@ import { BookingProvider } from './components/BookingModal/BookingContext.jsx';
 import Home       from './pages/Home.jsx';
 import ServiceDetail  from './pages/ServiceDetail.jsx';
 import AboutPage      from './pages/AboutPage.jsx';
+import ProjectsPage   from './pages/ProjectsPage.jsx';
 // Blog hidden for now — restore these imports with the routes below
 // import BlogPage       from './pages/BlogPage.jsx';
 // import BlogPostPage   from './pages/BlogPostPage.jsx';
@@ -25,6 +26,7 @@ const PAGE_COLORS = {
   '/services/seo':             { hex: '#22C55E', rgb: '34,197,94'   },
   '/services/smo':             { hex: '#1877F2', rgb: '24,119,242'  },
   '/services/google-ads':      { hex: '#1A73E8', rgb: '26,115,232'  },
+  '/projects':                 { hex: '#C9A84C', rgb: '201,168,76'  },
   '/about':                    { hex: '#F97316', rgb: '249,115,22'  },
   '/blog':                     { hex: '#0EA5E9', rgb: '14,165,233'  },
   '/contact':                  { hex: '#D946EF', rgb: '217,70,239'  },
@@ -155,6 +157,7 @@ function AppShell() {
             <Route path="/"                   element={<Home />}          />
             <Route path="/services"           element={<Navigate to="/" replace />} />
             <Route path="/services/:slug"     element={<ServiceDetail />}  />
+            <Route path="/projects"           element={<ProjectsPage />}  />
             <Route path="/about"              element={<AboutPage />}     />
             {/* Blog hidden for now — restore when ready
             <Route path="/blog"               element={<BlogPage />}      />

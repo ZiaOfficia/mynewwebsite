@@ -24,6 +24,7 @@ const { ROUTE_SEO, SITE_URL, absoluteUrl } =
 /* Map a route to the source file that owns its content. */
 const SOURCE_FILE = {
   '/':        'src/pages/Home.jsx',
+  '/projects': 'src/pages/ProjectsPage.jsx',
   '/about':   'src/pages/AboutPage.jsx',
   '/contact': 'src/pages/ContactPage.jsx',
 };
