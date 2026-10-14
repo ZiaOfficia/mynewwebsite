@@ -116,6 +116,7 @@
   border-radius: var(--radius-pill);
 }
 .bill__switch button {
+  min-height: 40px;
   padding: 0.45rem 0.9rem;
   border-radius: var(--radius-pill);
   font-size: var(--t-xs);
@@ -461,7 +462,8 @@
 }
 
 @media (max-width: 700px) {
-  .work-card { grid-column: 1 / -1; }
+  .work-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .work-card { grid-column: auto; }
   .steps { grid-template-columns: 1fr; }
   .bill { padding: 1.25rem 1.1rem 2rem; }
   .bill__line { font-size: 0.95rem; }
