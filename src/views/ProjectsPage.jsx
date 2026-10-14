@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { projects, projectCategories } from '../data/index.js';
 import Image from 'next/image';
+import { WorkVisual } from '../components/HeroVisuals.jsx';
 import CTA from '../sections/CTA/CTA.jsx';
 
 /* Filter tab label → the category stored on each project. */
@@ -171,7 +172,8 @@ export default function ProjectsPage({ previews = [] }) {
     <main className="projects-page">
 
       <header className="phead">
-        <div className="container phead__grid phead__grid--single">
+        <div className="container phead__grid">
+          <div>
           <h1 className="phead__title">Work that's live right now.</h1>
           <p className="lede phead__lede">
             Websites and landing pages we've built for businesses and organisations.
@@ -184,6 +186,13 @@ export default function ProjectsPage({ previews = [] }) {
             ))}
             <span className="pj-sectors__item pj-sectors__item--more">and more</span>
           </p>
+          </div>
+          <WorkVisual
+            shots={projects
+              .filter((p) => previews.includes(p.slug))
+              .slice(0, 3)
+              .map((p) => ({ slug: p.slug, host: displayUrl(p.url) }))}
+          />
         </div>
       </header>
 

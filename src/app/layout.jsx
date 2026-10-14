@@ -11,6 +11,7 @@ import '@/components/Loader/Loader.css';
 import '@/components/EnquirePanel/EnquirePanel.css';
 import '@/components/BookingModal/BookingModal.css';
 import '@/sections/CTA/CTA.css';
+import '@/components/HeroVisuals.css';
 
 import Header from '@/components/Header/Header.jsx';
 import Footer from '@/components/Footer/Footer.jsx';

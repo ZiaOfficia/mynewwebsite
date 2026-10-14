@@ -249,3 +249,14 @@
   .contact__form { grid-template-columns: 1fr; }
 }
 .contact-wrap { padding-bottom: var(--section-y); }
+
+/* "What's included" list inside the service story */
+.included {
+  margin-top: 1rem;
+  padding: 1.5rem 1.6rem;
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+}
+.included__title { font-size: var(--t-lg); margin-bottom: 1rem; }
+.included__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem 1.5rem; font-size: 1rem; }
+@media (max-width: 600px) { .included__list { grid-template-columns: 1fr; } }

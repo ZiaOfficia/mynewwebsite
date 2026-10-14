@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { agency, services } from '../data/index.js';
 import { submitToSheet } from '../lib/sheets.js';
+import { ChatVisual } from '../components/HeroVisuals.jsx';
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -41,12 +42,15 @@ export default function ContactPage() {
     <main className="contact-page">
 
       <header className="phead">
-        <div className="container phead__grid phead__grid--single">
+        <div className="container phead__grid">
+          <div>
           <h1 className="phead__title">Tell us what you need.</h1>
           <p className="lede phead__lede">
             An engineer from the team will reply within 24 hours with honest advice
             on what it takes, how long and what it costs.
           </p>
+          </div>
+          <ChatVisual variant="contact" />
         </div>
       </header>
 
