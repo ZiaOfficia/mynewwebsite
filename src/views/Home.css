@@ -215,76 +215,57 @@
   flex-shrink: 0;
 }
 
-/* ── Chain ───────────────────────────────────────────────── */
-.hm-chain { background: var(--paper); }
-.hm-services { background: var(--surface); }
-
-.chain { display: grid; gap: 1.25rem; }
-
-.chain__row {
+/* ── Why we exist ────────────────────────────────────────── */
+.hm-why {
+  background: var(--cobalt);
+  color: var(--white);
+  padding: var(--section-y) 0;
+}
+.hm-why__intro {
   display: grid;
-  grid-template-columns: 9rem 1fr;
-  grid-template-areas: 'who steps' '. note';
-  column-gap: 2rem;
-  row-gap: 0.7rem;
-  padding: 1.75rem;
-  border-radius: var(--radius-lg);
-  background: var(--paper);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 1.5rem clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: end;
+  padding-bottom: clamp(2.5rem, 2rem + 2vw, 4rem);
+  border-bottom: 1px solid rgba(255,255,255,0.28);
 }
-.chain__row--direct { background: var(--mint-soft); }
-
-.chain__who {
-  grid-area: who;
-  align-self: center;
-  font-family: var(--font-display);
-  font-weight: 700;
+.hm-why__title {
+  color: var(--white);
+  font-size: clamp(2.4rem, 1.4rem + 4vw, 4.8rem);
+  font-weight: 760;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  max-width: 10em;
+}
+.hm-why__text {
   font-size: var(--t-lg);
+  line-height: 1.55;
+  color: rgba(255,255,255,0.9);
+  max-width: 30em;
 }
-
-.chain__steps {
-  grid-area: steps;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0;
-  list-style: none;
+.hm-why__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding-top: clamp(2.5rem, 2rem + 2vw, 4rem);
 }
-
-.chain__node {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  padding: 0.6rem 1.05rem;
-  border-radius: var(--radius-pill);
-  background: var(--surface);
-  border: 1.5px solid var(--line-strong);
-  font-weight: 600;
-  font-size: var(--t-sm);
-  white-space: nowrap;
+.promise { display: grid; align-content: start; gap: 0.75rem; }
+.promise__icon {
+  display: grid;
+  place-items: center;
+  width: 4rem; height: 4rem;
+  border-radius: 50%;
+  background: var(--marigold);
+  color: var(--ink);
+  margin-bottom: 0.5rem;
 }
-/* connector line between nodes */
-.chain__node + .chain__node { margin-left: 2.2rem; }
-.chain__node + .chain__node::before {
-  content: '';
-  position: absolute;
-  right: 100%;
-  top: 50%;
-  width: 2.2rem;
-  height: 2px;
-  background: var(--line-strong);
+.promise__icon svg { width: 2.1rem; height: 2.1rem; }
+.promise__title {
+  color: var(--white);
+  font-size: var(--t-xl);
+  letter-spacing: -0.02em;
 }
-.chain__row--direct .chain__node + .chain__node { margin-left: 4rem; }
-.chain__row--direct .chain__node + .chain__node::before { width: 4rem; background: var(--mint-ink); }
-
-.chain__node--you { background: var(--ink); color: var(--white); border-color: var(--ink); }
-.chain__node--eng { background: var(--cobalt); color: var(--white); border-color: var(--cobalt); }
-
-.chain__note {
-  grid-area: note;
-  font-size: var(--t-sm);
-  color: var(--ink-2);
-}
-.chain__row--direct .chain__note { color: var(--mint-ink); font-weight: 600; }
+.promise__text { color: rgba(255,255,255,0.85); line-height: 1.6; }
 
 /* ── Services list ───────────────────────────────────────── */
 .svc-list { border-top: 2px solid var(--ink); }
@@ -464,6 +445,8 @@
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 980px) {
+  .hm-why__intro { grid-template-columns: 1fr; }
+  .hm-why__list { grid-template-columns: 1fr; }
   .hm-hero__grid { grid-template-columns: 1fr; }
   .hm-hero__mark { order: -1; justify-self: start; width: 150px; margin-bottom: -0.5rem; }
   .hm-hero__halo { display: none; }
@@ -478,15 +461,6 @@
 }
 
 @media (max-width: 700px) {
-  .chain__row { grid-template-columns: 1fr; grid-template-areas: 'who' 'steps' 'note'; padding: 1.25rem; }
-  .chain__steps { flex-direction: column; align-items: flex-start; }
-  .chain__node + .chain__node,
-  .chain__row--direct .chain__node + .chain__node { margin-left: 0; margin-top: 1.1rem; }
-  .chain__node + .chain__node::before,
-  .chain__row--direct .chain__node + .chain__node::before {
-    right: auto; left: 1.4rem; top: auto; bottom: 100%;
-    width: 2px; height: 1.1rem;
-  }
   .work-card { grid-column: 1 / -1; }
   .steps { grid-template-columns: 1fr; }
   .bill { padding: 1.25rem 1.1rem 2rem; }

@@ -90,9 +90,9 @@ function Hero() {
             You pay for the work. Not the agency around it.
           </h1>
           <p className="lede hm-hero__lede">
-            We're a team of working engineers. We build your website, run your SEO,
-            social media and Google Ads ourselves, and you talk to us directly.
-            No account managers, no office overheads, no markup on your bill.
+            We're not an agency. We're working engineers who build your website and
+            run your SEO, social media and Google Ads ourselves. You talk to us directly,
+            and you pay a fair price for the work, nothing more.
           </p>
           <div className="hm-hero__ctas">
             <button type="button" className="btn btn--primary" onClick={openBooking}>
@@ -129,44 +129,64 @@ function Bill() {
 }
 
 /* ================================================================
-   WHO'S BETWEEN YOU AND THE WORK
+   WHY WE EXIST — the message, in plain words
    ================================================================ */
-const AGENCY_CHAIN = ['You', 'Sales rep', 'Account manager', 'Project manager', 'Engineer'];
+const PROMISES = [
+  {
+    title: 'No big offices to pay for',
+    text:  'Agencies grow by adding buildings, managers and margins, and clients pay for all of it. We stay small on purpose, so your money goes into your project.',
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M7 27V8l9-3v22M16 12h9v15M11 12h1M11 17h1M11 22h1M20 17h1M20 22h1M4 27h24" />
+        <path d="M5 5l22 22" stroke="var(--cobalt)" strokeWidth="2.6" />
+      </svg>
+    ),
+  },
+  {
+    title: 'No wall between you and us',
+    text:  'Call or message the engineer who is doing your work. No sales reps, no account managers passing messages back and forth.',
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="7" cy="16" r="4" />
+        <circle cx="25" cy="16" r="4" />
+        <path d="M11 16h10" stroke="var(--cobalt)" strokeWidth="2.6" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Fair prices, told up front',
+    text:  'We keep our margin small because we are here to help, not to get rich. You get a fixed price before anything starts, with no hidden fees.',
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M17 4H27v10L15 26a2.8 2.8 0 0 1-4 0l-6-6a2.8 2.8 0 0 1 0-4z" />
+        <path d="M13 13h6M13 16h6M17 13c2 0 2 3 0 3h-3l4 4" stroke="var(--cobalt)" strokeWidth="2.2" />
+      </svg>
+    ),
+  },
+];
 
-function Chain() {
+function WhyUs() {
   return (
-    <section className="hm-chain section">
+    <section className="hm-why">
       <div className="container">
-        <div className="sec-head">
-          <h2 className="t-1">Fewer people in the middle.</h2>
-          <p>
-            At an agency, your request is passed along three or four times before it
-            reaches the person who does the work. With us, you message that person.
+        <div className="hm-why__intro">
+          <h2 className="hm-why__title">We're not an agency built for profit.</h2>
+          <p className="hm-why__text">
+            We started HiBrands to break the wall between engineers and the businesses
+            that need them. No towers, no layers, no big margins. Just skilled people
+            doing honest work for a fair price.
           </p>
         </div>
 
-        <div className="chain">
-          <div className="chain__row">
-            <p className="chain__who">At an agency</p>
-            <ol className="chain__steps">
-              {AGENCY_CHAIN.map((step, i) => (
-                <li key={step} className={`chain__node ${i === 0 ? 'chain__node--you' : ''} ${i === AGENCY_CHAIN.length - 1 ? 'chain__node--eng' : ''}`}>
-                  {step}
-                </li>
-              ))}
-            </ol>
-            <p className="chain__note">4 hand-offs. Each one adds cost and time.</p>
-          </div>
-
-          <div className="chain__row chain__row--direct">
-            <p className="chain__who">With HiBrands</p>
-            <ol className="chain__steps">
-              <li className="chain__node chain__node--you">You</li>
-              <li className="chain__node chain__node--eng">Engineer</li>
-            </ol>
-            <p className="chain__note">No hand-offs. You talk to the person building it.</p>
-          </div>
-        </div>
+        <ul className="hm-why__list">
+          {PROMISES.map((p) => (
+            <li key={p.title} className="promise">
+              <span className="promise__icon">{p.icon}</span>
+              <h3 className="promise__title">{p.title}</h3>
+              <p className="promise__text">{p.text}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -331,8 +351,8 @@ export default function Home({ previews = [] }) {
   return (
     <main className="home-page">
       <Hero />
+      <WhyUs />
       <Bill />
-      <Chain />
       <Services />
       <Work previews={previews} />
       <Process />
