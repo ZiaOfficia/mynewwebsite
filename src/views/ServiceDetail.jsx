@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { ServiceVisual } from '../components/HeroVisuals.jsx';
 import { serviceDetails, services } from '../data/index.js';
 import CTA from '../sections/CTA/CTA.jsx';
 import { useBooking } from '../components/BookingModal/BookingContext.jsx';
@@ -64,12 +65,7 @@ export default function ServiceDetail({ slug }) {
             </div>
           </div>
 
-          <aside className="phead__card">
-            <h2>{service.title}: what's included</h2>
-            <ul className="ticks">
-              {(meta?.features || []).map((f) => <li key={f}>{f}</li>)}
-            </ul>
-          </aside>
+          <ServiceVisual slug={slug} />
         </div>
       </header>
 
@@ -79,6 +75,12 @@ export default function ServiceDetail({ slug }) {
           <h2 className="t-1">How we approach it</h2>
           <div className="split__body">
             {descParagraphs.map((p, i) => <p key={i}>{p}</p>)}
+            <div className="included">
+              <h3 className="included__title">What's included</h3>
+              <ul className="ticks included__list">
+                {(meta?.features || []).map((f) => <li key={f}>{f}</li>)}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

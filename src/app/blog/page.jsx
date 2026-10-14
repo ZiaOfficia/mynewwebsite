@@ -1,5 +1,6 @@
 import BlogIndex from '@/views/BlogIndex.jsx';
 import CTA from '@/sections/CTA/CTA.jsx';
+import { NotesVisual } from '@/components/HeroVisuals.jsx';
 import { getPostSummaries, BLOG_CATEGORIES } from '@/lib/blog.js';
 import { formatDate } from '@/lib/format.js';
 import { pageMetadata, JsonLd } from '@/seo/meta.jsx';
@@ -15,7 +16,8 @@ export default function Page() {
     <main className="blog-page">
       <JsonLd pathname="/blog" />
       <header className="phead">
-        <div className="container phead__grid phead__grid--single">
+        <div className="container phead__grid">
+          <div>
           <h1 className="phead__title">Notes from the engineers.</h1>
           <p className="lede phead__lede">
             Practical guides on websites, SEO, social media and Google Ads, written by the
@@ -24,6 +26,8 @@ export default function Page() {
           <p className="blog-rss">
             <a href="/blog/rss.xml" className="link">Follow by RSS</a>
           </p>
+          </div>
+          <NotesVisual posts={posts.filter((p) => !p.draft)} />
         </div>
       </header>
 

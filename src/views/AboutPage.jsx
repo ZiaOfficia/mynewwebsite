@@ -1,5 +1,6 @@
 import { team } from '../data/index.js';
 import CTA from '../sections/CTA/CTA.jsx';
+import { ChatVisual } from '../components/HeroVisuals.jsx';
 
 const VALUES = [
   { title: 'Direct',      body: 'You talk to the person doing the work. No account managers relaying messages, no waiting on a chain of emails.' },
@@ -13,13 +14,16 @@ export default function AboutPage() {
     <main className="about-page">
 
       <header className="phead">
-        <div className="container phead__grid phead__grid--single">
+        <div className="container phead__grid">
+          <div>
           <h1 className="phead__title">Engineers who would rather build than bill.</h1>
           <p className="lede phead__lede">
             HiBrands is a small team of working engineers. We started it because we kept
             seeing businesses pay agency prices where most of the money never reached the
             people doing the work.
           </p>
+          </div>
+          <ChatVisual variant="about" />
         </div>
       </header>
 
