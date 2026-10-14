@@ -1,64 +1,24 @@
-import { Link } from 'react-router-dom';
-import './CTA.css';
+'use client';
+
 import { agency } from '../../data/index.js';
+import { useBooking } from '../../components/BookingModal/BookingContext.jsx';
 
-function hexToRgb(hex) {
-  if (!hex || hex.startsWith('var(')) return '201,168,76';
-  const raw = hex.replace('#', '');
-  const r = parseInt(raw.substring(0, 2), 16);
-  const g = parseInt(raw.substring(2, 4), 16);
-  const b = parseInt(raw.substring(4, 6), 16);
-  return `${r},${g},${b}`;
-}
-
+/* Closing band used at the foot of every page. */
 export default function CTA({
-  color = '#4169E1',
-  quote = '"The distance between where you are and where you want to be is just one decision."',
-  sub   = "Just say hi — one conversation with HiBrands unlocks your brand's real potential. Free audit — no lock-ins, no fluff, just results.",
+  title = "Talk to the engineer who'll do the work.",
+  sub   = 'A free call, no obligation. Tell us what you need and get an honest answer on time and price.',
 }) {
-  const rgb = hexToRgb(color);
+  const { openBooking } = useBooking();
   return (
-    <section
-      className="cta-section section section--navy"
-      style={{ '--cta-accent': color, '--cta-accent-rgb': rgb }}
-    >
-      <div className="cta-section__pattern" />
-      <div className="cta-section__glow" />
-
-      <div className="container cta-section__inner">
-        <div className="cta-section__content">
-          <p className="section-label cta-section__label">You're One Click Away</p>
-          <h2 className="display-lg cta-section__heading">
-            Your growth story<br />starts right here.
-          </h2>
-          <p className="body-lg cta-section__quote">{quote}</p>
-          <p className="body-lg cta-section__sub">{sub}</p>
-          <div className="cta-section__actions">
-            <Link to="/contact" className="btn cta-section__btn--accent">
-              Book Free Strategy Call
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
+    <section className="cta-band">
+      <div className="container cta-band__inner">
+        <h2 className="t-1 cta-band__title">{title}</h2>
+        <div className="cta-band__side">
+          <p>{sub}</p>
+          <div className="cta-band__ctas">
+            <button type="button" className="btn btn--ink" onClick={openBooking}>Book a free call</button>
+            <a href={`tel:${agency.phone.replace(/\s/g, '')}`} className="cta-band__phone">or call {agency.phone}</a>
           </div>
-        </div>
-
-        {/* ── Contact chips ── */}
-        <div className="cta-section__chips">
-          <a href={`mailto:${agency.email}`} className="cta-chip">
-            <span className="cta-chip__icon">✉</span>
-            <div>
-              <p className="cta-chip__label">Email Us</p>
-              <p className="cta-chip__value">{agency.email}</p>
-            </div>
-          </a>
-          <a href={`tel:${agency.phone}`} className="cta-chip">
-            <span className="cta-chip__icon">📞</span>
-            <div>
-              <p className="cta-chip__label">Call Us</p>
-              <p className="cta-chip__value">{agency.phone}</p>
-            </div>
-          </a>
         </div>
       </div>
     </section>

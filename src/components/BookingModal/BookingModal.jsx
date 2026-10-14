@@ -1,6 +1,7 @@
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
 import { submitToSheet } from '../../lib/sheets.js';
-import './BookingModal.css';
 
 const EMPTY_FORM = { datetime: '', name: '', phone: '', email: '' };
 
@@ -80,16 +81,16 @@ export default function BookingModal({ open, onClose }) {
         {sent ? (
           <div className="bkm-success">
             <span className="bkm-success__icon">✓</span>
-            <h3 className="bkm-title">Thank You!</h3>
+            <h3 className="bkm-title">Call booked</h3>
             <p className="bkm-success__text">
-              We've received your details and will contact you at your selected time.
+              We'll call you at the time you picked. If you didn't pick one, we'll call within 24 hours.
             </p>
             <button className="bkm-btn bkm-btn--primary" onClick={onClose}>Close</button>
           </div>
         ) : (
           <>
-            <h3 className="bkm-title">Let's Get Started</h3>
-            <p className="bkm-sub">Tell us when you're free and we'll call you back.</p>
+            <h3 className="bkm-title">Book a free call</h3>
+            <p className="bkm-sub">Leave your number and a good time. An engineer from the team will call you.</p>
 
             <form className="bkm-form" onSubmit={handleSubmit} noValidate>
               <label className="bkm-field">
@@ -105,7 +106,7 @@ export default function BookingModal({ open, onClose }) {
               </label>
 
               <label className="bkm-field">
-                <span className="bkm-label">Full Name <small>(optional)</small></span>
+                <span className="bkm-label">Name <small>(optional)</small></span>
                 <input
                   type="text"
                   placeholder="Your full name"
@@ -117,7 +118,7 @@ export default function BookingModal({ open, onClose }) {
               </label>
 
               <label className="bkm-field">
-                <span className="bkm-label">Phone Number <em>*</em></span>
+                <span className="bkm-label">Phone <em>*</em></span>
                 <input
                   type="tel"
                   placeholder="+91 98765 43210"
@@ -129,7 +130,7 @@ export default function BookingModal({ open, onClose }) {
               </label>
 
               <label className="bkm-field">
-                <span className="bkm-label">Email Address <small>(optional)</small></span>
+                <span className="bkm-label">Email <small>(optional)</small></span>
                 <input
                   type="email"
                   placeholder="you@gmail.com"
@@ -144,7 +145,7 @@ export default function BookingModal({ open, onClose }) {
 
               <div className="bkm-actions">
                 <button type="submit" className="bkm-btn bkm-btn--primary" disabled={sending}>
-                  {sending ? 'Submitting…' : 'Submit'}
+                  {sending ? 'Booking…' : 'Book the call'}
                 </button>
                 <button type="button" className="bkm-btn bkm-btn--ghost" onClick={onClose} disabled={sending}>
                   Cancel

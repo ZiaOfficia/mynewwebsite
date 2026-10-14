@@ -2,11 +2,11 @@
    DATA LAYER — HiBrands
    ============================================================ */
 
-// ── Agency Info ──────────────────────────────────────────────
+// ── Company Info ──────────────────────────────────────────────
 export const agency = {
   name:        'HiBrands',
   tagline:     'Say Hi to Growth.',
-  description: 'HiBrands is a performance-driven digital marketing agency where businesses say hi to real growth — through expert Website Development, SEO, Social Media Optimisation, and Google Ads management.',
+  description: 'HiBrands is a team of working engineers. We build websites and landing pages and run SEO, social media and Google Ads for businesses directly, with no agency in between.',
   email:       'hibrands.in@gmail.com',
   phone:       '+91 90649 90515',
   address:     'India',
@@ -54,8 +54,7 @@ export const navLinks = [
   },
   { label: 'Projects', href: '/projects' },
   { label: 'About',   href: '/about'   },
-  // Blog hidden for now — restore when ready
-  // { label: 'Blog',    href: '/blog'    },
+  { label: 'Blog',    href: '/blog'    },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -251,21 +250,21 @@ export const team = [
     id:    1,
     name:  'Jaan-e-Ala',
     role:  'Founder & CEO',
-    bio:   'Visionary leader with deep expertise in digital marketing strategy, passionate about helping Indian businesses scale online.',
+    bio:   'Leads strategy and engineering, and works directly with clients from the first call to launch.',
     image: null,
   },
   {
     id:    2,
     name:  'Farah Naz',
     role:  'Co-Founder',
-    bio:   'Drives the agency\'s vision and client success — turning ambitious growth goals into clear, actionable digital strategies.',
+    bio:   'Turns business goals into clear plans, and keeps every project honest about time, cost and results.',
     image: null,
   },
   {
     id:    3,
     name:  'Hameeda',
     role:  'Co-Founder',
-    bio:   'Leads operations and creative direction, making sure every project ships on time and every brand story lands with impact.',
+    bio:   'Leads design and delivery, making sure every project ships on time and looks right on every screen.',
     image: null,
   },
   /* Hidden for now — restore when the team grows
@@ -331,133 +330,7 @@ export const clients = [
   { id: 6, name: 'RetailEdge',      logo: null },
 ];
 
-// ── Blog Posts ────────────────────────────────────────────────
-export const blogCategories = [
-  'All',
-  'SEO',
-  'Social Media',
-  'Google Ads',
-  'Web Design',
-  'Digital Marketing',
-];
-
-export const blogPosts = [
-  {
-    id:         1,
-    slug:       'seo-mistakes-killing-rankings',
-    title:      '10 SEO Mistakes That Are Silently Killing Your Google Rankings',
-    excerpt:    'Most businesses unknowingly sabotage their own SEO with these common mistakes. Find out what they are and exactly how to fix them before they cost you more traffic.',
-    category:   'SEO',
-    author:     'HiBrands',
-    date:       '2024-03-10',
-    readTime:   '6 min read',
-    image:      null,
-    featured:   true,
-    tags:       ['SEO', 'Technical SEO', 'Rankings'],
-    content:    `
-## Introduction
-
-If your website isn't ranking where you want it to, chances are you're making one or more of these common SEO mistakes. The good news? Every single one of them is fixable.
-
-## 1. Ignoring Core Web Vitals
-
-Google now uses page experience signals as a ranking factor. If your site is slow or has layout shifts, it will rank lower than competitors with better performance scores.
-
-## 2. Keyword Stuffing
-
-Cramming keywords unnaturally into your content is a classic mistake that can actually trigger Google penalties. Focus on natural, helpful content instead.
-
-## 3. Missing or Duplicate Meta Descriptions
-
-Every page needs a unique, compelling meta description. It directly impacts your click-through rate from search results.
-
-## 4. No Internal Linking Strategy
-
-Internal links help Google understand your site structure and distribute authority. Without them, your key pages don't get the ranking power they deserve.
-
-## Key Takeaways
-
-- Fix Core Web Vitals to boost your page experience score
-- Write naturally — keywords should support content, not dominate it
-- Audit your meta tags regularly for duplicates and missing entries
-- Build a deliberate internal linking structure across your site
-
-## Conclusion
-
-SEO success comes from getting the fundamentals right. Audit your site today against these points and you'll see meaningful improvements within weeks.
-    `,
-  },
-  {
-    id:         2,
-    slug:       'google-ads-roas-increase',
-    title:      'How to Double Your Google Ads ROAS Without Increasing Your Budget',
-    excerpt:    'Getting more from your Google Ads spend doesn\'t always mean spending more. These proven optimisation tactics will help you squeeze maximum ROI from every rupee.',
-    category:   'Google Ads',
-    author:     'HiBrands',
-    date:       '2024-03-22',
-    readTime:   '7 min read',
-    image:      null,
-    featured:   false,
-    tags:       ['Google Ads', 'PPC', 'ROAS'],
-    content:    'Detailed guide on improving Google Ads ROAS through smart optimisation — covering negative keywords, ad copy testing, audience layering, and bid strategies.',
-  },
-  {
-    id:         3,
-    slug:       'landing-page-conversion-tips',
-    title:      '7 Landing Page Elements That Dramatically Increase Conversions',
-    excerpt:    'Your ad might be perfect but if your landing page isn\'t optimised, you\'re burning budget. Here are the 7 elements every high-converting landing page must have.',
-    category:   'Web Design',
-    author:     'HiBrands',
-    date:       '2024-04-05',
-    readTime:   '5 min read',
-    image:      null,
-    featured:   false,
-    tags:       ['Landing Pages', 'CRO', 'Web Design'],
-    content:    'A deep-dive into conversion rate optimisation for landing pages — covering headline frameworks, trust signals, CTA placement, form design, and page speed.',
-  },
-  {
-    id:         4,
-    slug:       'instagram-growth-strategy-2024',
-    title:      'The Instagram Growth Strategy That\'s Actually Working in 2024',
-    excerpt:    'Organic reach is declining but these proven Instagram strategies are still delivering real follower growth and engagement for brands in any niche.',
-    category:   'Social Media',
-    author:     'HiBrands',
-    date:       '2024-04-18',
-    readTime:   '8 min read',
-    image:      null,
-    featured:   false,
-    tags:       ['Instagram', 'SMO', 'Social Media'],
-    content:    'A comprehensive guide to growing on Instagram organically in 2024 — covering Reels strategy, hashtag research, collaboration tactics, and profile optimisation.',
-  },
-  {
-    id:         5,
-    slug:       'local-seo-guide-india',
-    title:      'Local SEO in India: The Complete Guide to Dominating Google Maps',
-    excerpt:    'If your business serves a local area, ranking on Google Maps can be your single biggest source of new customers. Here\'s exactly how to do it.',
-    category:   'SEO',
-    author:     'HiBrands',
-    date:       '2024-05-02',
-    readTime:   '9 min read',
-    image:      null,
-    featured:   false,
-    tags:       ['Local SEO', 'Google Maps', 'Google Business'],
-    content:    'Step-by-step local SEO guide for Indian businesses — covering Google Business Profile optimisation, citation building, review strategy, and local keyword targeting.',
-  },
-  {
-    id:         6,
-    slug:       'website-speed-seo-impact',
-    title:      'Website Speed & SEO: Why Slow Sites Are Losing Customers Every Day',
-    excerpt:    'Every second of load time costs you conversions and rankings. Learn how to diagnose your site\'s speed issues and fix them without a full redesign.',
-    category:   'Web Design',
-    author:     'HiBrands',
-    date:       '2024-05-15',
-    readTime:   '6 min read',
-    image:      null,
-    featured:   false,
-    tags:       ['Web Design', 'Speed', 'Core Web Vitals'],
-    content:    'Technical guide on improving website speed — covering image optimisation, caching, CDN setup, code minification, and how speed directly impacts your Google rankings.',
-  },
-];
+// Blog posts live in content/blog/*.md (see src/lib/blog.js)
 
 // ── Case Studies ──────────────────────────────────────────────
 export const caseStudies = [

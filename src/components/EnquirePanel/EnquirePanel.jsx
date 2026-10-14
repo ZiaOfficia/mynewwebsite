@@ -1,6 +1,6 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import './EnquirePanel.css';
 import BrandName from '../BrandName.jsx';
 import { agency } from '../../data/index.js';
 import { submitToSheet } from '../../lib/sheets.js';
@@ -42,7 +42,6 @@ export default function EnquirePanel() {
     name: '', email: '', phone: '',
     service: '', budget: '', timeline: '', message: '',
   });
-  const { pathname } = useLocation();
 
   /* Lock body scroll when panel is open (incl. Lenis smooth scroll) */
   useEffect(() => {
@@ -96,7 +95,7 @@ export default function EnquirePanel() {
         onClick={() => setOpen(true)}
         aria-label="Open enquiry form"
       >
-        <span className="eq-trigger__text">ENQUIRE NOW</span>
+        <span className="eq-trigger__text">Enquire</span>
       </button>
 
       {/* ── Backdrop ── */}
@@ -118,79 +117,51 @@ export default function EnquirePanel() {
 
         <div className="eq-panel__inner">
 
-          {/* ── Left Branding Column ── */}
+          {/* ── Left column ── */}
           <div className="eq-brand">
-            {/* Big H */}
-            <div className="eq-brand__m-wrap">
-              <span className="eq-brand__m">H<span className="logo-hb-b">B</span></span>
-              <div className="eq-brand__m-glow" />
-            </div>
-
-            <div className="eq-brand__logo">
-              <div className="eq-brand__logo-mark">H<span className="logo-hb-b">B</span></div>
-              <div className="eq-brand__logo-text">
-                <span className="eq-brand__name"><BrandName /></span>
-                <span className="eq-brand__tagline">say hi to growth</span>
-              </div>
-            </div>
-
+            <p className="eq-brand__name"><BrandName /></p>
             <p className="eq-brand__pitch">
-              Say hi, tell us about your goals, and we'll build a free custom strategy — no lock-ins, no fluff, just a clear path to growth.
+              Tell us what you need. An engineer from the team will reply within
+              24 hours with honest advice on time and price.
             </p>
 
-            <ul className="eq-brand__perks">
+            <ul className="ticks eq-brand__perks">
               {[
-                'Free brand audit included',
-                'Response within 24 hours',
+                'Free first consultation',
+                'Reply within 24 hours',
                 'No commitment required',
-                'Dedicated account manager',
-              ].map((p) => (
-                <li key={p} className="eq-brand__perk">
-                  <span className="eq-brand__perk-icon">✓</span>
-                  {p}
-                </li>
-              ))}
+                'You talk to the engineer, not a middleman',
+              ].map((p) => <li key={p}>{p}</li>)}
             </ul>
 
-            <div className="eq-brand__contacts">
-              <a href={`mailto:${agency.email}`} className="eq-contact-chip">
-                <span>✉</span>
-                <span>{agency.email}</span>
-              </a>
-              <a href={`tel:${agency.phone}`} className="eq-contact-chip">
-                <span>📞</span>
-                <span>{agency.phone}</span>
-              </a>
-            </div>
-
-            {/* Decorative dots */}
-            <div className="eq-brand__dots" aria-hidden="true" />
+            <a href={`tel:${agency.phone.replace(/\s/g, '')}`} className="eq-brand__phone">
+              Prefer to talk? Call {agency.phone}
+            </a>
           </div>
 
           {/* ── Right Form Column ── */}
           <div className="eq-form-wrap">
             {submitted ? (
               <div className="eq-success">
-                <div className="eq-success__icon">✓</div>
-                <h3 className="eq-success__title">Enquiry Received!</h3>
+                <div className="eq-success__icon" aria-hidden="true">✓</div>
+                <h3 className="eq-success__title">Enquiry sent</h3>
                 <p className="eq-success__msg">
-                  Thank you, <strong>{form.name || 'there'}</strong>! Our team will reach out within 24 hours with a custom strategy for your brand.
+                  Thank you, <strong>{form.name || 'there'}</strong>! We'll reply within 24 hours.
                 </p>
                 <button className="eq-btn eq-btn--primary" onClick={handleClose}>
-                  Back to Website
+                  Back to the website
                 </button>
               </div>
             ) : (
               <>
                 <div className="eq-form-wrap__header">
-                  <span className="eq-label">You're One Click Away</span>
-                  <h2 className="eq-form-wrap__title">Let's Build Something<br /><span className="eq-red">Great Together.</span></h2>
+                  <h2 className="eq-form-wrap__title">Tell us about your project</h2>
                 </div>
 
                 <form className="eq-form" onSubmit={handleSubmit} noValidate>
                   <div className="eq-form__row">
                     <div className="eq-field">
-                      <label className="eq-field__label" htmlFor="eq-name">Full Name <span className="eq-req">*</span></label>
+                      <label className="eq-field__label" htmlFor="eq-name">Full name <span className="eq-req">*</span></label>
                       <input
                         id="eq-name" name="name" type="text"
                         className="eq-field__input" placeholder="Your full name"
@@ -198,7 +169,7 @@ export default function EnquirePanel() {
                       />
                     </div>
                     <div className="eq-field">
-                      <label className="eq-field__label" htmlFor="eq-email">Email Address <span className="eq-req">*</span></label>
+                      <label className="eq-field__label" htmlFor="eq-email">Email <span className="eq-req">*</span></label>
                       <input
                         id="eq-email" name="email" type="email"
                         className="eq-field__input" placeholder="you@example.com"
@@ -209,7 +180,7 @@ export default function EnquirePanel() {
 
                   <div className="eq-form__row">
                     <div className="eq-field">
-                      <label className="eq-field__label" htmlFor="eq-phone">Phone Number <span className="eq-req">*</span></label>
+                      <label className="eq-field__label" htmlFor="eq-phone">Phone <span className="eq-req">*</span></label>
                       <input
                         id="eq-phone" name="phone" type="tel"
                         className="eq-field__input" placeholder="+91 00000 00000"
@@ -217,7 +188,7 @@ export default function EnquirePanel() {
                       />
                     </div>
                     <div className="eq-field">
-                      <label className="eq-field__label" htmlFor="eq-service">Service Interested In</label>
+                      <label className="eq-field__label" htmlFor="eq-service">Service</label>
                       <select id="eq-service" name="service" className="eq-field__input eq-field__select" value={form.service} onChange={handleChange}>
                         <option value="">Select a service…</option>
                         {SERVICES.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -227,7 +198,7 @@ export default function EnquirePanel() {
 
                   <div className="eq-form__row">
                     <div className="eq-field">
-                      <label className="eq-field__label" htmlFor="eq-budget">Budget Range</label>
+                      <label className="eq-field__label" htmlFor="eq-budget">Budget</label>
                       <select id="eq-budget" name="budget" className="eq-field__input eq-field__select" value={form.budget} onChange={handleChange}>
                         <option value="">Select a budget…</option>
                         {BUDGETS.map((b) => <option key={b} value={b}>{b}</option>)}
@@ -243,7 +214,7 @@ export default function EnquirePanel() {
                   </div>
 
                   <div className="eq-field eq-field--full">
-                    <label className="eq-field__label" htmlFor="eq-message">Tell Us About Your Project</label>
+                    <label className="eq-field__label" htmlFor="eq-message">About your project</label>
                     <textarea
                       id="eq-message" name="message"
                       className="eq-field__input eq-field__textarea"
@@ -254,7 +225,7 @@ export default function EnquirePanel() {
                   </div>
 
                   {sendError && (
-                    <p style={{ color: '#FF8A97', fontSize: '0.85rem', textAlign: 'center', margin: 0 }}>{sendError}</p>
+                    <p className="form-error">{sendError}</p>
                   )}
 
                   <button
@@ -263,10 +234,7 @@ export default function EnquirePanel() {
                     disabled={sending}
                     style={{ opacity: sending ? 0.6 : 1, cursor: sending ? 'not-allowed' : 'pointer' }}
                   >
-                    {sending ? 'Sending…' : 'Send My Enquiry'}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+                    {sending ? 'Sending…' : 'Send enquiry'}
                   </button>
 
                   <p className="eq-form__note">By submitting you agree to be contacted by HiBrands. No spam, ever.</p>

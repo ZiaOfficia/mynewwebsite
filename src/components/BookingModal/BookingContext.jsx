@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext, useState, useCallback } from 'react';
 import BookingModal from './BookingModal.jsx';
 

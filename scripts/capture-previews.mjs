@@ -2,7 +2,7 @@
    PROJECT PREVIEW CAPTURE
    ============================================================
    Screenshots every live URL in `projects` (src/data/index.js) and
-   writes src/assets/projects/<slug>.jpg — the previews shown on
+   writes public/projects/<slug>.jpg — the previews shown on
    /projects.
 
    Run it by hand when a project is added or a client site is
@@ -34,7 +34,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root      = path.resolve(__dirname, '..');
-const outDir    = path.join(root, 'src/assets/projects');
+const outDir    = path.join(root, 'public/projects');
 
 /* Render at desktop width, emit at 2x the ~600px a card ever needs. */
 const LAYOUT  = { width: 1440, height: 900 };

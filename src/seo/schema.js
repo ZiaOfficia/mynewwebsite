@@ -26,7 +26,7 @@ export const organizationSchema = {
   url:     `${SITE_URL}/`,
   logo: {
     '@type': 'ImageObject',
-    url:     `${SITE_URL}/favicon.svg`,
+    url:     `${SITE_URL}/logo.png`,
     caption: SITE_NAME,
   },
   image:       OG_IMAGE,
@@ -74,7 +74,7 @@ export const professionalServiceSchema = {
   areaServed: { '@type': 'Country', name: 'India' },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name:    'Digital Marketing Services',
+    name:    'Web and marketing services',
     itemListElement: [
       'Search Engine Optimisation',
       'Google Ads Management',
@@ -136,5 +136,26 @@ export function serviceSchema({ name, description, pathname }) {
     provider:     { '@id': ORG_ID },
     areaServed:   { '@type': 'Country', name: 'India' },
     serviceType:  name,
+  };
+}
+
+/* Blog post node */
+export function blogPostingSchema(post) {
+  const url = absoluteUrl(`/blog/${post.slug}`);
+  return {
+    '@type':         'BlogPosting',
+    '@id':           `${url}#article`,
+    headline:        post.title,
+    description:     post.excerpt,
+    url,
+    mainEntityOfPage: url,
+    datePublished:   post.date,
+    dateModified:    post.updated || post.date,
+    author:          { '@type': 'Person', name: post.author },
+    publisher:       { '@id': ORG_ID },
+    image:           post.cover ? `${SITE_URL}${post.cover}` : OG_IMAGE,
+    articleSection:  post.category,
+    keywords:        post.tags.join(', '),
+    inLanguage:      'en-IN',
   };
 }
