@@ -54,3 +54,15 @@ Files that start with `_` (like `_template.md`) are never published.
 | Blog posts | `content/blog/` |
 | Logo kit | `brand/` |
 | Project screenshots | `public/projects/` (refresh with `npm run previews`) |
+
+## Testing on every screen size
+
+`scripts/qa-responsive.py` opens every page at 12 widths (320px phones to 1920px desktops)
+and reports sideways scrolling, content off the screen edge, overlapping text, text under
+12px and tap targets under 40px. Run it after layout changes:
+
+```bash
+npm run build && npm start                  # terminal 1
+pip install playwright && playwright install chromium
+python scripts/qa-responsive.py --shots     # terminal 2; no output means no problems
+```

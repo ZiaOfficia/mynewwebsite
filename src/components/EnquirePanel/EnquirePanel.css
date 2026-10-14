@@ -110,7 +110,7 @@
 .eq-form { display: grid; gap: 1.1rem; }
 .eq-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
 
-.eq-field { display: grid; gap: 0.45rem; }
+.eq-field { display: grid; gap: 0.45rem; min-width: 0; }
 .eq-field__label { font-size: var(--t-sm); font-weight: 600; }
 .eq-req { color: var(--cobalt); }
 
@@ -176,13 +176,45 @@
 }
 @media (max-width: 700px) {
   .eq-form__row { grid-template-columns: 1fr; }
-  /* on phones the tab becomes a small pill in the bottom corner */
-  .eq-trigger {
-    top: auto; bottom: 1rem; right: 1rem;
-    transform: none;
-    border-radius: var(--radius-pill);
-    padding: 0.75rem 1.2rem;
+}
+
+/* ── Quick-contact bar (phones and tablets) ────────────────── */
+.mbar { display: none; }
+
+@media (max-width: 1199px) {
+  .eq-trigger { display: none; }
+
+  .mbar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 950;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.6rem;
+    padding: 0.6rem clamp(1rem, 0.5rem + 2.5vw, 2.5rem) calc(0.6rem + env(safe-area-inset-bottom));
+    background: rgba(255,255,255,0.94);
+    -webkit-backdrop-filter: saturate(1.4) blur(12px);
+            backdrop-filter: saturate(1.4) blur(12px);
+    border-top: 1px solid var(--line);
+    transform: translateY(110%);
+    transition: transform 0.3s var(--ease-out);
   }
-  .eq-trigger:hover { padding-right: 1.2rem; }
-  .eq-trigger__text { writing-mode: horizontal-tb; transform: none; }
+  .mbar--show { transform: none; }
+
+  .mbar__call, .mbar__go {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 48px;
+    padding: 0 1.15rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .mbar__call { background: var(--paper); color: var(--ink); }
+  .mbar__go { background: var(--cobalt); color: var(--white); }
+
+  /* keep the end of every page reachable above the bar */
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
 }

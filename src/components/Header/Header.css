@@ -17,6 +17,15 @@
   border-bottom-color: var(--line);
 }
 
+/* A blur filter makes the header the containing block for the fixed
+   mobile menu, which would shrink the menu to the header's height.
+   While the menu is open, use a solid header instead. */
+.header--open {
+  background: var(--surface);
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+
 .header__inner {
   height: 100%;
   display: flex;
@@ -179,7 +188,10 @@
   padding: 0 0 1rem 0.25rem;
 }
 .header__mobile-sublink {
-  padding: 0.55rem 0;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.3rem 0;
   font-size: 1.05rem;
   color: var(--ink-2);
 }

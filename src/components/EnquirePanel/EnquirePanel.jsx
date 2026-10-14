@@ -57,6 +57,15 @@ export default function EnquirePanel() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  /* Mobile quick-contact bar: appears once the hero has scrolled away */
+  const [showBar, setShowBar] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShowBar(window.scrollY > 320);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
@@ -97,6 +106,17 @@ export default function EnquirePanel() {
       >
         <span className="eq-trigger__text">Enquire</span>
       </button>
+
+      {/* ── Mobile and tablet: quick-contact bar ── */}
+      <div className={`mbar ${showBar ? 'mbar--show' : ''}`} aria-hidden={!showBar}>
+        <a href={`tel:${agency.phone.replace(/\s/g, '')}`} className="mbar__call" tabIndex={showBar ? 0 : -1}>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" /></svg>
+          Call us
+        </a>
+        <button type="button" className="mbar__go" onClick={() => setOpen(true)} tabIndex={showBar ? 0 : -1}>
+          Enquire now
+        </button>
+      </div>
 
       {/* ── Backdrop ── */}
       <div
