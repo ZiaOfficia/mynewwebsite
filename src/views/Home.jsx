@@ -1,14 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { projects, serviceDetails } from '../data/index.js';
 import { useBooking } from '../components/BookingModal/BookingContext.jsx';
 import CTA from '../sections/CTA/CTA.jsx';
+import HiMark from '../components/HiMark.jsx';
 
 /* ================================================================
-   HERO — the agency bill, unbundled
+   THE AGENCY BILL, UNBUNDLED
    ================================================================ */
 const BILL_LINES = [
   { label: 'Account manager',        kind: 'Overhead' },
@@ -20,21 +21,28 @@ const BILL_LINES = [
 ];
 
 function AgencyBill() {
-  /* Starts on "Agency", then crosses the overhead out once on load.
-     The toggle lets visitors flip between the two views themselves. */
+  /* Starts on "An agency", then crosses the overhead out once, when the
+     bill scrolls into view. The toggle lets visitors flip back and forth. */
   const [mode, setMode] = useState('agency');
+  const ref = useRef(null);
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const id = setTimeout(() => setMode('direct'), reduce ? 0 : 1400);
-    return () => clearTimeout(id);
+    let timer;
+    const io = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      timer = setTimeout(() => setMode('direct'), reduce ? 0 : 700);
+      io.disconnect();
+    }, { threshold: 0.6 });
+    if (ref.current) io.observe(ref.current);
+    return () => { io.disconnect(); clearTimeout(timer); };
   }, []);
 
   const direct = mode === 'direct';
   const kept = direct ? 1 : BILL_LINES.length;
 
   return (
-    <div className={`bill ${direct ? 'bill--direct' : ''}`}>
+    <div ref={ref} className={`bill ${direct ? 'bill--direct' : ''}`}>
       <div className="bill__top">
         <p className="bill__title">What your money pays for</p>
         <div className="bill__switch" role="group" aria-label="Compare who you hire">
@@ -76,12 +84,8 @@ function Hero() {
   const { openBooking } = useBooking();
   return (
     <section className="hm-hero">
-      <div className="hm-hero__sun" aria-hidden="true" />
       <div className="container hm-hero__grid">
         <div className="hm-hero__copy">
-          <p className="hm-hero__hello">
-            Hi, we're HiBrands
-          </p>
           <h1 className="t-hero hm-hero__title">
             You pay for the work. Not the agency around it.
           </h1>
@@ -98,6 +102,26 @@ function Hero() {
           </div>
         </div>
 
+        <div className="hm-hero__mark">
+          <span className="hm-hero__halo" aria-hidden="true" />
+          <HiMark className="hm-hero__hi" title="HiBrands says hi" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Bill() {
+  return (
+    <section className="hm-bill section">
+      <div className="container hm-bill__grid">
+        <div className="sec-head hm-bill__head">
+          <h2 className="t-1">Where an agency bill really goes.</h2>
+          <p>
+            Most of what you pay an agency keeps the agency running. Flip the switch
+            to see what's left when you hire the engineers directly.
+          </p>
+        </div>
         <AgencyBill />
       </div>
     </section>
@@ -307,6 +331,7 @@ export default function Home({ previews = [] }) {
   return (
     <main className="home-page">
       <Hero />
+      <Bill />
       <Chain />
       <Services />
       <Work previews={previews} />
