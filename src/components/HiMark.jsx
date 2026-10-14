@@ -1,0 +1,10 @@
+/* The HiBrands mark: a marigold speech bubble that says "Hi".
+   Drawn from brand/HiBrands-logo-kit/svg/hibrands-icon-color.svg */
+export default function HiMark({ className = '', title = 'HiBrands' }) {
+  return (
+    <svg className={className} viewBox="0 0 86 88.14" role="img" aria-label={title}>
+      <path className="hi-mark__bubble" fill="#FFC83D" d="M86.0 43.0C86.0 66.74 66.74 86.0 43.0 86.0C38.57 86.0 34.30 85.33 30.28 84.08Q17.36 88.90 2.0 88.0Q10.00 81.77 10.88 71.60C4.11 64.00 0.0 53.98 0.0 43.0C0.0 19.25 19.25 0.0 43.0 0.0C66.74 0.0 86.0 19.25 86.0 43.0Z" />
+      <path className="hi-mark__hi" fill="#3050F0" d="M44.24 62.41V48.15H31.66V62.41H22.91V26.77H31.66V40.81H44.24V26.77H52.99V62.41ZM55.58 62.41V33.90H64.33V62.41ZM59.90 31.84Q57.41 31.84 56.09 30.79Q54.77 29.74 54.77 27.74Q54.77 25.69 56.09 24.64Q57.41 23.58 59.90 23.58Q62.44 23.58 63.76 24.66Q65.08 25.74 65.08 27.74Q65.08 29.68 63.76 30.76Q62.44 31.84 59.90 31.84Z" />
+    </svg>
+  );
+}

@@ -14,33 +14,12 @@
   padding: calc(var(--header-h) + var(--offer-h, 0px) + clamp(2.5rem, 1rem + 5vw, 5.5rem)) 0 clamp(4rem, 2rem + 6vw, 7rem);
 }
 
-/* one soft sun behind the bill — the only decoration in the hero */
-.hm-hero__sun {
-  position: absolute;
-  width: min(62vw, 760px);
-  aspect-ratio: 1;
-  right: -12vw;
-  top: 8%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, #FFE08A 0%, var(--marigold) 55%, #FFD25E 100%);
-  opacity: 0.55;
-  pointer-events: none;
-}
-
 .hm-hero__grid {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   gap: clamp(2.5rem, 1rem + 5vw, 6rem);
   align-items: center;
-}
-
-.hm-hero__hello {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: var(--t-lg);
-  color: var(--cobalt);
-  margin-bottom: 1.25rem;
 }
 
 .hm-hero__title { max-width: 11.5em; }
@@ -53,6 +32,53 @@
   gap: 0.75rem;
   margin-top: 2.25rem;
 }
+
+/* ── The big "Hi" mark ───────────────────────────────────── */
+.hm-hero__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 520px;
+  justify-self: end;
+}
+.hm-hero__halo {
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  inset: 6% 2% 2% 6%;
+  background: var(--surface);
+  box-shadow: 0 40px 80px -40px rgba(48,80,240,0.35);
+}
+.hm-hero__hi {
+  position: relative;
+  width: 66%;
+  height: auto;
+  margin: 0 0 4% 4%;
+  filter: drop-shadow(0 16px 20px rgba(214,150,0,0.28));
+  transform-origin: 30% 95%;
+  animation: hiPop 0.9s var(--ease-out) 0.15s both;
+  transition: transform 0.4s var(--ease-out);
+}
+.hm-hero__mark:hover .hm-hero__hi { transform: rotate(-6deg) scale(1.02); }
+
+@keyframes hiPop {
+  0%   { opacity: 0; transform: scale(0.55) rotate(-14deg); }
+  60%  { opacity: 1; transform: scale(1.04) rotate(3deg); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* ── Bill section ────────────────────────────────────────── */
+.hm-bill { background: var(--paper-deep); }
+.hm-bill__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2.5rem clamp(2.5rem, 1rem + 5vw, 6rem);
+  align-items: center;
+}
+.hm-bill__head { margin-bottom: 0; }
+.hm-bill .bill { box-shadow: 0 30px 60px -28px rgba(34,56,196,0.35); }
 
 /* ── The bill ────────────────────────────────────────────── */
 .bill {
@@ -190,7 +216,8 @@
 }
 
 /* ── Chain ───────────────────────────────────────────────── */
-.hm-chain { background: var(--surface); }
+.hm-chain { background: var(--paper); }
+.hm-services { background: var(--surface); }
 
 .chain { display: grid; gap: 1.25rem; }
 
@@ -438,7 +465,10 @@
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 980px) {
   .hm-hero__grid { grid-template-columns: 1fr; }
-  .hm-hero__sun { width: 90vw; right: -40vw; top: auto; bottom: -10%; }
+  .hm-hero__mark { order: -1; justify-self: start; width: 150px; margin-bottom: -0.5rem; }
+  .hm-hero__halo { display: none; }
+  .hm-hero__hi { width: 100%; }
+  .hm-bill__grid { grid-template-columns: 1fr; }
   .bill { max-width: 560px; }
   .steps { grid-template-columns: repeat(2, 1fr); row-gap: 2.5rem; }
   .svc-row { grid-template-columns: 1fr auto; gap: 0.75rem 1rem; }
