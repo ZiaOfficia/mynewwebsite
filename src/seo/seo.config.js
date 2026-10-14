@@ -12,6 +12,10 @@ export const TWITTER    = '@hibrands';
 export const OG_IMAGE   = `${SITE_URL}/og-image.jpg`;
 export const OG_LOCALE  = 'en_IN';
 
+/* Bump this when page content changes; it becomes <lastmod> in sitemap.xml
+   for pages that have no date of their own. */
+export const SITE_UPDATED = '2026-10-15';
+
 /* Absolute URL helper — canonical tags must never be relative. */
 export const absoluteUrl = (path = '/') =>
   `${SITE_URL}${path === '/' ? '/' : path.replace(/\/+$/, '')}`;
@@ -83,6 +87,30 @@ export const ROUTE_SEO = {
     changefreq:  'monthly',
   },
 };
+
+/* Legal and utility pages */
+Object.assign(ROUTE_SEO, {
+  '/privacy': {
+    title:       'Privacy Policy',
+    description: 'How HiBrands collects, uses and protects personal information from this website and our forms. No tracking cookies, never sold, delete any time.',
+    priority:    0.3,
+    changefreq:  'yearly',
+    legal:       'privacy',
+  },
+  '/terms': {
+    title:       'Terms and Conditions',
+    description: 'The terms for using hibrands.in and working with HiBrands: fixed prices, payments, ownership of work, no lock-in on monthly services.',
+    priority:    0.3,
+    changefreq:  'yearly',
+    legal:       'terms',
+  },
+  '/site-map': {
+    title:       'Site Map',
+    description: 'Every page on the HiBrands website in one place: services, projects, blog posts, about, contact and legal pages.',
+    priority:    0.2,
+    changefreq:  'monthly',
+  },
+});
 
 /* Routes listed in the sitemap (blog posts are added from content/blog). */
 export const PUBLIC_ROUTES = Object.keys(ROUTE_SEO);

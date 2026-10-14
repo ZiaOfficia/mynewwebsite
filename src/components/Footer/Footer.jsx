@@ -61,8 +61,8 @@ export default function Footer() {
           <p>© {year} {agency.name}. All rights reserved.</p>
           <div className="footer__legal">
             <Link href="/privacy" className="footer__link">Privacy policy</Link>
-            <Link href="/terms"   className="footer__link">Terms of service</Link>
-            <a href="/sitemap.xml" className="footer__link">Sitemap</a>
+            <Link href="/terms"   className="footer__link">Terms and conditions</Link>
+            <Link href="/site-map" className="footer__link">Site map</Link>
           </div>
         </div>
       </div>

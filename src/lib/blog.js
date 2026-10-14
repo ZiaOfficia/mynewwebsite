@@ -43,7 +43,7 @@ export function slugify(text) {
 
 /* Markdown → HTML. Headings get ids so they can be linked to,
    and links to other sites open in a new tab. */
-function createRenderer() {
+export function createRenderer() {
   const used = new Map();
   const marked = new Marked({ gfm: true });
   marked.use({
