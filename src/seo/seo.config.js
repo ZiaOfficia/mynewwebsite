@@ -46,6 +46,12 @@ export const ROUTE_SEO = {
     priority:    0.8,
     changefreq:  'monthly',
   },
+  '/blog': {
+    title:       'Blog — Practical Guides from Working Engineers',
+    description: 'Plain-language guides on websites, SEO, social media and Google Ads, written by the engineers who do the work every day at HiBrands.',
+    priority:    0.8,
+    changefreq:  'weekly',
+  },
   '/services/seo': {
     title:       'SEO Services — Rank Higher, Earn More',
     description: 'Technical SEO, content strategy and authority building that move you to page one for keywords that actually convert. Transparent monthly reporting, no jargon.',
@@ -78,7 +84,7 @@ export const ROUTE_SEO = {
   },
 };
 
-/* Routes to prerender and list in the sitemap. */
+/* Routes listed in the sitemap (blog posts are added from content/blog). */
 export const PUBLIC_ROUTES = Object.keys(ROUTE_SEO);
 
 /* Look up metadata for a pathname, falling back to the home entry. */

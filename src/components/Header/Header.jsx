@@ -1,6 +1,8 @@
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import './Header.css';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { agency, navLinks } from '../../data/index.js';
 import BrandName from '../BrandName.jsx';
 import { useBooking } from '../BookingModal/BookingContext.jsx';
@@ -9,7 +11,7 @@ export default function Header() {
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
   const [activeDD, setActiveDD]   = useState(null);
-  const location = useLocation();
+  const pathname = usePathname();
   const timerRef = useRef(null);
   const { openBooking } = useBooking();
 
@@ -24,18 +26,19 @@ export default function Header() {
   useEffect(() => {
     setMenuOpen(false);
     setActiveDD(null);
-  }, [location]);
+  }, [pathname]);
 
   // Dropdown hover helpers
   const openDD  = (label) => { clearTimeout(timerRef.current); setActiveDD(label); };
   const closeDD = ()      => { timerRef.current = setTimeout(() => setActiveDD(null), 120); };
+  const isActive = (href) => pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
 
   return (
     <header className={`header ${scrolled ? 'header--scrolled' : ''} ${menuOpen ? 'header--open' : ''}`}>
       <div className="header__inner container">
 
         {/* ── Logo ── */}
-        <Link to="/" className="header__logo" aria-label={`${agency.name} home`}>
+        <Link href="/" className="header__logo" aria-label={`${agency.name} home`}>
           <BrandName name={agency.name} />
         </Link>
 
@@ -72,7 +75,7 @@ export default function Header() {
                     >
                       <div className="header__dropdown-inner">
                         {link.dropdown.map((item) => (
-                          <Link key={item.label} to={item.href} className="header__dd-item">
+                          <Link key={item.label} href={item.href} className="header__dd-item">
                             <span className="header__dd-label">{item.label}</span>
                             <span className="header__dd-desc">{item.desc}</span>
                           </Link>
@@ -81,14 +84,13 @@ export default function Header() {
                     </div>
                   </>
                 ) : (
-                  <NavLink
-                    to={link.href}
-                    className={({ isActive }) =>
-                      `header__nav-link ${isActive ? 'header__nav-link--active' : ''}`
-                    }
+                  <Link
+                    href={link.href}
+                    className={`header__nav-link ${isActive(link.href) ? 'header__nav-link--active' : ''}`}
+                    aria-current={isActive(link.href) ? 'page' : undefined}
                   >
                     {link.label}
-                  </NavLink>
+                  </Link>
                 )}
               </li>
             ))}
@@ -135,7 +137,7 @@ export default function Header() {
                   {activeDD === link.label && (
                     <div className="header__mobile-submenu">
                       {link.dropdown.map((item) => (
-                        <Link key={item.label} to={item.href} className="header__mobile-sublink">
+                        <Link key={item.label} href={item.href} className="header__mobile-sublink">
                           {item.label}
                         </Link>
                       ))}
@@ -143,14 +145,13 @@ export default function Header() {
                   )}
                 </>
               ) : (
-                <NavLink
-                  to={link.href}
-                  className={({ isActive }) =>
-                    `header__mobile-link ${isActive ? 'header__mobile-link--active' : ''}`
-                  }
+                <Link
+                  href={link.href}
+                  className={`header__mobile-link ${isActive(link.href) ? 'header__mobile-link--active' : ''}`}
+                  aria-current={isActive(link.href) ? 'page' : undefined}
                 >
                   {link.label}
-                </NavLink>
+                </Link>
               )}
             </div>
           ))}

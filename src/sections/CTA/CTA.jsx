@@ -1,4 +1,5 @@
-import './CTA.css';
+'use client';
+
 import { agency } from '../../data/index.js';
 import { useBooking } from '../../components/BookingModal/BookingContext.jsx';
 

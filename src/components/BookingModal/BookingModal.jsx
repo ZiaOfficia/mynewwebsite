@@ -1,6 +1,7 @@
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
 import { submitToSheet } from '../../lib/sheets.js';
-import './BookingModal.css';
 
 const EMPTY_FORM = { datetime: '', name: '', phone: '', email: '' };
 

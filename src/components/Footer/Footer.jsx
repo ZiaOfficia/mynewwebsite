@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import './Footer.css';
+import Link from 'next/link';
 import { agency, navLinks, services } from '../../data/index.js';
 import BrandName from '../BrandName.jsx';
 
@@ -10,7 +9,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer__top">
-          <Link to="/" className="footer__wordmark" aria-label={`${agency.name} home`}>
+          <Link href="/" className="footer__wordmark" aria-label={`${agency.name} home`}>
             <BrandName name={agency.name} />
           </Link>
           <p className="footer__about">
@@ -25,7 +24,7 @@ export default function Footer() {
             <ul className="footer__col-list">
               {services.map((s) => (
                 <li key={s.id}>
-                  <Link to={`/services/${s.slug}`} className="footer__link">{s.label}</Link>
+                  <Link href={`/services/${s.slug}`} className="footer__link">{s.label}</Link>
                 </li>
               ))}
             </ul>
@@ -34,9 +33,10 @@ export default function Footer() {
           <div className="footer__col">
             <h2 className="footer__col-heading">Company</h2>
             <ul className="footer__col-list">
-              <li><Link to="/about"    className="footer__link">About us</Link></li>
-              <li><Link to="/projects" className="footer__link">Projects</Link></li>
-              <li><Link to="/contact"  className="footer__link">Contact</Link></li>
+              <li><Link href="/about"    className="footer__link">About us</Link></li>
+              <li><Link href="/projects" className="footer__link">Projects</Link></li>
+              <li><Link href="/blog"     className="footer__link">Blog</Link></li>
+              <li><Link href="/contact"  className="footer__link">Contact</Link></li>
             </ul>
           </div>
 
@@ -60,9 +60,9 @@ export default function Footer() {
         <div className="footer__bottom">
           <p>© {year} {agency.name}. All rights reserved.</p>
           <div className="footer__legal">
-            <Link to="/privacy" className="footer__link">Privacy policy</Link>
-            <Link to="/terms"   className="footer__link">Terms of service</Link>
-            <Link to="/sitemap" className="footer__link">Sitemap</Link>
+            <Link href="/privacy" className="footer__link">Privacy policy</Link>
+            <Link href="/terms"   className="footer__link">Terms of service</Link>
+            <a href="/sitemap.xml" className="footer__link">Sitemap</a>
           </div>
         </div>
       </div>

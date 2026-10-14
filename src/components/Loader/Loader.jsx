@@ -1,5 +1,6 @@
+'use client';
+
 import { useEffect, useState } from 'react';
-import './Loader.css';
 
 /* A short greeting on first load: "Hi" pops in, "Brands" follows,
    then the sheet lifts away. About a second in total. */

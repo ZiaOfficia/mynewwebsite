@@ -1,6 +1,6 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import './EnquirePanel.css';
 import BrandName from '../BrandName.jsx';
 import { agency } from '../../data/index.js';
 import { submitToSheet } from '../../lib/sheets.js';
@@ -42,7 +42,6 @@ export default function EnquirePanel() {
     name: '', email: '', phone: '',
     service: '', budget: '', timeline: '', message: '',
   });
-  const { pathname } = useLocation();
 
   /* Lock body scroll when panel is open (incl. Lenis smooth scroll) */
   useEffect(() => {

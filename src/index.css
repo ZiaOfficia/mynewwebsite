@@ -6,9 +6,7 @@
    self-hosted through @fontsource so no third-party font calls.
    ============================================================ */
 
-@import '@fontsource-variable/bricolage-grotesque/opsz.css';
-@import '@fontsource-variable/geist/index.css';
-@import './pages/Inner.css';
+/* Fonts are imported in src/app/layout.jsx */
 
 :root {
   /* ── Palette ─────────────────────────────────────────────── */
@@ -339,3 +337,7 @@ html.lenis, html.lenis body { height: auto; }
   padding-right: 2.75rem;
   background: var(--surface) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2318213D' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>") right 1rem center / 16px no-repeat;
 }
+
+/* Page fade on navigation */
+.page-enter { animation: pageEnter 0.35s var(--ease-out) both; }
+@keyframes pageEnter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
