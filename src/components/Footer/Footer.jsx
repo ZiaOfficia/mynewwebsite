@@ -3,54 +3,49 @@ import './Footer.css';
 import { agency, navLinks, services } from '../../data/index.js';
 import BrandName from '../BrandName.jsx';
 
-/* Decorative greetings — visual texture only, hidden from screen readers */
-const GREETINGS = [
-  { word: 'Welcome',          top: '10%', left: '6%',  size: 1.5, delay: 0 },
-  { word: 'नमस्ते',            top: '64%', left: '12%', size: 1.2, delay: 2 },
-  { word: 'Bienvenue',        top: '22%', left: '30%', size: 1.0, delay: 4 },
-  { word: 'أهلاً وسهلاً',       top: '72%', left: '40%', size: 1.4, delay: 1 },
-  { word: 'ようこそ',          top: '12%', left: '58%', size: 1.1, delay: 3 },
-  { word: '欢迎',             top: '58%', left: '68%', size: 1.5, delay: 5 },
-  { word: 'Bienvenido',       top: '30%', left: '80%', size: 1.0, delay: 2.5 },
-  { word: 'Willkommen',       top: '80%', left: '78%', size: 0.9, delay: 4.5 },
-  { word: 'Bem-vindo',        top: '86%', left: '22%', size: 1.0, delay: 1.5 },
-  { word: 'Добро пожаловать', top: '40%', left: '48%', size: 0.85, delay: 3.5 },
-];
-
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="footer">
-      {/* ── Top pattern strip ── */}
-      <div className="footer__strip" />
+      <div className="container">
+        <div className="footer__top">
+          <Link to="/" className="footer__wordmark" aria-label={`${agency.name} home`}>
+            <BrandName name={agency.name} />
+          </Link>
+          <p className="footer__about">
+            A team of working engineers building websites and running SEO, social media
+            and Google Ads for businesses directly, with no agency in between.
+          </p>
+        </div>
 
-      {/* ── Decorative background layers ── */}
-      <div className="footer__map" aria-hidden="true" />
-      <div className="footer__blob footer__blob--red" aria-hidden="true" />
-      <div className="footer__blob footer__blob--blue" aria-hidden="true" />
-      <div className="footer__greetings" aria-hidden="true">
-        {GREETINGS.map((g) => (
-          <span
-            key={g.word}
-            className="footer__greeting"
-            style={{ top: g.top, left: g.left, fontSize: `${g.size}rem`, animationDelay: `${g.delay}s` }}
-          >
-            {g.word}
-          </span>
-        ))}
-      </div>
+        <div className="footer__grid">
+          <div className="footer__col">
+            <h2 className="footer__col-heading">Services</h2>
+            <ul className="footer__col-list">
+              {services.map((s) => (
+                <li key={s.id}>
+                  <Link to={`/services/${s.slug}`} className="footer__link">{s.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-      <div className="footer__main">
-        <div className="container footer__grid">
+          <div className="footer__col">
+            <h2 className="footer__col-heading">Company</h2>
+            <ul className="footer__col-list">
+              <li><Link to="/about"    className="footer__link">About us</Link></li>
+              <li><Link to="/projects" className="footer__link">Projects</Link></li>
+              <li><Link to="/contact"  className="footer__link">Contact</Link></li>
+            </ul>
+          </div>
 
-          {/* ── Brand col ── */}
-          <div className="footer__brand">
-            <Link to="/" className="footer__logo">
-              <span className="footer__logo-mark">H<span className="logo-hb-b">B</span></span>
-              <span className="footer__logo-text"><BrandName name={agency.name} /></span>
-            </Link>
-            <p className="footer__tagline">{agency.description}</p>
+          <div className="footer__col">
+            <h2 className="footer__col-heading">Talk to us</h2>
+            <ul className="footer__col-list">
+              <li><a href={`tel:${agency.phone.replace(/\s/g, '')}`} className="footer__link footer__link--big">{agency.phone}</a></li>
+              <li className="footer__text">Based in {agency.address}, working with clients everywhere</li>
+            </ul>
             <div className="footer__socials">
               {Object.entries(agency.social).map(([key, href]) => (
                 <a key={key} href={href} target="_blank" rel="noopener noreferrer"
@@ -60,65 +55,14 @@ export default function Footer() {
               ))}
             </div>
           </div>
-
-          {/* ── Services col ── */}
-          <div className="footer__col">
-            <h4 className="footer__col-heading">Services</h4>
-            <ul className="footer__col-list">
-              {services.map((s) => (
-                <li key={s.id}>
-                  <Link to={`/services/${s.slug}`} className="footer__link">
-                    {s.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* ── Company col ── */}
-          <div className="footer__col">
-            <h4 className="footer__col-heading">Company</h4>
-            <ul className="footer__col-list">
-              <li><Link to="/about"         className="footer__link">About Us</Link></li>
-              <li><Link to="/projects"      className="footer__link">Projects</Link></li>
-              {/* Blog hidden for now
-              <li><Link to="/blog"          className="footer__link">Blog</Link></li> */}
-              <li><Link to="/contact"       className="footer__link">Contact</Link></li>
-            </ul>
-          </div>
-
-          {/* ── Contact col ── */}
-          <div className="footer__col">
-            <h4 className="footer__col-heading">Get in Touch</h4>
-            <ul className="footer__contact-list">
-              {/* Email hidden for now
-              <li>
-                <span className="footer__contact-icon">✉</span>
-                <a href={`mailto:${agency.email}`} className="footer__link">{agency.email}</a>
-              </li> */}
-              <li>
-                <span className="footer__contact-icon">📞</span>
-                <a href={`tel:${agency.phone}`} className="footer__link">{agency.phone}</a>
-              </li>
-              <li>
-                <span className="footer__contact-icon">📍</span>
-                <span className="footer__contact-text">{agency.address}</span>
-              </li>
-            </ul>
-          </div>
         </div>
-      </div>
 
-      {/* ── Bottom bar ── */}
-      <div className="footer__bottom">
-        <div className="container footer__bottom-inner">
-          <p className="footer__copy">
-            © {year} {agency.name}. All rights reserved.
-          </p>
+        <div className="footer__bottom">
+          <p>© {year} {agency.name}. All rights reserved.</p>
           <div className="footer__legal">
-            <Link to="/privacy" className="footer__link footer__link--sm">Privacy Policy</Link>
-            <Link to="/terms"   className="footer__link footer__link--sm">Terms of Service</Link>
-            <Link to="/sitemap" className="footer__link footer__link--sm">Sitemap</Link>
+            <Link to="/privacy" className="footer__link">Privacy policy</Link>
+            <Link to="/terms"   className="footer__link">Terms of service</Link>
+            <Link to="/sitemap" className="footer__link">Sitemap</Link>
           </div>
         </div>
       </div>

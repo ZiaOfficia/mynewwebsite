@@ -1,150 +1,29 @@
-/* ── CTA Section ──────────────────────────────────────────── */
-.cta-section {
-  position: relative;
-  overflow: hidden;
-  --cta-accent: #C9A84C;
-  --cta-accent-rgb: 201,168,76;
+.cta-band {
+  background: var(--marigold);
+  padding: clamp(4rem, 3rem + 4vw, 6.5rem) 0;
 }
-
-.cta-section__pattern {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(var(--cta-accent-rgb), 0.08) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-}
-
-.cta-section__glow {
-  position: absolute;
-  top: -20%;
-  left: -10%;
-  width: 50%;
-  height: 140%;
-  background: radial-gradient(ellipse, rgba(var(--cta-accent-rgb), 0.09) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.cta-section__inner {
-  position: relative;
-  z-index: 1;
+.cta-band__inner {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--space-2xl);
-  align-items: center;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2.5rem 4rem;
+  align-items: end;
 }
-
-/* ── Content ───────────────────────────────────────────────── */
-.cta-section__label {
-  color: var(--cta-accent) !important;
-}
-.cta-section__label::before {
-  background: var(--cta-accent) !important;
-}
-
-.cta-section__heading {
-  color: var(--white);
-  margin-bottom: var(--space-sm);
-}
-
-.cta-section__quote {
-  color: rgba(var(--cta-accent-rgb), 0.85);
-  font-style: italic;
-  font-size: 1rem !important;
-  max-width: 480px;
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
-  border-left: 3px solid var(--cta-accent);
-  padding-left: 1rem;
-}
-
-.cta-section__sub {
-  color: rgba(255,255,255,0.6);
-  max-width: 440px;
-  margin-bottom: var(--space-lg);
-}
-
-.cta-section__actions {
+.cta-band__title { max-width: 12em; }
+.cta-band__side p { font-size: var(--t-lg); line-height: 1.5; max-width: 26em; }
+.cta-band__ctas {
   display: flex;
-  gap: var(--space-sm);
   flex-wrap: wrap;
-}
-
-.cta-section__btn--accent {
-  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2.25rem;
-  font-family: var(--font-body);
-  font-size: 1rem;
+  gap: 1rem 1.5rem;
+  margin-top: 1.5rem;
+}
+.cta-band__phone {
   font-weight: 600;
-  letter-spacing: 0.04em;
-  border-radius: var(--radius-sm);
-  transition: all var(--duration) var(--ease);
-  white-space: nowrap;
-  background: var(--cta-accent);
-  color: var(--navy);
-  border: 2px solid var(--cta-accent);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
 }
-.cta-section__btn--accent:hover {
-  filter: brightness(1.12);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 28px rgba(var(--cta-accent-rgb), 0.38);
-}
+.cta-band__phone:hover { text-decoration-thickness: 2px; }
 
-/* ── Chips ─────────────────────────────────────────────────── */
-.cta-section__chips {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  flex-shrink: 0;
-}
-
-.cta-chip {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.25rem 1.5rem;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(var(--cta-accent-rgb), 0.2);
-  border-radius: var(--radius-lg);
-  text-decoration: none;
-  transition: all var(--duration) var(--ease);
-  min-width: 240px;
-}
-
-.cta-chip:hover {
-  background: rgba(var(--cta-accent-rgb), 0.1);
-  border-color: var(--cta-accent);
-  transform: translateX(4px);
-}
-
-.cta-chip__icon { font-size: 1.5rem; flex-shrink: 0; }
-
-.cta-chip__label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cta-accent);
-}
-
-.cta-chip__value {
-  font-size: 0.9rem;
-  color: var(--white);
-  font-weight: 500;
-}
-
-/* ── Responsive ────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .cta-section__inner {
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-  }
-  .cta-section__chips { flex-direction: row; flex-wrap: wrap; }
-  .cta-chip { flex: 1; min-width: 200px; }
-}
-
-@media (max-width: 640px) {
-  .cta-section__chips { flex-direction: column; }
+@media (max-width: 900px) {
+  .cta-band__inner { grid-template-columns: 1fr; }
 }

@@ -17,30 +17,6 @@ import ProjectsPage   from './pages/ProjectsPage.jsx';
 import ContactPage    from './pages/ContactPage.jsx';
 import SEO            from './seo/SEO.jsx';
 
-/* ── Page accent colours (must match each page's theme) ──── */
-const PAGE_COLORS = {
-  '/':                         { hex: '#CC1F35', rgb: '204,31,53'   },
-  '/services':                 { hex: '#6366F1', rgb: '99,102,241'  },
-  '/services/web-development': { hex: '#8B5CF6', rgb: '139,92,246'  },
-  '/services/landing-pages':   { hex: '#4F46E5', rgb: '79,70,229'   },
-  '/services/seo':             { hex: '#22C55E', rgb: '34,197,94'   },
-  '/services/smo':             { hex: '#1877F2', rgb: '24,119,242'  },
-  '/services/google-ads':      { hex: '#1A73E8', rgb: '26,115,232'  },
-  '/projects':                 { hex: '#C9A84C', rgb: '201,168,76'  },
-  '/about':                    { hex: '#F97316', rgb: '249,115,22'  },
-  '/blog':                     { hex: '#0EA5E9', rgb: '14,165,233'  },
-  '/contact':                  { hex: '#D946EF', rgb: '217,70,239'  },
-};
-const DEFAULT_COLOR = PAGE_COLORS['/'];
-
-function getPageColor(pathname) {
-  if (PAGE_COLORS[pathname]) return PAGE_COLORS[pathname];
-  /* match /blog/:slug → blog colour, /services/:slug → service colour via data */
-  if (pathname.startsWith('/blog/'))     return PAGE_COLORS['/blog'];
-  if (pathname.startsWith('/services/')) return PAGE_COLORS['/services'];
-  return DEFAULT_COLOR;
-}
-
 /* useLayoutEffect logs a warning during renderToString — swap to useEffect
    on the server, where neither one runs anyway. */
 const useIsomorphicLayoutEffect =
@@ -61,7 +37,7 @@ function SmoothScroll() {
   return null;
 }
 
-/* ── Top scroll progress bar — red into royal blue ────────── */
+/* ── Top scroll progress bar ─────────────────────────────── */
 function ScrollProgress() {
   const ref = useRef(null);
   useEffect(() => {
@@ -85,58 +61,11 @@ function ScrollProgress() {
   return <div ref={ref} className="scroll-progress" style={{ transform: 'scaleX(0)' }} />;
 }
 
-/* ── Royal-blue last letter on headings that open with the red
-      first letter (Home opts out of the red first letter) ──── */
-const ACCENT_HEADINGS =
-  '.nh-hero__heading, .sec-heading--dark, .sec-heading--light, ' +
-  '.sec-cta__heading, .sec-confidence__top-line, .sec-confidence__bottom-line';
-
-function RoyalLastLetter() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    if (pathname === '/') return;
-    /* delay > page-transition exit so the new page's DOM is mounted */
-    const id = setTimeout(() => {
-      document.querySelectorAll(ACCENT_HEADINGS).forEach((el) => {
-        if (el.closest('.home-page') || el.querySelector('.accent-last')) return;
-        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-        let last = null;
-        while (walker.nextNode()) {
-          if (walker.currentNode.textContent.trim()) last = walker.currentNode;
-        }
-        if (!last) return;
-        const m = last.textContent.match(/^([\s\S]*?)([A-Za-z0-9][^A-Za-z0-9]*)$/);
-        if (!m) return;
-        const span = document.createElement('span');
-        span.className = 'accent-last';
-        span.textContent = m[2];
-        last.textContent = m[1];
-        last.parentNode.insertBefore(span, last.nextSibling);
-      });
-    }, 450);
-    return () => clearTimeout(id);
-  }, [pathname]);
-  return null;
-}
-
-/* ── Injects --page-accent on every route change ─────────── */
-function PageAccentInjector() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    const { hex, rgb } = getPageColor(pathname);
-    document.documentElement.style.setProperty('--page-accent',     hex);
-    document.documentElement.style.setProperty('--page-accent-rgb', rgb);
-  }, [pathname]);
-  return null;
-}
-
 /* ── App Shell ─────────────────────────────────────────────── */
 function AppShell() {
   const location = useLocation();
   return (
     <BookingProvider>
-      <PageAccentInjector />
-      <RoyalLastLetter />
       <SmoothScroll />
       <ScrollProgress />
       <Header />
@@ -176,32 +105,18 @@ function AppShell() {
 /* ── 404 ───────────────────────────────────────────────────── */
 function NotFound() {
   return (
-    <main style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-      gap: '1.5rem',
-      padding: '2rem',
-      background: 'var(--navy)',
-    }}>
+    <main className="notfound">
       <SEO
         title="Page Not Found"
         description="The page you're looking for doesn't exist or has been moved."
         noindex
       />
-      <span style={{ fontSize: '4rem' }}>🔍</span>
-      <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,6vw,4.5rem)', color: 'var(--white)' }}>
-        Page Not Found
-      </h1>
-      <p style={{ color: 'rgba(255,255,255,0.55)', maxWidth: 420, fontSize: '1.05rem' }}>
-        The page you're looking for doesn't exist or has been moved.
-      </p>
-      <a href="/" className="btn btn-primary" style={{ textDecoration: 'none' }}>
-        Back to Home
-      </a>
+      <div className="container notfound__inner">
+        <p className="notfound__code" aria-hidden="true">404</p>
+        <h1 className="t-1">This page isn't here.</h1>
+        <p className="lede">It may have moved, or the link has a typo. The home page has everything we do.</p>
+        <a href="/" className="btn btn--primary">Go to the home page</a>
+      </div>
     </main>
   );
 }

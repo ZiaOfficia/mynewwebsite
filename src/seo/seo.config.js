@@ -23,8 +23,8 @@ export const absoluteUrl = (path = '/') =>
    ──────────────────────────────────────────────────────────── */
 export const ROUTE_SEO = {
   '/': {
-    title:       'Digital Marketing Agency in India',
-    description: 'HiBrands is a performance-driven digital marketing agency. SEO, Google Ads, web development and social media that turn traffic into revenue. Free brand audit.',
+    title:       'Websites, SEO & Google Ads, Direct from Engineers',
+    description: 'Work directly with the engineers who build your website and run your SEO, social media and Google Ads. No agency overheads, no markup. Free first call.',
     priority:    1.0,
     changefreq:  'weekly',
   },
@@ -36,13 +36,13 @@ export const ROUTE_SEO = {
   },
   '/about': {
     title:       'About Us — Who We Are',
-    description: 'Meet the team behind HiBrands. A founder-led digital marketing agency built on transparent reporting, no lock-in contracts and measurable growth for every client.',
+    description: 'Meet the engineers behind HiBrands. A founder-led team you work with directly: transparent pricing, plain-language reporting and no lock-in contracts.',
     priority:    0.7,
     changefreq:  'monthly',
   },
   '/contact': {
-    title:       'Contact Us — Get a Free Brand Audit',
-    description: 'Talk to HiBrands about your growth goals. Free brand audit, response within 24 hours, no commitment required. Call +91 90649 90515 or send us a message.',
+    title:       'Contact Us — Book a Free Call',
+    description: 'Talk to HiBrands about your growth goals. Free first call, reply within 24 hours, no commitment required. Call +91 90649 90515 or send us a message.',
     priority:    0.8,
     changefreq:  'monthly',
   },

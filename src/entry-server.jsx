@@ -11,7 +11,6 @@ import { StaticRouter } from 'react-router-dom/server';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.jsx';
 import './index.css';
-import './art.css';
 
 export function render(url) {
   const helmetContext = {};

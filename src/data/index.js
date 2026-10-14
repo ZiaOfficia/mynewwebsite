@@ -2,11 +2,11 @@
    DATA LAYER — HiBrands
    ============================================================ */
 
-// ── Agency Info ──────────────────────────────────────────────
+// ── Company Info ──────────────────────────────────────────────
 export const agency = {
   name:        'HiBrands',
   tagline:     'Say Hi to Growth.',
-  description: 'HiBrands is a performance-driven digital marketing agency where businesses say hi to real growth — through expert Website Development, SEO, Social Media Optimisation, and Google Ads management.',
+  description: 'HiBrands is a team of working engineers. We build websites and landing pages and run SEO, social media and Google Ads for businesses directly, with no agency in between.',
   email:       'hibrands.in@gmail.com',
   phone:       '+91 90649 90515',
   address:     'India',
@@ -251,21 +251,21 @@ export const team = [
     id:    1,
     name:  'Jaan-e-Ala',
     role:  'Founder & CEO',
-    bio:   'Visionary leader with deep expertise in digital marketing strategy, passionate about helping Indian businesses scale online.',
+    bio:   'Leads strategy and engineering, and works directly with clients from the first call to launch.',
     image: null,
   },
   {
     id:    2,
     name:  'Farah Naz',
     role:  'Co-Founder',
-    bio:   'Drives the agency\'s vision and client success — turning ambitious growth goals into clear, actionable digital strategies.',
+    bio:   'Turns business goals into clear plans, and keeps every project honest about time, cost and results.',
     image: null,
   },
   {
     id:    3,
     name:  'Hameeda',
     role:  'Co-Founder',
-    bio:   'Leads operations and creative direction, making sure every project ships on time and every brand story lands with impact.',
+    bio:   'Leads design and delivery, making sure every project ships on time and looks right on every screen.',
     image: null,
   },
   /* Hidden for now — restore when the team grows

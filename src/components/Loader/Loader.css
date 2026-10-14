@@ -1,207 +1,38 @@
-/* ── Loader ───────────────────────────────────────────────── */
 .loader {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  background: radial-gradient(ellipse at 50% 40%, #10233a 0%, var(--navy) 55%, #07111C 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1),
-              opacity 0.4s ease;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  background: var(--marigold);
+  transition: transform 0.5s var(--ease-out);
 }
+.loader--exit { transform: translateY(-100%); }
 
-.loader--exit {
-  transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* ── Dot Pattern Background ─────────────────────────────────── */
-.loader__pattern {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-}
-
-/* ── Content ──────────────────────────────────────────────── */
-.loader__inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  animation: loaderReveal 0.6s cubic-bezier(0,0,0.2,1) both;
-}
-
-@keyframes loaderReveal {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── HB Monogram ──────────────────────────────────────────────
-   Premium badge matching favicon.svg / the header + footer marks:
-   red base, royal-blue glimpse from the bottom-right, white letters.
-   Depth comes from a layered background (top-left glass highlight,
-   blue glimpse, red gradient) plus paired red/blue outer glows. */
-.loader__monogram {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width:  clamp(7rem, 19vw, 10rem);
-  height: clamp(7rem, 19vw, 10rem);
+.loader__word {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(3.1rem, 8.4vw, 4.4rem);
-  line-height: 1;
+  font-weight: 800;
+  font-size: clamp(3.5rem, 2rem + 8vw, 8rem);
   letter-spacing: -0.06em;
-  border-radius: 26%;
-  background:
-    radial-gradient(ellipse 90% 60% at 22% 0%,
-      rgba(255,255,255,0.26) 0%, transparent 62%),
-    radial-gradient(ellipse 70% 70% at 80% 84%,
-      rgba(79,70,229,1)    0%,
-      rgba(79,70,229,0.55) 55%,
-      rgba(79,70,229,0)   100%),
-    linear-gradient(150deg, #E0243C 0%, var(--red-accent) 45%, #A31A2C 100%);
-  box-shadow:
-    0 26px 70px rgba(204,31,53,0.38),
-    0 14px 44px rgba(79,70,229,0.32),
-    inset 0 2px 0 rgba(255,255,255,0.34),
-    inset 0 -22px 44px rgba(0,0,0,0.20);
-  overflow: hidden;
-  animation: monoBadgeIn 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  line-height: 1;
+  color: var(--ink);
 }
 
-/* Sheen sweeping across the badge */
-.loader__monogram::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg,
-    transparent 36%,
-    rgba(255,255,255,0.38) 50%,
-    transparent 64%);
-  transform: translateX(-130%);
-  animation: monoSheen 2.8s ease-in-out 1s infinite;
-  pointer-events: none;
-}
-
-.loader__monogram-h,
-.loader__monogram-b {
-  position: relative;
-  z-index: 1;
+.loader__hi {
   display: inline-block;
-  color: var(--white);
-  opacity: 0;
-  text-shadow: 0 6px 22px rgba(0,0,0,0.30);
+  color: var(--cobalt);
+  animation: loaderPop 0.5s var(--ease-out) both;
 }
-.loader__monogram-h {
-  animation: monoInLeft 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s forwards;
-}
-.loader__monogram-b {
-  margin-left: -0.06em;
-  animation: monoInRight 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.22s forwards;
-}
-
-@keyframes monoBadgeIn {
-  from { opacity: 0; transform: scale(0.86) translateY(10px); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes monoSheen {
-  0%       { transform: translateX(-130%); }
-  55%, 100% { transform: translateX(130%); }
-}
-
-@keyframes monoInLeft {
-  from { opacity: 0; transform: translateX(-0.35em) scale(0.92); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes monoInRight {
-  from { opacity: 0; transform: translateX(0.35em) scale(0.92); }
-  to   { opacity: 1; transform: none; }
-}
-
-/* ── Wordmark ─────────────────────────────────────────────── */
-.loader__name {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 1.9rem);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  line-height: 1.1;
-  display: flex;
-  gap: 0.45em;
-  margin: 0;
-}
-
-.loader__word          { display: inline-flex; }
-.loader__word--hi      { color: var(--red-accent); font-style: italic; }
-.loader__word--brands  { color: var(--royal-light); }
-
-.loader__letter {
+.loader__brands {
   display: inline-block;
-  opacity: 0;
-  transform: translateY(0.55em) rotate(4deg);
-  animation: loaderLetter 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation: loaderIn 0.45s var(--ease-out) 0.25s both;
 }
 
-@keyframes loaderLetter {
-  to { opacity: 1; transform: translateY(0) rotate(0); }
+@keyframes loaderPop {
+  from { opacity: 0; transform: scale(0.6) rotate(-8deg); }
+  to   { opacity: 1; transform: none; }
 }
-
-/* ── Progress Bar ─────────────────────────────────────────── */
-.loader__bar-track {
-  width: 180px;
-  height: 2px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-top: 0.75rem;
-}
-
-.loader__bar-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--red-accent), var(--royal));
-  border-radius: 2px;
-  animation: loaderBar 2.2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
-}
-
-@keyframes loaderBar {
-  to { width: 100%; }
-}
-
-/* ── Tagline ──────────────────────────────────────────────── */
-.loader__tagline {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  margin-top: 0.25rem;
-}
-
-/* ── Curtain overlay strip ────────────────────────────────── */
-.loader__curtain {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--red-accent), transparent 40%, var(--royal));
-  opacity: 0.5;
-}
-
-/* ── Reduced motion ───────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .loader__letter   { animation-duration: 0.01s; }
-  .loader__inner    { animation-duration: 0.01s; }
-  .loader__monogram { animation-duration: 0.01s; }
-  .loader__monogram::after { animation: none; opacity: 0; }
+@keyframes loaderIn {
+  from { opacity: 0; transform: translateX(-0.3em); }
+  to   { opacity: 1; transform: none; }
 }

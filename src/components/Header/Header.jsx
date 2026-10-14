@@ -3,14 +3,15 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import './Header.css';
 import { agency, navLinks } from '../../data/index.js';
 import BrandName from '../BrandName.jsx';
+import { useBooking } from '../BookingModal/BookingContext.jsx';
 
 export default function Header() {
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
   const [activeDD, setActiveDD]   = useState(null);
   const location = useLocation();
-  const isHome = location.pathname === '/';
   const timerRef = useRef(null);
+  const { openBooking } = useBooking();
 
   // Scroll detection → add shadow/bg
   useEffect(() => {
@@ -30,18 +31,12 @@ export default function Header() {
   const closeDD = ()      => { timerRef.current = setTimeout(() => setActiveDD(null), 120); };
 
   return (
-    <header className={`header ${(scrolled || !isHome) ? 'header--scrolled' : ''} ${menuOpen ? 'header--open' : ''}`}>
+    <header className={`header ${scrolled ? 'header--scrolled' : ''} ${menuOpen ? 'header--open' : ''}`}>
       <div className="header__inner container">
 
         {/* ── Logo ── */}
-        <Link to="/" className="header__logo">
-          <span className="header__logo-mark">
-            H<span className="logo-hb-b">B</span>
-          </span>
-          <span className="header__logo-wordmark">
-            <span className="header__logo-text"><BrandName name={agency.name} /></span>
-            <span className="header__logo-tagline">{agency.tagline}</span>
-          </span>
+        <Link to="/" className="header__logo" aria-label={`${agency.name} home`}>
+          <BrandName name={agency.name} />
         </Link>
 
         {/* ── Desktop Nav ── */}
@@ -57,7 +52,9 @@ export default function Header() {
                 {link.dropdown ? (
                   <>
                     <button
+                      type="button"
                       className="header__nav-link header__nav-link--btn"
+                      onClick={() => setActiveDD(activeDD === link.label ? null : link.label)}
                       aria-expanded={activeDD === link.label}
                       aria-haspopup="true"
                     >
@@ -100,9 +97,9 @@ export default function Header() {
 
         {/* ── CTA ── */}
         <div className="header__actions">
-          <Link to="/contact" className="btn header__cta">
-            Get a Free Audit
-          </Link>
+          <button type="button" className="btn btn--primary header__cta" onClick={openBooking}>
+            Book a free call
+          </button>
         </div>
 
         {/* ── Hamburger ── */}
@@ -157,9 +154,9 @@ export default function Header() {
               )}
             </div>
           ))}
-          <Link to="/contact" className="btn header__cta" style={{ marginTop: '1.5rem', alignSelf: 'flex-start' }}>
-            Get a Free Audit
-          </Link>
+          <button type="button" className="btn btn--primary header__mobile-cta" onClick={() => { setMenuOpen(false); openBooking(); }}>
+            Book a free call
+          </button>
         </nav>
       </div>
     </header>

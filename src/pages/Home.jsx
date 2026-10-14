@@ -1,266 +1,154 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../seo/SEO.jsx';
-import {
-  SiGoogle, SiMeta, SiShopify, SiHubspot, SiStripe, SiFigma, SiNotion,
-  SiTiktok, SiYoutube, SiFramer, SiSpotify, SiWebflow, SiPinterest, SiTwitch,
-  SiMailchimp, SiWoocommerce, SiNetflix, SiAirbnb, SiPaypal, SiSemrush, SiZapier, SiZoom,
-  SiGoogleads, SiWordpress, SiReact, SiNextdotjs, SiTailwindcss, SiDiscord, SiDropbox, SiGithub,
-} from 'react-icons/si';
-import { FaSalesforce, FaSlack } from 'react-icons/fa';
-import {
-  RiSearchLine, RiGlobalLine, RiCodeSSlashLine, RiLayoutLine,
-  RiBarChartLine, RiRocketLine, RiTrophyLine, RiTeamLine, RiMegaphoneLine,
-  RiLineChartLine, RiTimeLine, RiCheckDoubleLine, RiLightbulbLine, RiPieChartLine,
-  RiBroadcastLine,
-} from 'react-icons/ri';
-import { FiTrendingUp, FiTarget, FiUsers, FiZap, FiBarChart2 } from 'react-icons/fi';
+import { projects, serviceDetails } from '../data/index.js';
+import { useBooking } from '../components/BookingModal/BookingContext.jsx';
+import CTA from '../sections/CTA/CTA.jsx';
 import './Home.css';
 
-function useReveal() {
-  useEffect(() => {
-    const els = document.querySelectorAll('.nh-reveal, .nh-reveal-left');
-    if (!els.length) return;
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('is-visible'); }),
-      { threshold: 0.1 }
-    );
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-}
-
-/* ── Brand data ── */
-const ALL_BRANDS = [
-  { name: 'Google',      Icon: SiGoogle,           color: '#4285F4' },
-  { name: 'Meta',        Icon: SiMeta,             color: '#0082FB' },
-  { name: 'Shopify',     Icon: SiShopify,          color: '#96BF48' },
-  { name: 'HubSpot',     Icon: SiHubspot,          color: '#FF7A59' },
-  { name: 'Salesforce',  Icon: FaSalesforce,       color: '#00A1E0' },
-  { name: 'Stripe',      Icon: SiStripe,           color: '#635BFF' },
-  { name: 'Figma',       Icon: SiFigma,            color: '#F24E1E' },
-  { name: 'Notion',      Icon: SiNotion,           color: '#a0a0a0' },
-  { name: 'TikTok',      Icon: SiTiktok,           color: '#69C9D0' },
-  { name: 'YouTube',     Icon: SiYoutube,          color: '#FF0000' },
-  { name: 'Slack',       Icon: FaSlack,            color: '#E01E5A' },
-  { name: 'Framer',      Icon: SiFramer,           color: '#0055FF' },
-  { name: 'Spotify',     Icon: SiSpotify,          color: '#1DB954' },
-  { name: 'Webflow',     Icon: SiWebflow,          color: '#4353FF' },
-  { name: 'Pinterest',   Icon: SiPinterest,        color: '#E60023' },
-  { name: 'Twitch',      Icon: SiTwitch,           color: '#9146FF' },
-  { name: 'Mailchimp',   Icon: SiMailchimp,        color: '#FFE01B' },
-  { name: 'WooCommerce', Icon: SiWoocommerce,      color: '#7F54B3' },
-  { name: 'Netflix',     Icon: SiNetflix,          color: '#E50914' },
-  { name: 'Airbnb',      Icon: SiAirbnb,           color: '#FF5A5F' },
-  { name: 'PayPal',      Icon: SiPaypal,           color: '#003087' },
-  { name: 'Semrush',     Icon: SiSemrush,          color: '#FF642D' },
-  { name: 'Zapier',      Icon: SiZapier,           color: '#FF4A00' },
-  { name: 'Zoom',        Icon: SiZoom,             color: '#2D8CFF' },
-  { name: 'Google Ads',  Icon: SiGoogleads,        color: '#FBBC04' },
-  { name: 'WordPress',   Icon: SiWordpress,        color: '#21759B' },
-  { name: 'React',       Icon: SiReact,            color: '#61DAFB' },
-  { name: 'Next.js',     Icon: SiNextdotjs,        color: '#a0a0a0' },
-  { name: 'Tailwind',    Icon: SiTailwindcss,  color: '#38BDF8' },
-  { name: 'Discord',     Icon: SiDiscord,      color: '#5865F2' },
-  { name: 'Dropbox',     Icon: SiDropbox,      color: '#0061FF' },
-  { name: 'GitHub',      Icon: SiGithub,       color: '#a0a0a0' },
-];
-const GRID_TILES = Array.from({ length: 90 }, (_, i) => ALL_BRANDS[i % ALL_BRANDS.length]);
+/* Project screenshots captured by `npm run previews` */
+const PREVIEWS = Object.fromEntries(
+  Object.entries(
+    import.meta.glob('../assets/projects/*.{jpg,jpeg,png,webp}', {
+      eager: true, query: '?url', import: 'default',
+    })
+  ).map(([file, url]) => [file.split('/').pop().replace(/\.\w+$/, ''), url])
+);
 
 /* ================================================================
-   SECTION 1 — HERO  (dark #060c15)
+   HERO — the agency bill, unbundled
    ================================================================ */
-function HeroSection() {
-  const brandsRef = useRef(null);
-  const posRef    = useRef([]);
-  const rafRef    = useRef(null);
+const BILL_LINES = [
+  { label: 'Account manager',        kind: 'Overhead' },
+  { label: 'Office rent and upkeep', kind: 'Overhead' },
+  { label: 'HR and admin staff',     kind: 'Overhead' },
+  { label: 'Sales team commission',  kind: 'Overhead' },
+  { label: 'Agency profit margin',   kind: 'Markup'   },
+  { label: 'The actual work',        kind: 'Work', work: true },
+];
 
-  const cachePos = useCallback(() => {
-    if (!brandsRef.current) return;
-    const chips = brandsRef.current.querySelectorAll('.nh-hero__brand-chip');
-    posRef.current = Array.from(chips).map((el) => {
-      const r = el.getBoundingClientRect();
-      return { el, cx: r.left + r.width / 2, cy: r.top + r.height / 2 };
-    });
-  }, []);
-
-  /* One-shot glow wave on mount: sweeps top→bottom then bottom→top */
-  const runWave = useCallback(() => {
-    const pts = posRef.current;
-    if (!pts.length) return;
-    const ys       = pts.map((p) => p.cy);
-    const minY     = Math.min(...ys);
-    const maxY     = Math.max(...ys);
-    const span     = maxY - minY;
-    const sigma    = span * 0.18;   // glow band height
-    const HALF     = 2000;          // ms per sweep direction
-    const start    = performance.now();
-
-    function frame(now) {
-      const elapsed = now - start;
-      const half    = elapsed < HALF;
-      const t       = Math.min(half ? elapsed / HALF : (elapsed - HALF) / HALF, 1);
-
-      /* forward: top → bottom; return: bottom → top */
-      const waveY = half
-        ? minY - sigma + t * (span + sigma * 2)
-        : maxY + sigma - t * (span + sigma * 2);
-
-      pts.forEach(({ el, cy }) => {
-        const dist = Math.abs(cy - waveY);
-        el.style.setProperty('--intensity', Math.max(0, 1 - dist / sigma).toFixed(3));
-      });
-
-      if (elapsed < HALF * 2) {
-        rafRef.current = requestAnimationFrame(frame);
-      } else {
-        pts.forEach(({ el }) => el.style.setProperty('--intensity', '0'));
-      }
-    }
-    rafRef.current = requestAnimationFrame(frame);
-  }, []);
+function AgencyBill() {
+  /* Starts on "Agency", then crosses the overhead out once on load.
+     The toggle lets visitors flip between the two views themselves. */
+  const [mode, setMode] = useState('agency');
 
   useEffect(() => {
-    const t = setTimeout(() => {
-      cachePos();
-      setTimeout(runWave, 60);
-    }, 200);
-    window.addEventListener('resize', cachePos);
-    return () => { clearTimeout(t); window.removeEventListener('resize', cachePos); };
-  }, [cachePos, runWave]);
-
-  const onMouseMove = useCallback((e) => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => {
-      const { clientX: mx, clientY: my } = e;
-      const R = 240;
-      posRef.current.forEach(({ el, cx, cy }) => {
-        const d = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
-        el.style.setProperty('--intensity', Math.max(0, 1 - d / R).toFixed(3));
-      });
-    });
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const id = setTimeout(() => setMode('direct'), reduce ? 0 : 1400);
+    return () => clearTimeout(id);
   }, []);
 
-  const onMouseLeave = useCallback(() => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    posRef.current.forEach(({ el }) => el.style.setProperty('--intensity', '0'));
-  }, []);
+  const direct = mode === 'direct';
+  const kept = direct ? 1 : BILL_LINES.length;
 
   return (
-    <section className="nh-hero" onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
-      <div className="nh-hero__glow nh-hero__glow--1" />
-      <div className="nh-hero__glow nh-hero__glow--2" />
-
-      <div className="nh-hero__brands" ref={brandsRef} aria-hidden="true">
-        {GRID_TILES.map((brand, i) => (
-          <div key={i} className="nh-hero__brand-chip" style={{ '--brand-color': brand.color }}>
-            <brand.Icon className="nh-hero__brand-icon" />
-            <span className="nh-hero__brand-label">{brand.name}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="nh-hero__overlay" />
-
-      <div className="container nh-hero__content">
-        <div className="nh-hero__center">
-          <h1 className="nh-hero__heading nh-reveal">
-            WE BUILD.<br />
-            WE RANK.<br />
-            <span className="nh-hero__red">WE GROW.</span>
-          </h1>
-          <div className="nh-hero__underline nh-reveal nh-delay-1" />
-          <p className="nh-hero__sub nh-reveal nh-delay-2">
-            Your brand. Your audience. Your digital future —<br />
-            say hi to growth with HiBrands.
-          </p>
+    <div className={`bill ${direct ? 'bill--direct' : ''}`}>
+      <div className="bill__top">
+        <p className="bill__title">What your money pays for</p>
+        <div className="bill__switch" role="group" aria-label="Compare who you hire">
+          <button type="button" aria-pressed={!direct} onClick={() => setMode('agency')}>An agency</button>
+          <button type="button" aria-pressed={direct} onClick={() => setMode('direct')}>HiBrands</button>
         </div>
       </div>
 
-      <div className="nh-hero__stats-bar">
-        {[
-          { val: '150+', lbl: 'Brands Grown' },
-          { val: '95%',  lbl: 'Client Retention' },
-          { val: '3.5x', lbl: 'Average ROI' },
-          { val: '20+',  lbl: 'Team Members' },
-        ].map((s) => (
-          <div key={s.lbl} className="nh-hero__stat-item">
-            <span className="nh-hero__stat-val">{s.val}</span>
-            <span className="nh-hero__stat-lbl">{s.lbl}</span>
-          </div>
+      <ul className="bill__lines">
+        {BILL_LINES.map((line, i) => (
+          <li
+            key={line.label}
+            className={`bill__line ${line.work ? 'bill__line--work' : ''}`}
+            style={{ '--i': i }}
+          >
+            <span className="bill__label">
+              <span className="bill__strike" aria-hidden="true" />
+              {line.label}
+              {!line.work && direct && <span className="sr-only"> (not on your bill)</span>}
+            </span>
+            <span className="bill__kind">{line.work && direct ? 'All of it' : line.kind}</span>
+          </li>
         ))}
-      </div>
-    </section>
-  );
-}
+      </ul>
 
-/* ================================================================
-   SECTION 2 — MARQUEE TICKER  (red band)
-   ================================================================ */
-function MarqueeSection() {
-  const items = ['RESULTS', 'ROI', 'RANKINGS', 'GROWTH', 'LEADS', 'BRANDS', 'REVENUE', 'TRAFFIC', 'CONVERSIONS', 'SUCCESS'];
-  const doubled = [...items, ...items];
-  return (
-    <div className="sec-marquee">
-      <div className="sec-marquee__track">
-        {doubled.map((txt, i) => (
-          <span key={i} className="sec-marquee__item">
-            <span className="sec-marquee__text">{txt}</span>
-            <span className="sec-marquee__sep">◆</span>
-          </span>
-        ))}
+      <div className="bill__foot" aria-live="polite">
+        <span className="bill__count">{kept}</span>
+        <span>
+          {direct
+            ? 'thing on your bill. Every rupee goes into the work.'
+            : 'things on your bill. Only one of them is the work.'}
+        </span>
       </div>
     </div>
   );
 }
 
-/* ================================================================
-   SECTION 3 — WHO WE ARE  (light white)
-   ================================================================ */
-function AboutSection() {
-  const features = [
-    { Icon: RiRocketLine,    color: '#CC1F35', title: 'Results First',  desc: 'Every strategy built around measurable outcomes, not vanity metrics.' },
-    { Icon: FiTarget,        color: '#4285F4', title: 'Brand Focused',  desc: 'We treat your brand as our own — full transparency, full accountability.' },
-    { Icon: RiBarChartLine,  color: '#1DB954', title: 'Data Driven',    desc: 'Real-time reporting so you always know exactly where your money goes.' },
-    { Icon: FiUsers,         color: '#9146FF', title: 'Long Term',      desc: 'We build lasting growth partnerships, not one-off campaigns.' },
-  ];
+function Hero() {
+  const { openBooking } = useBooking();
   return (
-    <section className="sec-about">
-      <div className="container sec-about__inner">
-        <div className="sec-about__left nh-reveal-left">
-          <span className="sec-eyebrow sec-eyebrow--dark">Who We Are</span>
-          <h2 className="sec-heading--dark">
-            A GROWTH PARTNER<br />
-            <span className="sec-red-dark">BUILT FOR YOU.</span>
-          </h2>
-          <div className="sec-rule--red" />
-          <p className="sec-body--dark">
-            At HiBrands, every partnership starts with a simple hi. We get to know your
-            brand for who you are and who you want to become — which channels you excel in,
-            which campaigns you love, and which way your brand will grow fastest.
+    <section className="hm-hero">
+      <div className="hm-hero__sun" aria-hidden="true" />
+      <div className="container hm-hero__grid">
+        <div className="hm-hero__copy">
+          <p className="hm-hero__hello">
+            Hi, we're HiBrands
           </p>
-          <p className="sec-body--dark">
-            From stunning websites to Google page-1 rankings and high-ROI ad campaigns —
-            every service is engineered to deliver real, measurable business impact.
+          <h1 className="t-hero hm-hero__title">
+            You pay for the work. Not the agency around it.
+          </h1>
+          <p className="lede hm-hero__lede">
+            We're a team of working engineers. We build your website, run your SEO,
+            social media and Google Ads ourselves, and you talk to us directly.
+            No account managers, no office overheads, no markup on your bill.
           </p>
-          <Link to="/about" className="sec-link--dark">
-            Our Story <span className="sec-link-arrow">→</span>
-          </Link>
+          <div className="hm-hero__ctas">
+            <button type="button" className="btn btn--primary" onClick={openBooking}>
+              Book a free call
+            </button>
+            <Link to="/projects" className="btn btn--line">See our work</Link>
+          </div>
         </div>
 
-        <div className="sec-about__right nh-reveal nh-delay-1">
-          <div className="sec-about__cards">
-            {features.map((f, i) => (
-              <div key={f.title} className="sec-about__card" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <span className="sec-about__card-icon" style={{ color: f.color }}>
-                  <f.Icon size={26} />
-                </span>
-                <div>
-                  <h4 className="sec-about__card-title">{f.title}</h4>
-                  <p className="sec-about__card-desc">{f.desc}</p>
-                </div>
-              </div>
-            ))}
+        <AgencyBill />
+      </div>
+    </section>
+  );
+}
+
+/* ================================================================
+   WHO'S BETWEEN YOU AND THE WORK
+   ================================================================ */
+const AGENCY_CHAIN = ['You', 'Sales rep', 'Account manager', 'Project manager', 'Engineer'];
+
+function Chain() {
+  return (
+    <section className="hm-chain section">
+      <div className="container">
+        <div className="sec-head">
+          <h2 className="t-1">Fewer people in the middle.</h2>
+          <p>
+            At an agency, your request is passed along three or four times before it
+            reaches the person who does the work. With us, you message that person.
+          </p>
+        </div>
+
+        <div className="chain">
+          <div className="chain__row">
+            <p className="chain__who">At an agency</p>
+            <ol className="chain__steps">
+              {AGENCY_CHAIN.map((step, i) => (
+                <li key={step} className={`chain__node ${i === 0 ? 'chain__node--you' : ''} ${i === AGENCY_CHAIN.length - 1 ? 'chain__node--eng' : ''}`}>
+                  {step}
+                </li>
+              ))}
+            </ol>
+            <p className="chain__note">4 hand-offs. Each one adds cost and time.</p>
+          </div>
+
+          <div className="chain__row chain__row--direct">
+            <p className="chain__who">With HiBrands</p>
+            <ol className="chain__steps">
+              <li className="chain__node chain__node--you">You</li>
+              <li className="chain__node chain__node--eng">Engineer</li>
+            </ol>
+            <p className="chain__note">No hand-offs. You talk to the person building it.</p>
           </div>
         </div>
       </div>
@@ -269,203 +157,85 @@ function AboutSection() {
 }
 
 /* ================================================================
-   SECTION 4 — SERVICES  (dark navy)
+   SERVICES — a list, priced up front
    ================================================================ */
-function ServicesSection() {
-  const services = [
-    { Icon: RiCodeSSlashLine,  color: '#61DAFB', title: 'Web Development',  tag: 'Convert',         desc: 'Fast, mobile-first websites built to rank, load instantly, and turn visitors into enquiries from day one.', href: '/services/web-development' },
-    { Icon: RiLayoutLine,      color: '#9146FF', title: 'Landing Pages',    tag: 'Drive Leads',     desc: 'Purpose-built pages with clear messaging and tested conversion flows that turn ad clicks into real business.', href: '/services/landing-pages' },
-    { Icon: RiSearchLine,      color: '#4285F4', title: 'SEO',              tag: 'Rank & Stay',     desc: 'Technical audits, content strategy, and proven link-building that keeps you on page 1 and growing.', href: '/services/seo' },
-    { Icon: RiMegaphoneLine,   color: '#FF7A59', title: 'Social Media',     tag: 'Be Seen',         desc: 'Build your community, grow engagement, and turn followers into loyal paying customers.', href: '/services/smo' },
-    { Icon: RiBarChartLine,    color: '#FBBC04', title: 'Google Ads',       tag: 'High ROI',        desc: 'High-performance paid campaigns — every rupee tracked, every conversion counted, every result transparent.', href: '/services/google-ads' },
-  ];
+function startingPrice(slug) {
+  const pkgs = serviceDetails[slug]?.packages || [];
+  const priced = pkgs.find((p) => p.price && p.price !== 'Custom');
+  if (!priced) return null;
+  return `From ${priced.price}${priced.period || ''}`;
+}
 
+const SERVICE_ROWS = [
+  { slug: 'web-development', name: 'Websites',      line: 'Fast, mobile-first sites that load quickly, rank well and bring in enquiries.' },
+  { slug: 'landing-pages',   name: 'Landing pages', line: 'One page, one goal. Built to turn ad clicks into leads.' },
+  { slug: 'seo',             name: 'SEO',           line: 'Technical fixes, content and links that move you up Google, and keep you there.' },
+  { slug: 'smo',             name: 'Social media',  line: 'Regular posts, reels and replies that turn followers into customers.' },
+  { slug: 'google-ads',      name: 'Google Ads',    line: 'Campaigns where every rupee is tracked, and you see exactly where it went.' },
+];
+
+function Services() {
   return (
-    <section className="sec-services">
-      <div className="sec-services__glow-1" />
-      <div className="sec-services__glow-2" />
-      <div className="container sec-services__inner">
-        <div className="sec-services__header nh-reveal">
-          <span className="sec-eyebrow sec-eyebrow--light">What We Do</span>
-          <h2 className="sec-heading--light">
-            FIVE SERVICES.<br />
-            <span className="sec-royal-light">ONE MISSION.</span>
-          </h2>
-          <div className="sec-rule--red" />
-          <p className="sec-body--light">Every tool in our arsenal aimed at one thing — making your brand impossible to ignore online.</p>
+    <section className="hm-services section" id="services">
+      <div className="container">
+        <div className="sec-head">
+          <h2 className="t-1">What we build and run</h2>
+          <p>Five services, priced up front. Pick one, or combine them.</p>
         </div>
 
-        <div className="sec-services__grid">
-          {services.map((s, i) => (
-            <Link key={s.title} to={s.href} className="sec-svc-card nh-reveal" style={{ transitionDelay: `${i * 0.07}s` }}>
-              <div className="sec-svc-card__top">
-                <span className="sec-svc-card__icon" style={{ color: s.color }}>
-                  <s.Icon size={28} />
+        <ul className="svc-list">
+          {SERVICE_ROWS.map((s) => (
+            <li key={s.slug}>
+              <Link to={`/services/${s.slug}`} className="svc-row">
+                <span className="svc-row__name">{s.name}</span>
+                <span className="svc-row__line">{s.line}</span>
+                <span className="svc-row__price">{startingPrice(s.slug) || 'Custom quote'}</span>
+                <span className="svc-row__go" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M9 7h8v8" /></svg>
                 </span>
-                <span className="sec-svc-card__tag">{s.tag}</span>
-              </div>
-              <h3 className="sec-svc-card__title">{s.title}</h3>
-              <p className="sec-svc-card__desc">{s.desc}</p>
-              <span className="sec-svc-card__arrow">→</span>
-            </Link>
+              </Link>
+            </li>
           ))}
-        </div>
-
+        </ul>
       </div>
     </section>
   );
 }
 
 /* ================================================================
-   SECTION 5 — HOW WE WORK  (light cream #F8F6F2)
+   RECENT WORK — real, live client sites
    ================================================================ */
-function ProcessSection() {
-  const steps = [
-    { num: '01', title: 'Audit',    desc: 'Deep-dive into your brand, competitors, and digital presence to find exactly where you stand and where the opportunity is.' },
-    { num: '02', title: 'Strategy', desc: 'A bespoke growth plan around your goals, budget, and the channels that will move the needle fastest for your business.' },
-    { num: '03', title: 'Execute',  desc: 'Our team launches campaigns, builds assets, and publishes content — at pace, with precision, and with zero fluff.' },
-    { num: '04', title: 'Optimise', desc: 'Monthly reviews, real-time dashboards, and continuous iteration ensure your results compound and improve over time.' },
-  ];
+function Work() {
+  const picks = projects.filter((p) => PREVIEWS[p.slug]).slice(0, 4);
   return (
-    <section className="sec-process">
-      <div className="container sec-process__inner">
-        <div className="sec-process__header nh-reveal">
-          <span className="sec-eyebrow sec-eyebrow--dark">How We Work</span>
-          <h2 className="sec-heading--dark">
-            THE PROCESS BEHIND<br />
-            <span className="sec-red-dark">EVERY WIN.</span>
-          </h2>
-          <div className="sec-rule--red" />
-        </div>
-
-        <div className="sec-process__steps">
-          {steps.map((s, i) => (
-            <div key={s.num} className="sec-process__step nh-reveal" style={{ transitionDelay: `${i * 0.12}s` }}>
-              <div className="sec-process__step-top">
-                <span className="sec-process__num">{s.num}</span>
-                {i < steps.length - 1 && <div className="sec-process__connector" />}
-              </div>
-              <h3 className="sec-process__title">{s.title}</h3>
-              <p className="sec-process__desc">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ================================================================
-   SECTION 6 — RESULTS  (dark #060c15)
-   ================================================================ */
-function ResultsSection() {
-  const cases = [
-    {
-      Icon: RiSearchLine, iconColor: '#4285F4',
-      client: 'TechStart India', service: 'SEO',
-      result: '+312%', resultLbl: 'Organic Traffic',
-      title: 'From Page 5 to Position 1',
-      desc: 'Technical SEO + content strategy took TechStart from invisible to dominating their niche in 6 months.',
-    },
-    {
-      Icon: RiBarChartLine, iconColor: '#FBBC04',
-      client: 'StyleHub', service: 'Google Ads',
-      result: '4.8x', resultLbl: 'ROAS Achieved',
-      title: 'Google Ads ROAS Transformed',
-      desc: 'A full account rebuild and creative refresh took their ROAS from 1.2x to 4.8x in just 3 months.',
-    },
-    {
-      Icon: RiCodeSSlashLine, iconColor: '#61DAFB',
-      client: 'GreenBuild Co.', service: 'Website Dev',
-      result: '2x', resultLbl: 'Monthly Enquiries',
-      title: 'New Website Doubled Leads',
-      desc: 'A conversion-first redesign with clear CTAs and fast load times doubled their lead volume in month one.',
-    },
-  ];
-  return (
-    <section className="sec-results">
-      <div className="sec-results__glow" />
-      <div className="container sec-results__inner">
-        <div className="sec-results__header nh-reveal">
-          <span className="sec-eyebrow sec-eyebrow--light">Case Studies</span>
-          <h2 className="sec-heading--light">
-            POWERED BY DATA.<br />
-            <span className="sec-royal-light">DRIVEN BY RESULTS.</span>
-          </h2>
-          <div className="sec-rule--red" />
-          <p className="sec-body--light">Real campaigns. Real businesses. Real growth.</p>
-        </div>
-
-        <div className="sec-results__grid">
-          {cases.map((c, i) => (
-            <div key={c.client} className="sec-result-card nh-reveal" style={{ transitionDelay: `${i * 0.15}s` }}>
-              <div className="sec-result-card__head">
-                <div className="sec-result-card__avatar" style={{ color: c.iconColor }}>
-                  <c.Icon size={22} />
-                </div>
-                <div>
-                  <p className="sec-result-card__client">{c.client}</p>
-                  <p className="sec-result-card__service">{c.service}</p>
-                </div>
-              </div>
-              <div className="sec-result-card__metric">
-                <span className="sec-result-card__val">{c.result}</span>
-                <span className="sec-result-card__lbl">{c.resultLbl}</span>
-              </div>
-              <h4 className="sec-result-card__title">{c.title}</h4>
-              <p className="sec-result-card__desc">{c.desc}</p>
-              <Link to="/contact" className="sec-result-card__cta">View Case Study →</Link>
-            </div>
-          ))}
-        </div>
-
-        <div className="sec-results__bottom nh-reveal">
-          <Link to="/contact" className="sec-btn sec-btn--red">
-            Get Results Like These →
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ================================================================
-   SECTION 7 — CONFIDENCE  (dark navy #0D1B2A)
-   ================================================================ */
-function ConfidenceSection() {
-  return (
-    <section className="sec-confidence">
-      <div className="sec-confidence__glow" />
-      <div className="container sec-confidence__inner nh-reveal">
-        <span className="sec-eyebrow sec-eyebrow--light">At HiBrands you will know your brand, find your audience, and be ready for whatever growth you will take.</span>
-
-        <h2 className="sec-confidence__top-line nh-reveal nh-delay-1">
-          BE CONFIDENT IN WHO
-        </h2>
-
-        <div className="sec-confidence__you-row nh-reveal nh-delay-2">
-          <span className="sec-confidence__you-letter">Y</span>
-          <div className="sec-confidence__you-circle">
-            <FiTarget size={48} color="#ffffff" />
+    <section className="hm-work section">
+      <div className="container">
+        <div className="hm-work__head">
+          <div className="sec-head">
+            <h2 className="t-1">Recent work, all live</h2>
+            <p>Open any of them and judge the work for yourself.</p>
           </div>
-          <span className="sec-confidence__you-letter">U</span>
+          <Link to="/projects" className="link">See all projects</Link>
         </div>
 
-        <h2 className="sec-confidence__bottom-line nh-reveal nh-delay-3">
-          WILL <span className="sec-red-light">BECOME.</span>
-        </h2>
-        <div className="sec-rule--red sec-confidence__rule nh-reveal nh-delay-3" />
-
-        <p className="sec-body--light sec-confidence__sub nh-reveal nh-delay-4">
-          Endless digital opportunities. Limitless brand potential.<br />
-          We give you the strategy, the execution, and the results to<br />
-          grow into exactly who you're meant to be online.
-        </p>
-
-        <div className="nh-reveal nh-delay-4">
-          <Link to="/contact" className="sec-btn sec-btn--red">
-            Start Your Journey →
-          </Link>
+        <div className="work-grid">
+          {picks.map((p, i) => (
+            <a
+              key={p.slug}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`work-card work-card--${i}`}
+            >
+              <span className="work-card__shot">
+                <img src={PREVIEWS[p.slug]} alt={`${p.name} website homepage`} width="1200" height="750" loading="lazy" decoding="async" />
+              </span>
+              <span className="work-card__meta">
+                <span className="work-card__name">{p.name}</span>
+                <span className="work-card__tags">{p.tags.slice(0, 2).join(', ')}</span>
+              </span>
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -473,70 +243,65 @@ function ConfidenceSection() {
 }
 
 /* ================================================================
-   SECTION 8 — TESTIMONIALS  (light white)
+   PROCESS — a real sequence, so it's numbered
    ================================================================ */
-function TestimonialsSection() {
-  const testimonials = [
-    {
-      name: 'Rahul Sharma', tag: 'SEO',
-      text: 'HiBrands completely transformed our online presence. We went from page 5 to position 1 in just 6 months — and leads have never been higher.',
-      rating: 5,
-    },
-    {
-      name: 'Priya Kapoor', tag: 'Google Ads',
-      text: 'The Google Ads team is exceptional. Our ROAS went from 1.2x to 4.8x in three months. I only wish we had found them sooner.',
-      rating: 5,
-    },
-    {
-      name: 'David Mills', tag: 'Web Development',
-      text: 'New website launched, leads doubled in month one. The team delivered exactly what they promised — on time, on budget, and with full transparency.',
-      rating: 5,
-    },
-    {
-      name: 'Ananya Iyer', tag: 'Social Media',
-      text: 'Our Instagram went from an afterthought to our biggest source of enquiries. They actually understood our audience instead of posting for the sake of it.',
-      rating: 5,
-    },
-    {
-      name: 'Vikram Mehta', tag: 'SEO',
-      text: 'What sold me was the reporting. Every month I know exactly what was done, what it cost, and what it returned. No jargon, no smoke and mirrors.',
-      rating: 5,
-    },
-    {
-      name: 'Sana Qureshi', tag: 'Landing Pages',
-      text: 'They rebuilt our landing page and our conversion rate nearly tripled. Same traffic, same budget — just a page that finally does its job.',
-      rating: 5,
-    },
-  ];
+const STEPS = [
+  { title: 'A free call',          desc: 'Tell us what you need. You speak with the engineer who would do the work, not a salesperson.' },
+  { title: 'A plan and a price',   desc: 'You get a written scope, a timeline and a fixed price before anything starts.' },
+  { title: 'We build and launch',  desc: 'You see progress every week and can message us directly whenever you want.' },
+  { title: 'We keep improving it', desc: 'Monthly reports in plain language. No lock-in contract, so you stay because it works.' },
+];
+
+function Process() {
   return (
-    <section className="sec-testi">
-      <div className="container sec-testi__inner">
-        <div className="sec-testi__header nh-reveal">
-          <span className="sec-eyebrow sec-eyebrow--dark">Client Stories</span>
-          <h2 className="sec-heading--dark">
-            WHAT OUR CLIENTS<br />
-            <span className="sec-royal-dark">ARE SAYING.</span>
-          </h2>
-          <div className="sec-rule--red" />
+    <section className="hm-process section">
+      <div className="container">
+        <div className="sec-head">
+          <h2 className="t-1">How a project runs</h2>
         </div>
+        <ol className="steps">
+          {STEPS.map((s, i) => (
+            <li key={s.title} className="step">
+              <span className="step__num">{i + 1}</span>
+              <h3 className="t-3 step__title">{s.title}</h3>
+              <p className="step__desc">{s.desc}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
 
-        <div className="sec-testi__grid">
-          {testimonials.map((t, i) => (
-            <figure key={t.name} className="sec-testi-card nh-reveal" style={{ transitionDelay: `${(i % 3) * 0.12}s` }}>
-              <span className="sec-testi-card__quote-mark" aria-hidden="true">”</span>
+/* ================================================================
+   WHAT CLIENTS SAY
+   ================================================================ */
+const QUOTES = [
+  { name: 'Rahul Sharma',  tag: 'SEO',             text: 'We went from page 5 to position 1 in about six months, and leads have never been higher.' },
+  { name: 'Priya Kapoor',  tag: 'Google Ads',      text: 'Our ROAS went from 1.2x to 4.8x in three months. I only wish we had found them sooner.' },
+  { name: 'David Mills',   tag: 'Website',         text: 'New website launched, leads doubled in month one. On time, on budget, and we always knew what was happening.' },
+  { name: 'Ananya Iyer',   tag: 'Social media',    text: 'Our Instagram went from an afterthought to our biggest source of enquiries. They actually understood our audience.' },
+  { name: 'Vikram Mehta',  tag: 'SEO',             text: 'Every month I know exactly what was done, what it cost and what it returned. No jargon.' },
+  { name: 'Sana Qureshi',  tag: 'Landing page',    text: 'Same traffic, same budget. Our conversion rate nearly tripled with a page that finally does its job.' },
+];
 
-              <div className="sec-testi-card__top">
-                <div className="sec-testi-card__stars" aria-label={`${t.rating} out of 5 stars`}>
-                  {'★'.repeat(t.rating)}
-                </div>
-                <span className="sec-testi-card__tag">{t.tag}</span>
-              </div>
-
-              <blockquote className="sec-testi-card__text">{t.text}</blockquote>
-
-              <figcaption className="sec-testi-card__author">
-                <div className="sec-testi-card__avatar" aria-hidden="true">{t.name.charAt(0)}</div>
-                <p className="sec-testi-card__name">{t.name}</p>
+function Quotes() {
+  return (
+    <section className="hm-quotes section">
+      <div className="container">
+        <div className="sec-head">
+          <h2 className="t-1">What clients say</h2>
+        </div>
+        <div className="quotes">
+          {QUOTES.map((q) => (
+            <figure key={q.name} className="quote">
+              <blockquote className="quote__text">{q.text}</blockquote>
+              <figcaption className="quote__who">
+                <span className="quote__avatar" aria-hidden="true">{q.name.charAt(0)}</span>
+                <span>
+                  <span className="quote__name">{q.name}</span>
+                  <span className="quote__tag">{q.tag}</span>
+                </span>
               </figcaption>
             </figure>
           ))}
@@ -546,58 +311,17 @@ function TestimonialsSection() {
   );
 }
 
-/* ================================================================
-   SECTION 8 — CTA  (dark navy #0D1B2A)
-   ================================================================ */
-function CTASection() {
-  return (
-    <section className="sec-cta">
-      <div className="sec-cta__glow-1" />
-      <div className="sec-cta__glow-2" />
-      <div className="container sec-cta__inner nh-reveal">
-        <span className="sec-eyebrow sec-eyebrow--light">You're One Click Away</span>
-        <h2 className="sec-cta__heading">
-          YOUR GROWTH STORY<br />
-          <span className="sec-red-light">STARTS RIGHT HERE.</span>
-        </h2>
-        <div className="sec-rule--red sec-cta__rule" />
-        <p style={{ fontStyle: 'italic', color: 'rgba(204,31,53,0.9)', fontSize: '1rem', maxWidth: 540, margin: '0 auto 1rem', lineHeight: 1.65, borderLeft: '3px solid #CC1F35', paddingLeft: '1rem', textAlign: 'left' }}>
-          "Your competitors are already online. The question is — are they ahead of you?"
-        </p>
-        <p className="sec-body--light sec-cta__sub">
-          Say hi — one free strategy call with HiBrands is all it takes to change the direction of your brand. No lock-ins. Just results.
-        </p>
-        <div className="sec-cta__btns">
-          <Link to="/contact" className="sec-btn sec-btn--red">Book Free Strategy Call →</Link>
-          <Link to="/services" className="sec-btn sec-btn--outline-light">Explore Services</Link>
-        </div>
-        <div className="sec-cta__trust">
-          {['✓ No lock-in contracts', '✓ Monthly transparent reports', '✓ Dedicated account manager'].map((item) => (
-            <span key={item} className="sec-cta__trust-item">{item}</span>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ================================================================
-   HOME — Assembles all sections
-   ================================================================ */
 export default function Home() {
-  useReveal();
   return (
     <main className="home-page">
       <SEO pathname="/" />
-      <HeroSection />
-      <MarqueeSection />
-      <AboutSection />
-      <ServicesSection />
-      <ProcessSection />
-      <ResultsSection />
-      <ConfidenceSection />
-      <TestimonialsSection />
-      <CTASection />
+      <Hero />
+      <Chain />
+      <Services />
+      <Work />
+      <Process />
+      <Quotes />
+      <CTA />
     </main>
   );
 }

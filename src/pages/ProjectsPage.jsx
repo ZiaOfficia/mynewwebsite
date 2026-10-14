@@ -1,9 +1,8 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { projects, projectCategories } from '../data/index.js';
 import SEO from '../seo/SEO.jsx';
 import CTA from '../sections/CTA/CTA.jsx';
-import './Home.css';
 import './Projects.css';
 
 /* Screenshots captured by `npm run previews`. Globbing the folder rather
@@ -16,24 +15,6 @@ const PREVIEWS = Object.fromEntries(
       eager: true, query: '?url', import: 'default',
     })
   ).map(([file, url]) => [file.split('/').pop().replace(/\.\w+$/, ''), url])
-);
-
-/* Client logos, downloaded from each live site — see logos/SOURCES.md.
-   A project without one falls back to its monogram in the hero tile. */
-const LOGOS = Object.fromEntries(
-  Object.entries(
-    import.meta.glob('../assets/logos/*.{svg,png,jpg,webp}', {
-      eager: true, query: '?url', import: 'default',
-    })
-  ).map(([file, url]) => [file.split('/').pop().replace(/\.\w+$/, ''), url])
-);
-
-/* The tiled logo field behind the hero, same as the other pages. Stepping by
-   3 through 8 clients (coprime, so every client still appears equally often)
-   stops the same logo lining up in a column of the 10-wide grid. */
-const HERO_TILES = Array.from(
-  { length: 90 },
-  (_, i) => projects[(i * 3) % projects.length]
 );
 
 /* Filter tab label → the category stored on each project. */
@@ -72,14 +53,14 @@ function MoreCard() {
             <path d="M12 5v14M5 12h14" />
           </svg>
         </span>
-        <h3 className="pj-more__title">MORE PROJECTS</h3>
+        <h3 className="pj-more__title">There's more</h3>
         <p className="pj-more__desc">
           What you see here is a selection of our work — there's plenty more across
           other industries, budgets and timelines. Tell us what you have in mind and
           we'll share the projects closest to it.
         </p>
         <span className="pj-more__cta">
-          Start an Enquiry
+          Ask about similar work
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -218,58 +199,25 @@ export default function ProjectsPage() {
     <main className="projects-page">
       <SEO pathname="/projects" schema={[itemListSchema]} />
 
-      {/* ── Hero — same structure as the About and service heroes, with
-             the client logos as the tile field behind it ── */}
-      <section className="nh-hero sd-hero pj-hero">
-        <div className="nh-hero__brands" aria-hidden="true" style={{ pointerEvents: 'none' }}>
-          {HERO_TILES.map((project, i) => (
-            <div key={i} className="nh-hero__brand-chip" style={{ '--brand-color': project.accent }}>
-              {LOGOS[project.slug] ? (
-                <img className="nh-hero__brand-icon pj-hero__logo" src={LOGOS[project.slug]} alt="" />
-              ) : (
-                <span className="nh-hero__brand-icon pj-hero__monogram">{project.name.charAt(0)}</span>
-              )}
-              <span className="nh-hero__brand-label">{project.name}</span>
-            </div>
-          ))}
-        </div>
-        <div className="nh-hero__overlay" />
-
-        <div className="container sd-hero__inner">
-          <div className="nh-hero__center">
-            <span className="sec-eyebrow sec-eyebrow--light nh-reveal">Our Work</span>
-            <h1 className="nh-hero__heading nh-reveal nh-delay-1">
-              OUR <span className="nh-hero__red">PROJECTS.</span>
-            </h1>
-            <div className="nh-hero__underline nh-reveal nh-delay-2" />
-            <p className="sd-hero__why nh-reveal nh-delay-3">
-              A showcase of websites and landing pages crafted by HiBrands for businesses,
-              organisations and brands — each one live, and one click away.
-            </p>
-          </div>
-        </div>
-
-        {/* Sits where the other heroes put their stats bar. */}
-        <div className="nh-hero__stats-bar pj-hero__sectors nh-reveal nh-delay-4">
-          <span className="pj-hero__sectors-lbl">Built for</span>
-          {/* A flex row, not inline text: JSX collapses the whitespace
-              between these spans, so an inline run would never wrap. */}
-          <p className="pj-hero__sectors-list">
-            {[...sectors, 'and more'].map((sector, i) => (
-              <Fragment key={sector}>
-                {i > 0 && <span className="pj-hero__sep" aria-hidden="true">·</span>}
-                <span className={`pj-hero__sector${i === sectors.length ? ' pj-hero__sectors-more' : ''}`}>
-                  {sector}
-                </span>
-              </Fragment>
+      <header className="phead">
+        <div className="container phead__grid phead__grid--single">
+          <h1 className="phead__title">Work that's live right now.</h1>
+          <p className="lede phead__lede">
+            Websites and landing pages we've built for businesses and organisations.
+            Every one is live, so open them and judge for yourself.
+          </p>
+          <p className="pj-sectors">
+            <span className="pj-sectors__lbl">Built for</span>
+            {sectors.map((sector) => (
+              <span key={sector} className="pj-sectors__item">{sector}</span>
             ))}
+            <span className="pj-sectors__item pj-sectors__item--more">and more</span>
           </p>
         </div>
-      </section>
+      </header>
 
       {/* ── The work ── */}
       <section className="pj-work">
-        <div className="pj-work__glow" aria-hidden="true" />
         <div className="container pj-work__inner">
 
           <div className="pj-filters nh-reveal" role="group" aria-label="Filter projects by type">
@@ -300,11 +248,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <CTA
-        color="var(--gold)"
-        quote={`"The best portfolio piece we have is the one we haven't built yet — yours."`}
-        sub="Tell us what you need built and we'll show you the closest thing we've shipped, with an honest timeline and price."
-      />
+      <CTA sub="Tell us what you need built and we'll show you the closest thing we've shipped, with an honest timeline and price." />
     </main>
   );
 }
