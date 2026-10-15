@@ -52,6 +52,8 @@ Files that start with `_` (like `_template.md`) are never published.
 | Page titles and descriptions for Google | `src/seo/seo.config.js` |
 | Colours, fonts, buttons | `src/index.css` |
 | Blog posts | `content/blog/` |
+| Privacy policy, terms | `content/legal/privacy.md`, `content/legal/terms.md` (change the `updated:` date when you edit) |
+| Date shown in sitemap.xml for pages | `SITE_UPDATED` in `src/seo/seo.config.js` |
 | Logo kit | `brand/` |
 | Project screenshots | `public/projects/` (refresh with `npm run previews`) |
 
