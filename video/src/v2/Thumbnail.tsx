@@ -151,3 +151,71 @@ export const ThumbnailB: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+/* Shorts cover, 1080×1920. Agency layers crossed out on top, the promise below.
+   The bottom fifth stays quiet because YouTube lays the title over it. */
+export const ThumbnailShort: React.FC = () => {
+  const u = 1;
+  const split = 720;
+  return (
+    <AbsoluteFill>
+      <GlowBg strength={1.8}>
+        <Particles n={40} seed="thumbS" size={7} opacity={0.6} />
+      </GlowBg>
+      <div style={{ position: "absolute", left: 0, top: 0, right: 0, height: split, overflow: "hidden" }}>
+        <NightBg>
+          <div style={{ position: "absolute", left: 0, right: 0, top: 120, display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 96, letterSpacing: "-0.03em", color: G.fogDim, lineHeight: 1 }}>AGENCY</div>
+            <div style={{ display: "grid", gap: 22, marginTop: 40 }}>
+              {["Sales team", "Account manager", "Project manager", "Big office"].map((t) => (
+                <Pill key={t} u={u * 0.92}>{t}</Pill>
+              ))}
+            </div>
+          </div>
+        </NightBg>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: split - 4,
+          height: 8,
+          background: `linear-gradient(90deg, ${G.cyan}, #fff, ${G.violet})`,
+          boxShadow: `0 0 40px ${G.cyan}, 0 0 90px ${G.violet}`,
+        }}
+      />
+      <div style={{ position: "absolute", left: 80, right: 80, top: split + 130, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <HiMark size={120} style={{ filter: "drop-shadow(0 0 30px rgba(255,200,61,0.6))" }} />
+          <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 92, letterSpacing: "-0.05em", color: C.ink, lineHeight: 1 }}>
+            <span style={{ color: C.cobalt }}>Hi</span>Brands
+          </div>
+        </div>
+        <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 168, letterSpacing: "-0.045em", lineHeight: 0.92, marginTop: 56, color: C.ink }}>
+          Talk to the
+          <br />
+          <span style={{ ...glowText(), filter: "drop-shadow(0 6px 24px rgba(123,92,255,0.35))" }}>Engineers.</span>
+        </div>
+        <div
+          style={{
+            marginTop: 56,
+            padding: "22px 40px",
+            borderRadius: 999,
+            background: C.marigold,
+            fontFamily: BODY,
+            fontWeight: 800,
+            fontSize: 46,
+            color: C.ink,
+            boxShadow: "0 18px 40px -14px rgba(214,150,0,0.6)",
+          }}
+        >
+          Premium quality. Minimum price.
+        </div>
+        <div style={{ fontFamily: BODY, fontWeight: 600, fontSize: 38, color: C.ink2, marginTop: 34 }}>
+          Websites · SEO · Social media · Google Ads
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
