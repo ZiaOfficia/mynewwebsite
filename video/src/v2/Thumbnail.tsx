@@ -164,9 +164,9 @@ export const ThumbnailShort: React.FC = () => {
       </GlowBg>
       <div style={{ position: "absolute", left: 0, top: 0, right: 0, height: split, overflow: "hidden" }}>
         <NightBg>
-          <div style={{ position: "absolute", left: 0, right: 0, top: 120, display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 96, letterSpacing: "-0.03em", color: G.fogDim, lineHeight: 1 }}>AGENCY</div>
-            <div style={{ display: "grid", gap: 22, marginTop: 40 }}>
+          <div style={{ position: "absolute", left: 0, right: 0, top: 70, display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 92, letterSpacing: "-0.03em", color: G.fogDim, lineHeight: 1 }}>OTHER AGENCY</div>
+            <div style={{ display: "grid", gap: 18, marginTop: 34 }}>
               {["Sales team", "Account manager", "Project manager", "Big office"].map((t) => (
                 <Pill key={t} u={u * 0.92}>{t}</Pill>
               ))}
@@ -185,7 +185,29 @@ export const ThumbnailShort: React.FC = () => {
           boxShadow: `0 0 40px ${G.cyan}, 0 0 90px ${G.violet}`,
         }}
       />
-      <div style={{ position: "absolute", left: 80, right: 80, top: split + 130, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+      <div
+        style={{
+          position: "absolute",
+          left: 540 - 85,
+          top: split - 85,
+          width: 170,
+          height: 170,
+          borderRadius: "50%",
+          background: C.marigold,
+          display: "grid",
+          placeItems: "center",
+          fontFamily: DISPLAY,
+          fontWeight: 800,
+          fontSize: 76,
+          letterSpacing: "-0.04em",
+          color: C.ink,
+          boxShadow: "0 0 0 10px #fff, 0 0 60px rgba(255,200,61,0.8), 0 20px 50px rgba(10,15,60,0.4)",
+          zIndex: 2,
+        }}
+      >
+        VS
+      </div>
+      <div style={{ position: "absolute", left: 80, right: 80, top: split + 150, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <HiMark size={120} style={{ filter: "drop-shadow(0 0 30px rgba(255,200,61,0.6))" }} />
           <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 92, letterSpacing: "-0.05em", color: C.ink, lineHeight: 1 }}>
