@@ -1,4 +1,4 @@
-# HiBrands promo video
+# HiBrands promo videos
 
 A 74-second promo for HiBrands, made with [Remotion](https://github.com/remotion-dev/remotion)
 (React for video). Two cuts from one source:
@@ -53,3 +53,46 @@ npx remotion render HiBrandsPromoVertical out/hibrands-promo-9x16.mp4 --crf=16 -
 
 Remotion is free for individuals and companies with up to 3 employees. Check
 [remotion.pro/license](https://www.remotion.pro/license) if the team grows beyond that.
+
+---
+
+# Film 2: "Engineers, not an agency" (2:14)
+
+A longer brand film built from the agency-comparison brief. No prices appear anywhere, so it
+stays correct when prices change.
+
+| File | Size | Use it for |
+|---|---|---|
+| `HiBrands-Engineers-16x9.mp4` | 1920×1080 | YouTube, website, LinkedIn |
+| `HiBrands-Engineers-9x16.mp4` | 1080×1920 | Reels, Shorts (under the 3-minute limit) |
+
+| Time | Scene |
+|---|---|
+| 0:00 | Dark: "Traditional agency model": office tower, generic unbranded screens |
+| 0:09.6 | "More layers. More overhead.": a message travels down five layers |
+| 0:16.8 | "What if you could skip the layers, and work directly with the engineers?" |
+| 0:24.0 | Light streak, particle burst, white flash: the music drops into the bright section |
+| 0:26.4 | Hi logo: "We're engineers. Not an agency." |
+| 0:33.6 | Direct access to the engineers: a client chats with the engineer, it goes live |
+| 0:40.8 | The 5 services, each with its quality promise |
+| 1:16.8 | "High quality in every section." 6 checks: "Not because we cut corners." |
+| 1:24.0 | Split screen: agency (dark) vs HiBrands (bright), then "Premium quality. Minimum price." |
+| 1:38.4 | The two workflows: Client → 3 layers → Engineering vs Client → Engineers |
+| 1:48.0 | Real client sites, then the three promises |
+| 2:02.4 | "Premium websites. Smarter pricing." CTA, then the logo end card |
+
+Code: `src/v2/` (scenes in `Dark.tsx`, `Bright.tsx`, `Value.tsx`; shared looks in `kit.tsx`).
+Timing and sound cues: `audio/engineers_timeline.py` writes `src/v2/timeline.json`.
+
+```bash
+python3 audio/engineers_timeline.py
+python3 audio/make_music.py src/v2/timeline.json public/audio/engineers.wav
+npx remotion render HiBrandsEngineers out/engineers-16x9.mp4 --crf=16 --audio-bitrate=320k
+./finalize.sh out/engineers-16x9.mp4 out/HiBrands-Engineers-16x9.mp4 public/audio/engineers.wav
+```
+
+**About comparison claims.** The budget bars are labelled "Illustration, not actual figures",
+and the film never says the agency's work is worse; it only compares layers and overhead.
+A numeric claim such as "up to 95% less" was left out on purpose: under ASCI guidelines in
+India a comparative number needs documented evidence (like quotes for equivalent work). If you
+gather that evidence, add the line to the `Compare` scene in `src/v2/Value.tsx`.

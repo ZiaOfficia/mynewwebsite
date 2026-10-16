@@ -14,6 +14,7 @@ into the call to action, a final chord to close.
 """
 import json
 import os
+import sys
 import numpy as np
 import soundfile as sf
 import pyloudnorm as pyln
@@ -21,7 +22,10 @@ from scipy import signal
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-TL = json.load(open(os.path.join(ROOT, 'src', 'timeline.json')))
+# Usage: make_music.py [timeline.json] [out.wav]   (defaults: the first film)
+TL_PATH = os.path.join(ROOT, sys.argv[1]) if len(sys.argv) > 1 else os.path.join(ROOT, 'src', 'timeline.json')
+OUT_PATH = os.path.join(ROOT, sys.argv[2]) if len(sys.argv) > 2 else os.path.join(ROOT, 'public', 'audio', 'soundtrack.wav')
+TL = json.load(open(TL_PATH))
 
 SR = 48000
 FPS = TL['fps']
@@ -112,12 +116,20 @@ N_BARS = int(np.ceil(VIDEO_LEN / BAR))
 #            C               G               Am              F
 CHORDS = [[48, 52, 55, 60], [43, 50, 55, 59], [45, 52, 57, 60], [41, 48, 53, 57]]
 ROOTS = [36, 31, 33, 29]
+#                 Am              F               Dm              E
+CHORDS_DARK = [[45, 52, 57, 60], [41, 48, 53, 57], [38, 50, 53, 57], [40, 47, 52, 56]]
+ROOTS_DARK = [33, 29, 26, 28]
 
 
 def section(bar):
     """Which instruments play in a given bar (scene-aware)."""
     s = TL['scenes']
     t = bar * BAR * FPS  # bar start in frames
+    if 'music' in TL:  # explicit arrangement in the timeline
+        seg = [m for m in TL['music'] if m['from'] <= t + 1][-1]
+        base = dict(pad=0, pluck=0, bass=0, kick=0, clap=0, hat=0, shaker=0, mode='bright', padLp=3200, heart=False)
+        base.update(seg)
+        return base
     if t < s['question']['from']:
         return dict(pad=0.8, pluck=0.55, bass=0, kick=0, clap=0, hat=0, shaker=0)
     if t < s['bill']['from']:
@@ -152,8 +164,9 @@ kick_times = []
 for bar in range(N_BARS):
     sec = section(bar)
     start = bar * BAR
-    chord = CHORDS[bar % 4]
-    root = ROOTS[bar % 4]
+    dark = sec.get('mode') == 'dark'
+    chord = (CHORDS_DARK if dark else CHORDS)[bar % 4]
+    root = (ROOTS_DARK if dark else ROOTS)[bar % 4]
     last_bar = bar == N_BARS - 1
 
     # Pad: detuned saws, soft attack
@@ -163,8 +176,8 @@ for bar in range(N_BARS):
         for note in chord[1:] + [chord[0] + 12]:
             for dc in (-7, 0, 7):
                 voice += saw(midi(note), n, dc)
-        voice = highpass(lowpass(voice, 3200 if not last_bar else 3800), 170)
-        voice *= env_adsr(n, 0.25, 0.4, 0.85, 0.6) * 0.022 * sec['pad']
+        voice = highpass(lowpass(voice, sec.get('padLp', 3200) if not last_bar else 3800), 170 if not dark else 90)
+        voice *= env_adsr(n, 0.25 if not dark else 0.9, 0.4, 0.85, 0.6) * (0.022 if not dark else 0.03) * sec['pad']
         L = voice * (0.9 + 0.1 * np.sin(np.linspace(0, 3, n)))
         R = voice * (0.9 + 0.1 * np.cos(np.linspace(0, 3, n)))
         place(pad_bus, np.stack([L, R], 1), start)
@@ -187,6 +200,8 @@ for bar in range(N_BARS):
     # Bass: syncopated roots
     if sec['bass']:
         pattern = [(0, 1.0, 0.95), (1.5, 0.5, 0.7), (2, 1.0, 0.9), (3.5, 0.5, 0.7)]
+        if dark:
+            pattern = [(0, 3.8, 0.9)]
         if last_bar:
             pattern = [(0, 3.5, 1.0)]
         for beat, length, vel in pattern:
@@ -195,21 +210,29 @@ for bar in range(N_BARS):
             f = midi(root)
             tone = np.sin(2 * np.pi * f * t) + 0.3 * np.sin(2 * np.pi * f * 2 * t)
             tone = np.tanh(tone * 1.6)
-            tone = lowpass(tone, 420) * env_adsr(n, 0.005, 0.12, 0.7, 0.06)
+            tone = lowpass(tone, 420 if not dark else 260) * (env_adsr(n, 0.005, 0.12, 0.7, 0.06) if not dark else env_adsr(n, 0.3, 0.5, 0.8, 0.5))
             place(bass_bus, highpass(tone, 45) * 0.11 * vel * sec['bass'], start + beat * BEAT)
 
     # Drums
     for beat in range(4):
         bt = start + beat * BEAT
-        if sec['kick'] and beat in (0, 2) and not last_bar:
+        kick_hits = []
+        if sec['kick'] and not last_bar:
+            if sec.get('heart'):
+                kick_hits = [(0, 1.0), (0.42, 0.55)] if beat in (0, 2) else []
+            elif beat in (0, 2):
+                kick_hits = [(0, 1.0)]
+        for off, kv in kick_hits:
             n = int(0.45 * SR)
             t = np.arange(n) / SR
             f = 52 + 120 * np.exp(-t * 30)
             ph = 2 * np.pi * np.cumsum(f) / SR
             k = np.sin(ph) * np.exp(-t * 11)
             k[: int(0.003 * SR)] += lowpass(rng.standard_normal(int(0.003 * SR)), 3000) * 0.12
-            place(drum_bus, k * 0.30 * sec['kick'], bt)
-            kick_times.append(bt)
+            if sec.get('heart'):
+                k = lowpass(k, 900)
+            place(drum_bus, k * 0.30 * sec['kick'] * kv, bt + off * BEAT)
+            kick_times.append(bt + off * BEAT)
         if sec['clap'] and beat in (1, 3) and not last_bar:
             n = int(0.35 * SR)
             t = np.arange(n) / SR
@@ -234,8 +257,8 @@ for bar in range(N_BARS):
                 sh = bandpass(rng.standard_normal(n), 5000, 11000) * (np.sin(np.pi * t / 0.08) ** 2)
                 place(drum_bus, pan(sh * 0.05 * sec['shaker'], -0.4), bt + q * BEAT)
 
-# Riser into the call to action (last 2 beats of the breakdown)
-cta_t = t_of_frame(TL['scenes']['cta']['from'])
+# Risers into the big moments (2 bars long, ending on the downbeat)
+RISERS = TL.get('risers', [TL['scenes'].get('cta', {}).get('from', 0)])
 n = int(2 * BAR * SR)
 t = np.arange(n) / SR
 riser = np.zeros(n)
@@ -244,7 +267,8 @@ for i, (a, b) in enumerate(zip(range(0, n, 2048), range(2048, n + 2048, 2048))):
     fc = 400 + 7000 * (a / n) ** 2
     riser[a:b] = lowpass(noise[a:b], min(fc, 20000), 1)
 riser *= (t / t[-1]) ** 2 * 0.09
-place(drum_bus, np.stack([riser, riser[::-1] * 0 + riser], 1), cta_t - 2 * BAR)
+for rf in RISERS:
+    place(drum_bus, np.stack([riser, riser], 1), t_of_frame(rf) - 2 * BAR)
 
 # Final chord bell hit
 end_bar_t = (N_BARS - 1) * BAR
@@ -365,7 +389,40 @@ def pop():
     return out
 
 
+def thud():
+    n = int(0.5 * SR)
+    t = np.arange(n) / SR
+    f = 48 + 60 * np.exp(-t * 25)
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 9)
+    x += lowpass(rng.standard_normal(n), 500) * np.exp(-t * 30) * 0.5
+    x = lowpass(x, 1200)
+    return np.stack([x, x], 1) / np.abs(x).max() * 0.6
+
+
+def impact():
+    n = int(2.6 * SR)
+    t = np.arange(n) / SR
+    f = 38 + 90 * np.exp(-t * 12)
+    boom = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 3.2)
+    crack = highpass(rng.standard_normal(n), 2500) * np.exp(-t * 18) * 0.35
+    air = bandpass(rng.standard_normal(n), 3000, 12000) * np.exp(-t * 2.2) * 0.08
+    x = boom * 0.9 + crack + air
+    st = np.stack([x, x], 1)
+    shimmer = bell([midi(84), midi(88), midi(91), midi(96)], 2.6, 0.22)
+    st[: len(shimmer)] += shimmer
+    return st / np.abs(st).max() * 0.85
+
+
+def coin():
+    k = load('glass_001')
+    return k * 0.6
+
+
 SOUNDS = {
+    'thud': thud(),
+    'impact': impact(),
+    'streak': whoosh(1.4, 180, 9000, 0.55),
+    'coin': coin(),
     'pop': pop(),
     'whoosh': whoosh(0.55, 250, 5000, 0.55),
     'whooshSoft': whoosh(0.45, 400, 3500, 0.3),
@@ -460,7 +517,7 @@ if tp_now > 10 ** (-2.0 / 20):
 final_loud = meter.integrated_loudness(mix)
 tp = 20 * np.log10(np.abs(signal.resample_poly(mix, 4, 1, axis=0)).max())
 
-out = os.path.join(ROOT, 'public', 'audio', 'soundtrack.wav')
+out = OUT_PATH
 os.makedirs(os.path.dirname(out), exist_ok=True)
 sf.write(out, mix, SR, subtype='PCM_24')
 print(f'wrote {out}')
