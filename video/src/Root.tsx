@@ -5,6 +5,7 @@ import { TL } from "./theme";
 import { Engineers, TL2 } from "./v2/Engineers";
 import { ThumbnailA, ThumbnailB } from "./v2/Thumbnail";
 import { Banner } from "./v2/Banner";
+import { Profile } from "./v2/Profile";
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -15,5 +16,6 @@ export const RemotionRoot: React.FC = () => (
     <Still id="ThumbnailA" component={ThumbnailA} width={1920} height={1080} />
     <Still id="ThumbnailB" component={ThumbnailB} width={1920} height={1080} />
     <Still id="YouTubeBanner" component={Banner} width={2560} height={1440} />
+    <Still id="YouTubeProfile" component={Profile} width={800} height={800} />
   </>
 );
