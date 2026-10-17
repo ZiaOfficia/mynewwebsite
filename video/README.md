@@ -96,3 +96,32 @@ and the film never says the agency's work is worse; it only compares layers and 
 A numeric claim such as "up to 95% less" was left out on purpose: under ASCI guidelines in
 India a comparative number needs documented evidence (like quotes for equivalent work). If you
 gather that evidence, add the line to the `Compare` scene in `src/v2/Value.tsx`.
+
+---
+
+# Film 3: The HiBrands brand film (1:31)
+
+The story of a shop owner, Mr Sharma of Sharma Garments (a fictional shop), who dreams of growing
+online but believes it's out of reach, and the engineers who come together as HiBrands to help him.
+Illustrated in code, so he looks the same in every scene. No prices, no invented results.
+
+| File | Size | Use it for |
+|---|---|---|
+| `HiBrands-Brand-Film-16x9.mp4` | 1920×1080 | YouTube, website, LinkedIn, presentations |
+| `HiBrands-Brand-Film-9x16.mp4` | 1080×1920 | Reels, Shorts, WhatsApp Status |
+| `HiBrands-Brand-Film.srt` | subtitles | Upload with the video on YouTube / LinkedIn |
+| `HiBrands-Brand-Film-Voiceover-Script.txt` | script | Record a voice-over that matches the timing |
+
+Code: `src/v3/` (characters and sets in `art.tsx`, scenes in `scenes.tsx`).
+Timing, captions and sound cues: `audio/brandfilm_timeline.py` → `src/v3/timeline.json`.
+Music: `audio/make_film_music.py` (piano, strings, pulse and drums, written for this story).
+
+```bash
+python3 audio/brandfilm_timeline.py && python3 audio/make_film_music.py
+npx remotion render HiBrandsBrandFilm out/brandfilm-16x9.mp4 --crf=16 --audio-bitrate=320k
+./finalize.sh out/brandfilm-16x9.mp4 out/HiBrands-Brand-Film-16x9.mp4 public/audio/brandfilm.wav
+```
+
+Reference repositories reviewed: claude-code-video-toolkit (its voice and image tools need paid cloud
+accounts, so not used), product-launch-motion (spring motion and beat-timed cuts), remocn (the
+blur-in caption reveal).
