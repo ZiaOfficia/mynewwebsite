@@ -416,6 +416,7 @@ SOUNDS = {
     "hiLogo": hi_logo(),
     "tick": tick(3.0),
     "whoosh": sweep(0.55, 250, 5000, 0.5),
+    "whooshSoft": sweep(0.45, 400, 3500, 0.28),
     "shimmer": bell([midi(88), midi(91), midi(95), midi(100)], 1.8, 0.2),
     "stab": boom(0.35, 1.0),
     "slice": sweep(0.35, 2000, 12000, 0.55, 1.4),

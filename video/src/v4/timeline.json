@@ -36,10 +36,10 @@
  "lines": [
   {
    "scene": "struggle",
-   "from": 22,
+   "from": 18,
    "to": 74,
    "text": "Big dreams.",
-   "start": 22,
+   "start": 18,
    "end": 74
   },
   {
@@ -53,74 +53,74 @@
   {
    "scene": "shift",
    "from": 34,
-   "to": 142,
+   "to": 124,
    "text": "Growth shouldn't be out of reach.",
    "start": 178,
-   "end": 286
+   "end": 268
   },
   {
    "scene": "reveal",
-   "from": 96,
-   "to": 150,
+   "from": 100,
+   "to": 152,
    "text": "Meet HiBrands.",
-   "start": 384,
-   "end": 438
+   "start": 388,
+   "end": 440
   },
   {
    "scene": "reveal",
-   "from": 154,
+   "from": 156,
    "to": 214,
    "text": "Your partner in digital growth.",
-   "start": 442,
+   "start": 444,
    "end": 502
   },
   {
    "scene": "engineers",
    "from": 6,
-   "to": 78,
+   "to": 72,
    "text": "Built by engineers.",
    "start": 510,
-   "end": 582
+   "end": 576
   },
   {
    "scene": "engineers",
-   "from": 82,
-   "to": 148,
+   "from": 76,
+   "to": 124,
    "text": "Designed for real businesses.",
-   "start": 586,
-   "end": 652
+   "start": 580,
+   "end": 628
   },
   {
    "scene": "engineers",
-   "from": 152,
+   "from": 128,
    "to": 214,
    "text": "Five services today. Much more on the way.",
-   "start": 656,
+   "start": 632,
    "end": 718
   },
   {
    "scene": "premium",
    "from": 4,
-   "to": 70,
+   "to": 68,
    "text": "Premium services.",
    "start": 724,
-   "end": 790
+   "end": 788
   },
   {
    "scene": "premium",
-   "from": 76,
+   "from": 74,
    "to": 142,
    "text": "Local prices.",
-   "start": 796,
+   "start": 794,
    "end": 862
   },
   {
    "scene": "premium",
-   "from": 148,
-   "to": 214,
+   "from": 146,
+   "to": 206,
    "text": "Zero compromise on ambition.",
-   "start": 868,
-   "end": 934
+   "start": 866,
+   "end": 926
   },
   {
    "scene": "lifeline",
@@ -141,10 +141,10 @@
   {
    "scene": "lifeline",
    "from": 148,
-   "to": 214,
+   "to": 212,
    "text": "Let's build what's next.",
    "start": 1084,
-   "end": 1150
+   "end": 1148
   }
  ],
  "impacts": [
@@ -238,12 +238,17 @@
    "gain": 0.8
   },
   {
-   "frame": 384,
+   "frame": 372,
+   "sound": "whooshSoft",
+   "gain": 0.35
+  },
+  {
+   "frame": 388,
    "sound": "tick",
    "gain": 0.35
   },
   {
-   "frame": 442,
+   "frame": 444,
    "sound": "tick",
    "gain": 0.35
   },
@@ -283,7 +288,7 @@
    "gain": 0.35
   },
   {
-   "frame": 656,
+   "frame": 632,
    "sound": "shimmer",
    "gain": 0.5
   },

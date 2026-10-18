@@ -6,8 +6,8 @@ import timeline from "./timeline.json";
 /* Brand tokens for the intro film. Colours come from the website; midnight and the
    light accents are the film's cinematic layer. */
 export const K = {
-  midnight: "#05070F",
-  midnight2: "#0B1024",
+  midnight: "#0A0E22",
+  midnight2: "#18213D",
   ink: "#0E1430",
   white: "#F5F7FF",
   mist: "#9AA6C8",
@@ -16,7 +16,8 @@ export const K = {
   violet: "#7B5CFF",
   cyan: "#1EC8F0",
   gold: "#FFC83D",
-  coral: "#FF8A6B",
+  coral: "#C6EEDB",
+  mint: "#C6EEDB",
 };
 
 export const TL4 = timeline;
@@ -70,7 +71,7 @@ export const Headline: React.FC<{
   accentColor?: string;
   maxWidth?: number;
   style?: React.CSSProperties;
-}> = ({ text, from, to, size, color = K.white, align = "center", accent = [], accentColor = K.cyan, maxWidth, style }) => {
+}> = ({ text, from, to, size, color = K.white, align = "center", accent = [], accentColor = K.gold, maxWidth, style }) => {
   const frame = useCurrentFrame();
   if (frame < from - 1 || frame > to + 10) return null;
   const words = text.split(" ");
@@ -81,8 +82,8 @@ export const Headline: React.FC<{
         fontFamily: DISPLAY,
         fontWeight: 780,
         fontSize: size,
-        letterSpacing: "-0.04em",
-        lineHeight: 1.04,
+        letterSpacing: "-0.03em",
+        lineHeight: 1.06,
         color,
         textAlign: align,
         maxWidth,
@@ -94,7 +95,7 @@ export const Headline: React.FC<{
       }}
     >
       {words.map((w, i) => {
-        const t = ease(frame, from + i * 3, from + i * 3 + 14);
+        const t = ease(frame, from + i * 2, from + i * 2 + 10);
         const clean = w.replace(/[.,]/g, "");
         return (
           <span key={i} style={{ display: "inline-block", overflow: "hidden", verticalAlign: "top", paddingBottom: size * 0.12, marginBottom: -size * 0.12 }}>

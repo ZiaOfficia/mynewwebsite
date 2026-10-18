@@ -20,20 +20,20 @@ TOTAL = f
 
 # On-screen lines: (scene, from, to, text). The scene decides where and how big.
 LINES = [
-    ("struggle", 22, 74, "Big dreams."),
+    ("struggle", 18, 74, "Big dreams."),
     ("struggle", 78, 140, "Limited resources."),
-    ("shift", 34, 142, "Growth shouldn't be out of reach."),
-    ("reveal", 96, 150, "Meet HiBrands."),
-    ("reveal", 154, 214, "Your partner in digital growth."),
-    ("engineers", 6, 78, "Built by engineers."),
-    ("engineers", 82, 148, "Designed for real businesses."),
-    ("engineers", 152, 214, "Five services today. Much more on the way."),
-    ("premium", 4, 70, "Premium services."),
-    ("premium", 76, 142, "Local prices."),
-    ("premium", 148, 214, "Zero compromise on ambition."),
+    ("shift", 34, 124, "Growth shouldn't be out of reach."),
+    ("reveal", 100, 152, "Meet HiBrands."),
+    ("reveal", 156, 214, "Your partner in digital growth."),
+    ("engineers", 6, 72, "Built by engineers."),
+    ("engineers", 76, 124, "Designed for real businesses."),
+    ("engineers", 128, 214, "Five services today. Much more on the way."),
+    ("premium", 4, 68, "Premium services."),
+    ("premium", 74, 142, "Local prices."),
+    ("premium", 146, 206, "Zero compromise on ambition."),
     ("lifeline", 8, 70, "Your business deserves more."),
     ("lifeline", 76, 142, "From local business to brand."),
-    ("lifeline", 148, 214, "Let's build what's next."),
+    ("lifeline", 148, 212, "Let's build what's next."),
 ]
 lines = [{"scene": s, "from": a, "to": b, "text": t, "start": scenes[s]["from"] + a, "end": scenes[s]["from"] + b} for s, a, b, t in LINES]
 
@@ -59,12 +59,13 @@ cue("reveal", 40, "sweep", 0.4)
 cue("reveal", 56, "sweep", 0.4)
 cue("reveal", 72, "impact", 1.0)
 cue("reveal", 72, "hiLogo", 0.8)
-cue("reveal", 96, "tick", 0.35)
-cue("reveal", 154, "tick", 0.35)
+cue("reveal", 84, "whooshSoft", 0.35)
+cue("reveal", 100, "tick", 0.35)
+cue("reveal", 156, "tick", 0.35)
 cue("engineers", 0, "whoosh", 0.55)
 for i in range(6):
     cue("engineers", 8 + i * 7, "blip", 0.35)
-cue("engineers", 152, "shimmer", 0.5)
+cue("engineers", 128, "shimmer", 0.5)
 cue("premium", 0, "stab", 0.7)
 cue("premium", 72, "slice", 0.75)
 cue("premium", 144, "stab", 0.7)
