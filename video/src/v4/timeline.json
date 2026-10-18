@@ -1,0 +1,351 @@
+{
+ "fps": 30,
+ "bpm": 100,
+ "framesPerBar": 72,
+ "durationInFrames": 1368,
+ "scenes": {
+  "struggle": {
+   "from": 0,
+   "duration": 144
+  },
+  "shift": {
+   "from": 144,
+   "duration": 144
+  },
+  "reveal": {
+   "from": 288,
+   "duration": 216
+  },
+  "engineers": {
+   "from": 504,
+   "duration": 216
+  },
+  "premium": {
+   "from": 720,
+   "duration": 216
+  },
+  "lifeline": {
+   "from": 936,
+   "duration": 216
+  },
+  "final": {
+   "from": 1152,
+   "duration": 216
+  }
+ },
+ "lines": [
+  {
+   "scene": "struggle",
+   "from": 22,
+   "to": 74,
+   "text": "Big dreams.",
+   "start": 22,
+   "end": 74
+  },
+  {
+   "scene": "struggle",
+   "from": 78,
+   "to": 140,
+   "text": "Limited resources.",
+   "start": 78,
+   "end": 140
+  },
+  {
+   "scene": "shift",
+   "from": 34,
+   "to": 142,
+   "text": "Growth shouldn't be out of reach.",
+   "start": 178,
+   "end": 286
+  },
+  {
+   "scene": "reveal",
+   "from": 96,
+   "to": 150,
+   "text": "Meet HiBrands.",
+   "start": 384,
+   "end": 438
+  },
+  {
+   "scene": "reveal",
+   "from": 154,
+   "to": 214,
+   "text": "Your partner in digital growth.",
+   "start": 442,
+   "end": 502
+  },
+  {
+   "scene": "engineers",
+   "from": 6,
+   "to": 78,
+   "text": "Built by engineers.",
+   "start": 510,
+   "end": 582
+  },
+  {
+   "scene": "engineers",
+   "from": 82,
+   "to": 148,
+   "text": "Designed for real businesses.",
+   "start": 586,
+   "end": 652
+  },
+  {
+   "scene": "engineers",
+   "from": 152,
+   "to": 214,
+   "text": "Five services today. Much more on the way.",
+   "start": 656,
+   "end": 718
+  },
+  {
+   "scene": "premium",
+   "from": 4,
+   "to": 70,
+   "text": "Premium services.",
+   "start": 724,
+   "end": 790
+  },
+  {
+   "scene": "premium",
+   "from": 76,
+   "to": 142,
+   "text": "Local prices.",
+   "start": 796,
+   "end": 862
+  },
+  {
+   "scene": "premium",
+   "from": 148,
+   "to": 214,
+   "text": "Zero compromise on ambition.",
+   "start": 868,
+   "end": 934
+  },
+  {
+   "scene": "lifeline",
+   "from": 8,
+   "to": 70,
+   "text": "Your business deserves more.",
+   "start": 944,
+   "end": 1006
+  },
+  {
+   "scene": "lifeline",
+   "from": 76,
+   "to": 142,
+   "text": "From local business to brand.",
+   "start": 1012,
+   "end": 1078
+  },
+  {
+   "scene": "lifeline",
+   "from": 148,
+   "to": 214,
+   "text": "Let's build what's next.",
+   "start": 1084,
+   "end": 1150
+  }
+ ],
+ "impacts": [
+  360,
+  1152
+ ],
+ "sfx": [
+  {
+   "frame": 0,
+   "sound": "activate",
+   "gain": 0.7
+  },
+  {
+   "frame": 4,
+   "sound": "lineTone",
+   "gain": 0.5
+  },
+  {
+   "frame": 22,
+   "sound": "low",
+   "gain": 0.6
+  },
+  {
+   "frame": 78,
+   "sound": "low",
+   "gain": 0.6
+  },
+  {
+   "frame": 100,
+   "sound": "crackle",
+   "gain": 0.35
+  },
+  {
+   "frame": 152,
+   "sound": "beam",
+   "gain": 0.8
+  },
+  {
+   "frame": 160,
+   "sound": "shatter",
+   "gain": 0.75
+  },
+  {
+   "frame": 184,
+   "sound": "blip",
+   "gain": 0.45
+  },
+  {
+   "frame": 193,
+   "sound": "blip",
+   "gain": 0.45
+  },
+  {
+   "frame": 202,
+   "sound": "blip",
+   "gain": 0.45
+  },
+  {
+   "frame": 211,
+   "sound": "blip",
+   "gain": 0.45
+  },
+  {
+   "frame": 264,
+   "sound": "suck",
+   "gain": 0.5
+  },
+  {
+   "frame": 290,
+   "sound": "trace",
+   "gain": 0.55
+  },
+  {
+   "frame": 328,
+   "sound": "sweep",
+   "gain": 0.4
+  },
+  {
+   "frame": 344,
+   "sound": "sweep",
+   "gain": 0.4
+  },
+  {
+   "frame": 360,
+   "sound": "impact",
+   "gain": 1.0
+  },
+  {
+   "frame": 360,
+   "sound": "hiLogo",
+   "gain": 0.8
+  },
+  {
+   "frame": 384,
+   "sound": "tick",
+   "gain": 0.35
+  },
+  {
+   "frame": 442,
+   "sound": "tick",
+   "gain": 0.35
+  },
+  {
+   "frame": 504,
+   "sound": "whoosh",
+   "gain": 0.55
+  },
+  {
+   "frame": 512,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 519,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 526,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 533,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 540,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 547,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 656,
+   "sound": "shimmer",
+   "gain": 0.5
+  },
+  {
+   "frame": 720,
+   "sound": "stab",
+   "gain": 0.7
+  },
+  {
+   "frame": 792,
+   "sound": "slice",
+   "gain": 0.75
+  },
+  {
+   "frame": 864,
+   "sound": "stab",
+   "gain": 0.7
+  },
+  {
+   "frame": 936,
+   "sound": "wave",
+   "gain": 0.7
+  },
+  {
+   "frame": 956,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 966,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 976,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 986,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 996,
+   "sound": "blip",
+   "gain": 0.35
+  },
+  {
+   "frame": 1152,
+   "sound": "impactSoft",
+   "gain": 0.8
+  },
+  {
+   "frame": 1162,
+   "sound": "hiLogo",
+   "gain": 0.85
+  },
+  {
+   "frame": 1212,
+   "sound": "tick",
+   "gain": 0.3
+  }
+ ]
+}
