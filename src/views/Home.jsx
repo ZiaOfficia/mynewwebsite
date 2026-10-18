@@ -172,7 +172,6 @@ function HeroFilm() {
             ref={videoRef}
             className="hm-film__video"
             muted
-            loop
             playsInline
             preload="metadata"
             poster="/video/hibrands-intro-poster.jpg"
