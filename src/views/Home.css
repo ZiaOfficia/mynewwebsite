@@ -468,3 +468,41 @@
   .bill { padding: 1.25rem 1.1rem 2rem; }
   .bill__line { font-size: 0.95rem; }
 }
+
+/* ── The film under the hero ─────────────────────────────── */
+.hm-film { padding: 0 0 clamp(3.5rem, 2rem + 5vw, 6.5rem); margin-top: calc(-1 * clamp(1.5rem, 0.5rem + 3vw, 3.5rem)); position: relative; }
+.hm-film__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: clamp(16px, 1rem + 1vw, 30px);
+  overflow: hidden;
+  background: #05070F url('/video/hibrands-intro-poster.jpg') center / cover no-repeat;
+  box-shadow: 0 50px 100px -40px rgba(24,33,61,0.55), 0 0 0 1px rgba(24,33,61,0.08);
+}
+.hm-film__video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hm-film__sound {
+  position: absolute; right: clamp(10px, 1.5vw, 22px); bottom: clamp(10px, 1.5vw, 22px);
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  min-height: 44px; padding: 0 1.1rem 0 0.9rem;
+  border: 0; border-radius: 999px;
+  background: rgba(255,255,255,0.92); color: var(--ink);
+  font: 600 0.95rem/1 var(--font-body, inherit);
+  cursor: pointer; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  transition: transform 0.2s var(--ease-out), background 0.2s;
+}
+.hm-film__sound:hover { transform: translateY(-1px); background: #fff; }
+.hm-film__sound:focus-visible, .hm-film__play:focus-visible { outline: 3px solid var(--marigold, #FFC83D); outline-offset: 3px; }
+.hm-film__sound svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.hm-film__sound svg path:first-child { fill: currentColor; }
+.hm-film__play {
+  position: absolute; inset: 0; margin: auto; width: 88px; height: 88px;
+  border: 0; border-radius: 50%; background: var(--marigold, #FFC83D); color: var(--ink);
+  display: grid; place-items: center; cursor: pointer; box-shadow: 0 20px 50px -15px rgba(0,0,0,0.6);
+}
+.hm-film__play svg { width: 36px; height: 36px; fill: currentColor; margin-left: 4px; }
+.hm-film__cap { margin-top: 1rem; display: flex; justify-content: center; }
+.hm-film__title { font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem); font-weight: 600; color: var(--ink-2, #4B5675); letter-spacing: 0; }
+@media (max-width: 640px) {
+  .hm-film { margin-top: 0; }
+  .hm-film__sound { padding: 0 0.85rem 0 0.7rem; font-size: 0.85rem; }
+}

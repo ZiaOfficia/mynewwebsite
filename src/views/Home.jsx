@@ -111,6 +111,100 @@ function Hero() {
   );
 }
 
+/* ================================================================
+   THE 45-SECOND FILM, right under the hero
+   Muted autoplay only while it is on screen; poster first, so it never
+   slows the first paint. Reduced-motion visitors get a play button.
+   ================================================================ */
+const FILM_LINES = [
+  'Big dreams. Limited resources.',
+  "Growth shouldn't be out of reach.",
+  'Meet HiBrands. Your partner in digital growth.',
+  'Built by engineers. Designed for real businesses.',
+  'Five services today. Much more on the way.',
+  'Premium services. Local prices. Zero compromise on ambition.',
+  'Your business deserves more. From local business to brand.',
+  "Let's build what's next. Engineers, not an agency. Build with HiBrands.",
+];
+
+function HeroFilm() {
+  const videoRef = useRef(null);
+  const [muted, setMuted] = useState(true);
+  const [playing, setPlaying] = useState(false);
+  const [reduce, setReduce] = useState(false);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return undefined;
+    v.muted = true;
+    const r = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setReduce(r);
+    if (r) return undefined;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) v.play().catch(() => {});
+        else v.pause();
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+
+  const toggleSound = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+    if (!v.muted) {
+      if (v.currentTime > 40) v.currentTime = 0;
+      v.play().catch(() => {});
+    }
+  };
+
+  const play = () => videoRef.current?.play().catch(() => {});
+
+  return (
+    <section className="hm-film" aria-labelledby="hm-film-title">
+      <div className="container">
+        <div className="hm-film__frame">
+          <video
+            ref={videoRef}
+            className="hm-film__video"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/video/hibrands-intro-poster.jpg"
+            aria-describedby="hm-film-transcript"
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+          >
+            <source src="/video/hibrands-intro.webm" type="video/webm" />
+            <source src="/video/hibrands-intro.mp4" type="video/mp4" />
+          </video>
+          {reduce && !playing ? (
+            <button type="button" className="hm-film__play" onClick={play} aria-label="Play the 45-second HiBrands film">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+            </button>
+          ) : null}
+          <button type="button" className="hm-film__sound" onClick={toggleSound} aria-pressed={!muted}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9h4l5-4v14l-5-4H4z" />
+              {muted ? <path d="M17 9l5 6M22 9l-5 6" /> : <path d="M17 8.5a5 5 0 0 1 0 7M19.5 6a8.5 8.5 0 0 1 0 12" />}
+            </svg>
+            {muted ? 'Sound on' : 'Sound off'}
+          </button>
+        </div>
+        <div className="hm-film__cap">
+          <h2 id="hm-film-title" className="hm-film__title">Meet HiBrands in 45 seconds.</h2>
+          <p id="hm-film-transcript" className="sr-only">{FILM_LINES.join(' ')}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Bill() {
   return (
     <section className="hm-bill section">
@@ -351,6 +445,7 @@ export default function Home({ previews = [] }) {
   return (
     <main className="home-page">
       <Hero />
+      <HeroFilm />
       <WhyUs />
       <Bill />
       <Services />
