@@ -551,10 +551,17 @@ export const packages = [
   },
 ];
 
+// ── Pricing message (website & landing page pages) ────────────
+export const priceMessage = {
+  direct: 'These prices are our service charges only. Your money goes directly to the engineers who build your website, with no agency or middleman in between. That is why our prices are up to 95% lower than what a typical agency charges.',
+  notIncluded: 'Domain, hosting and business email are not included in these prices.',
+  notIncludedHow: 'You can buy them yourself and share them with us, or tell us the name you want and we will buy them for you.',
+};
+
 // ── Domain, hosting & email (shown under website pricing) ─────
 /* Our prices cover our work only. These are paid separately. */
 export const notIncluded = {
-  title: 'What is not included in the price',
+  title: 'Not included in the price',
   intro: 'Our prices are for building your website. Three things every website needs are paid for separately, because they belong to you, not to us.',
   items: [
     {
