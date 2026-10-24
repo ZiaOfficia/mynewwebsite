@@ -1,0 +1,560 @@
+{
+ "fps": 30,
+ "bpm": 90,
+ "framesPerBeat": 20,
+ "framesPerBar": 80,
+ "durationInFrames": 2720,
+ "scenes": {
+  "dream": {
+   "from": 0,
+   "duration": 320
+  },
+  "barrier": {
+   "from": 320,
+   "duration": 400
+  },
+  "realize": {
+   "from": 720,
+   "duration": 400
+  },
+  "birth": {
+   "from": 1120,
+   "duration": 320
+  },
+  "work": {
+   "from": 1440,
+   "duration": 400
+  },
+  "compare": {
+   "from": 1840,
+   "duration": 240
+  },
+  "transform": {
+   "from": 2080,
+   "duration": 400
+  },
+  "ending": {
+   "from": 2480,
+   "duration": 240
+  }
+ },
+ "captions": [
+  {
+   "scene": "dream",
+   "from": 12,
+   "to": 140,
+   "style": "sub",
+   "text": "Every business begins with a dream.",
+   "start": 12,
+   "end": 140
+  },
+  {
+   "scene": "dream",
+   "from": 150,
+   "to": 304,
+   "style": "sub",
+   "text": "To reach more people. To grow beyond familiar streets.",
+   "start": 150,
+   "end": 304
+  },
+  {
+   "scene": "barrier",
+   "from": 120,
+   "to": 186,
+   "style": "sub",
+   "text": "Websites. Branding. Marketing. Different providers.",
+   "start": 440,
+   "end": 506
+  },
+  {
+   "scene": "barrier",
+   "from": 190,
+   "to": 256,
+   "style": "sub",
+   "text": "Costs that can make even big dreams feel out of reach.",
+   "start": 510,
+   "end": 576
+  },
+  {
+   "scene": "barrier",
+   "from": 282,
+   "to": 392,
+   "style": "thought",
+   "text": "“Maybe businesses like mine will never go digital.”",
+   "start": 602,
+   "end": 712
+  },
+  {
+   "scene": "realize",
+   "from": 24,
+   "to": 150,
+   "style": "sub",
+   "text": "Across different workspaces, experienced engineers saw the same problem.",
+   "start": 744,
+   "end": 870
+  },
+  {
+   "scene": "realize",
+   "from": 160,
+   "to": 272,
+   "style": "quote",
+   "text": "“Small businesses don't lack potential. They lack access to the right expertise.”",
+   "start": 880,
+   "end": 992
+  },
+  {
+   "scene": "realize",
+   "from": 284,
+   "to": 394,
+   "style": "quote",
+   "text": "“What if we brought the expertise directly to them?”",
+   "start": 1004,
+   "end": 1114
+  },
+  {
+   "scene": "birth",
+   "from": 12,
+   "to": 118,
+   "style": "title",
+   "text": "Different skills. One shared mission.",
+   "start": 1132,
+   "end": 1238
+  },
+  {
+   "scene": "birth",
+   "from": 150,
+   "to": 232,
+   "style": "title",
+   "text": "Introducing HiBrands.",
+   "start": 1270,
+   "end": 1352
+  },
+  {
+   "scene": "birth",
+   "from": 236,
+   "to": 316,
+   "style": "title",
+   "text": "Engineers, not an agency.",
+   "start": 1356,
+   "end": 1436
+  },
+  {
+   "scene": "work",
+   "from": 14,
+   "to": 128,
+   "style": "sub",
+   "text": "Direct access to skilled engineers. No middlemen.",
+   "start": 1454,
+   "end": 1568
+  },
+  {
+   "scene": "work",
+   "from": 140,
+   "to": 270,
+   "style": "sub",
+   "text": "Websites. Landing pages. SEO. Social media. Google Ads.",
+   "start": 1580,
+   "end": 1710
+  },
+  {
+   "scene": "work",
+   "from": 280,
+   "to": 396,
+   "style": "sub",
+   "text": "You don't need an entire agency. You need the right people, working together.",
+   "start": 1720,
+   "end": 1836
+  },
+  {
+   "scene": "compare",
+   "from": 8,
+   "to": 110,
+   "style": "title",
+   "text": "Traditional agency overhead",
+   "start": 1848,
+   "end": 1950
+  },
+  {
+   "scene": "compare",
+   "from": 100,
+   "to": 236,
+   "style": "title",
+   "text": "Direct access to the people building your product",
+   "start": 1940,
+   "end": 2076
+  },
+  {
+   "scene": "transform",
+   "from": 24,
+   "to": 150,
+   "style": "sub",
+   "text": "What once felt impossible began to feel possible.",
+   "start": 2104,
+   "end": 2230
+  },
+  {
+   "scene": "transform",
+   "from": 170,
+   "to": 270,
+   "style": "sub",
+   "text": "Not because he stopped dreaming.",
+   "start": 2250,
+   "end": 2350
+  },
+  {
+   "scene": "transform",
+   "from": 282,
+   "to": 396,
+   "style": "sub",
+   "text": "But because he finally found people ready to help him build it.",
+   "start": 2362,
+   "end": 2476
+  },
+  {
+   "scene": "ending",
+   "from": 30,
+   "to": 236,
+   "style": "title",
+   "text": "Your business has potential. Let's build what's next.",
+   "start": 2510,
+   "end": 2716
+  }
+ ],
+ "music": [
+  {
+   "from": 0,
+   "mode": "dream"
+  },
+  {
+   "from": 320,
+   "mode": "dream",
+   "dim": 0.6
+  },
+  {
+   "from": 560,
+   "mode": "low"
+  },
+  {
+   "from": 720,
+   "mode": "pulse"
+  },
+  {
+   "from": 1280,
+   "mode": "full"
+  },
+  {
+   "from": 1840,
+   "mode": "full",
+   "light": true
+  },
+  {
+   "from": 2080,
+   "mode": "warm"
+  },
+  {
+   "from": 2320,
+   "mode": "warm",
+   "swell": true
+  },
+  {
+   "from": 2480,
+   "mode": "end"
+  }
+ ],
+ "risers": [
+  1252,
+  2320
+ ],
+ "sfx": [
+  {
+   "frame": 6,
+   "sound": "whooshSoft",
+   "gain": 0.3
+  },
+  {
+   "frame": 40,
+   "sound": "cloth",
+   "gain": 0.5
+  },
+  {
+   "frame": 110,
+   "sound": "cloth",
+   "gain": 0.45
+  },
+  {
+   "frame": 334,
+   "sound": "click",
+   "gain": 0.5
+  },
+  {
+   "frame": 360,
+   "sound": "key",
+   "gain": 0.35
+  },
+  {
+   "frame": 367,
+   "sound": "key",
+   "gain": 0.35
+  },
+  {
+   "frame": 374,
+   "sound": "key",
+   "gain": 0.35
+  },
+  {
+   "frame": 381,
+   "sound": "key",
+   "gain": 0.35
+  },
+  {
+   "frame": 388,
+   "sound": "key",
+   "gain": 0.35
+  },
+  {
+   "frame": 395,
+   "sound": "key",
+   "gain": 0.35
+  },
+  {
+   "frame": 402,
+   "sound": "key",
+   "gain": 0.35
+  },
+  {
+   "frame": 409,
+   "sound": "key",
+   "gain": 0.35
+  },
+  {
+   "frame": 416,
+   "sound": "key",
+   "gain": 0.35
+  },
+  {
+   "frame": 428,
+   "sound": "whooshSoft",
+   "gain": 0.4
+  },
+  {
+   "frame": 450,
+   "sound": "thud",
+   "gain": 0.6
+  },
+  {
+   "frame": 472,
+   "sound": "thud",
+   "gain": 0.6
+  },
+  {
+   "frame": 494,
+   "sound": "thud",
+   "gain": 0.6
+  },
+  {
+   "frame": 516,
+   "sound": "thud",
+   "gain": 0.6
+  },
+  {
+   "frame": 538,
+   "sound": "thud",
+   "gain": 0.6
+  },
+  {
+   "frame": 578,
+   "sound": "swooshDown",
+   "gain": 0.35
+  },
+  {
+   "frame": 724,
+   "sound": "pop",
+   "gain": 0.45
+  },
+  {
+   "frame": 752,
+   "sound": "pop",
+   "gain": 0.45
+  },
+  {
+   "frame": 780,
+   "sound": "pop",
+   "gain": 0.45
+  },
+  {
+   "frame": 808,
+   "sound": "pop",
+   "gain": 0.45
+  },
+  {
+   "frame": 870,
+   "sound": "notify",
+   "gain": 0.45
+  },
+  {
+   "frame": 956,
+   "sound": "riseUp",
+   "gain": 0.4
+  },
+  {
+   "frame": 972,
+   "sound": "confirm",
+   "gain": 0.6
+  },
+  {
+   "frame": 1138,
+   "sound": "tick",
+   "gain": 0.4
+  },
+  {
+   "frame": 1148,
+   "sound": "tick",
+   "gain": 0.4
+  },
+  {
+   "frame": 1158,
+   "sound": "tick",
+   "gain": 0.4
+  },
+  {
+   "frame": 1168,
+   "sound": "tick",
+   "gain": 0.4
+  },
+  {
+   "frame": 1178,
+   "sound": "tick",
+   "gain": 0.4
+  },
+  {
+   "frame": 1220,
+   "sound": "riseUp",
+   "gain": 0.5
+  },
+  {
+   "frame": 1252,
+   "sound": "impact",
+   "gain": 0.95
+  },
+  {
+   "frame": 1256,
+   "sound": "pop",
+   "gain": 0.8
+  },
+  {
+   "frame": 1356,
+   "sound": "chime",
+   "gain": 0.5
+  },
+  {
+   "frame": 1444,
+   "sound": "confirm",
+   "gain": 0.5
+  },
+  {
+   "frame": 1580,
+   "sound": "pop",
+   "gain": 0.55
+  },
+  {
+   "frame": 1615,
+   "sound": "click",
+   "gain": 0.55
+  },
+  {
+   "frame": 1645,
+   "sound": "select",
+   "gain": 0.55
+  },
+  {
+   "frame": 1675,
+   "sound": "whoosh",
+   "gain": 0.55
+  },
+  {
+   "frame": 1705,
+   "sound": "tick",
+   "gain": 0.55
+  },
+  {
+   "frame": 1735,
+   "sound": "heart",
+   "gain": 0.55
+  },
+  {
+   "frame": 1760,
+   "sound": "notify",
+   "gain": 0.55
+  },
+  {
+   "frame": 1836,
+   "sound": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "frame": 1860,
+   "sound": "thud",
+   "gain": 0.35
+  },
+  {
+   "frame": 1874,
+   "sound": "thud",
+   "gain": 0.35
+  },
+  {
+   "frame": 1888,
+   "sound": "thud",
+   "gain": 0.35
+  },
+  {
+   "frame": 1944,
+   "sound": "riseUp",
+   "gain": 0.4
+  },
+  {
+   "frame": 1960,
+   "sound": "confirm",
+   "gain": 0.55
+  },
+  {
+   "frame": 2084,
+   "sound": "whooshSoft",
+   "gain": 0.4
+  },
+  {
+   "frame": 2176,
+   "sound": "whoosh",
+   "gain": 0.5
+  },
+  {
+   "frame": 2230,
+   "sound": "whooshSoft",
+   "gain": 0.4
+  },
+  {
+   "frame": 2258,
+   "sound": "notify",
+   "gain": 0.6
+  },
+  {
+   "frame": 2372,
+   "sound": "chime",
+   "gain": 0.45
+  },
+  {
+   "frame": 2476,
+   "sound": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "frame": 2490,
+   "sound": "pop",
+   "gain": 0.75
+  },
+  {
+   "frame": 2492,
+   "sound": "sting",
+   "gain": 0.8
+  }
+ ]
+}
