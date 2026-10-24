@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { ServiceVisual } from '../components/HeroVisuals.jsx';
-import { serviceDetails, services } from '../data/index.js';
+import { serviceDetails, services, notIncluded, priceMessage } from '../data/index.js';
 import CTA from '../sections/CTA/CTA.jsx';
 import { useBooking } from '../components/BookingModal/BookingContext.jsx';
 
@@ -19,6 +19,8 @@ const CTA_SUB = {
 export default function ServiceDetail({ slug }) {
   const { openBooking } = useBooking();
   const service = serviceDetails[slug];
+  /* Website and landing page builds: show the 'not included' notices. */
+  const isBuild = slug === 'web-development' || slug === 'landing-pages';
   const meta    = services.find((s) => s.slug === slug);
 
   /* Arriving with /services/:slug#pricing → scroll to pricing once the
@@ -116,8 +118,24 @@ export default function ServiceDetail({ slug }) {
         <div className="container">
           <div className="sec-head">
             <h2 className="t-1">Pricing</h2>
-            <p>Fixed prices, agreed before we start. Move up a level whenever you're ready.</p>
+            {isBuild ? (
+              <p>
+                {priceMessage.direct}
+                {slug === 'web-development' && ' Need something bigger, like a custom web app? Ask us for a quote.'}
+              </p>
+            ) : (
+              <p>Fixed prices, agreed before we start. Move up a level whenever you're ready.</p>
+            )}
           </div>
+
+          {isBuild && (
+            <div className="not-incl" role="note">
+              <span className="not-incl__icon" aria-hidden="true">!</span>
+              <p>
+                <strong>{priceMessage.notIncluded}</strong> {priceMessage.notIncludedHow}
+              </p>
+            </div>
+          )}
 
           <div className="prices">
             {service.packages.map((pkg) => (
@@ -132,9 +150,13 @@ export default function ServiceDetail({ slug }) {
                   {pkg.period && pkg.price !== 'Custom' && <span className="price__period">{pkg.period}</span>}
                   {pkg.oldPrice && <span className="price__old">was {pkg.oldPrice}</span>}
                 </div>
+                {isBuild && pkg.price !== 'Custom' && (
+                  <p className="price__excl">+ domain, hosting &amp; email not included</p>
+                )}
                 <ul className="ticks">
                   {pkg.features.map((f) => <li key={f}>{f}</li>)}
                 </ul>
+                {pkg.note && <p className="price__note">{pkg.note}</p>}
                 <button
                   type="button"
                   onClick={openBooking}
@@ -145,6 +167,25 @@ export default function ServiceDetail({ slug }) {
               </article>
             ))}
           </div>
+
+          {isBuild && (
+            <div className="extras">
+              <div className="extras__head">
+                <h3 className="t-2">{notIncluded.title}</h3>
+                <p>{notIncluded.intro}</p>
+              </div>
+              <ul className="extras__list">
+                {notIncluded.items.map((it) => (
+                  <li key={it.name} className="extras__item">
+                    <p className="extras__cost">{it.cost}</p>
+                    <h4 className="extras__name">{it.name}</h4>
+                    <p>{it.text}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="extras__how"><strong>How to buy them:</strong> {notIncluded.howToBuy}</p>
+            </div>
+          )}
         </div>
       </section>
 

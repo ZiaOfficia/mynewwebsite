@@ -47,9 +47,10 @@ export const navLinks = [
     href:  '/services',
     highlight: true,
     dropdown: [
-      { label: 'Landing Page',      href: '/services/landing-pages#pricing',  desc: '₹3,999 · was ₹6,999'   },
-      { label: 'Business Website',  href: '/services/web-development#pricing', desc: '₹9,999 · was ₹24,999'  },
-      { label: 'E-commerce Website', href: '/services/web-development#pricing', desc: '₹19,999 · was ₹49,999' },
+      { label: 'Landing Page',       href: '/services/landing-pages#pricing',   desc: '₹999'                          },
+      { label: 'Static Website',     href: '/services/web-development#pricing', desc: '₹3,999 · up to 10 pages'       },
+      { label: 'Dynamic Website',    href: '/services/web-development#pricing', desc: '₹9,999 · with blog & admin'    },
+      { label: 'E-commerce Website', href: '/services/web-development#pricing', desc: 'Shopify ₹14,999 · Custom ₹29,999' },
     ],
   },
   { label: 'Projects', href: '/projects' },
@@ -550,6 +551,31 @@ export const packages = [
   },
 ];
 
+// ── Domain, hosting & email (shown under website pricing) ─────
+/* Our prices cover our work only. These are paid separately. */
+export const notIncluded = {
+  title: 'What is not included in the price',
+  intro: 'Our prices are for building your website. Three things every website needs are paid for separately, because they belong to you, not to us.',
+  items: [
+    {
+      name: 'Domain',
+      cost: 'Paid yearly',
+      text: 'Your website\'s name on the internet, like yourshop.com or yourshop.in. It is the address customers type to find you. You rent it year by year and renew it to keep it.',
+    },
+    {
+      name: 'Hosting',
+      cost: 'Paid yearly',
+      text: 'The space on the internet where your website lives. Think of it as rent for a shop: as long as you pay it, your website stays open and anyone can visit it in their browser.',
+    },
+    {
+      name: 'Business email',
+      cost: 'Optional, paid yearly',
+      text: 'An email address with your own name, like info@yourshop.com, instead of a Gmail address. It looks more professional to customers. You buy it only if you want it.',
+    },
+  ],
+  howToBuy: 'You have three options: buy them yourself and share the login with us, give us an account you already have, or just tell us the name you want and we will buy it for you. Either way, they are registered in your name and you own them.',
+};
+
 // ── Specific Service Pages Data ───────────────────────────────
 export const serviceDetails = {
   'web-development': {
@@ -564,9 +590,10 @@ export const serviceDetails = {
     howItHelped: 'We redesigned and re-platformed GreenBuild Co. onto a modern tech stack focused entirely on speed and conversion flows. By removing friction from the user journey and implementing clean, SEO-friendly architecture, we reduced bounce rates by 40% immediately upon launch.',
     revenue: 'The new site doubled lead volume in the first 30 days, resulting in an additional ₹1.2Cr in closed revenue over the next quarter.',
     packages: [
-      { name: 'Business Site', oldPrice: '₹24,999', price: '₹9,999', period: '', tagline: 'For service businesses needing authority.', features: ['Custom UI/UX Design', 'Up to 7 Pages', 'Mobile Responsive', 'Speed Optimised', 'Basic SEO Setup'], cta: 'Get Started' },
-      { name: 'E-commerce', oldPrice: '₹49,999', price: '₹19,999', period: '', tagline: 'Start selling online easily.', features: ['React / Next.js / Node.js', 'Payment Gateway', 'Up to 50 Products', 'Advanced Speed Optimisation', 'Inventory Management'], cta: 'Get Started', popular: true },
-      { name: 'Custom Application', price: 'Custom', period: '', tagline: 'Complex web platforms.', features: ['React / Next.js', 'Custom Backend', 'Third-party API Integrations', 'High Performance', 'Advanced Security'], cta: 'Contact Us' }
+      { name: 'Static Website', price: '₹3,999', period: '', tagline: 'A clean, fast website for a local business.', features: ['Up to 10 pages', 'Enquiry form: every customer enquiry comes straight to your email', 'Google Map of your location', 'Mobile-friendly design', 'Basic SEO setup'], cta: 'Get Started' },
+      { name: 'Dynamic Website', price: '₹9,999', period: '', tagline: 'A website you can update yourself.', features: ['Up to 10 pages', 'Blog with your own admin panel to post articles', 'Photo gallery section', 'Information sections about your services', 'Google Map of your location', 'Enquiry form straight to your email'], note: 'Want to take online payments? Add payment integration for ₹999.', cta: 'Get Started', popular: true },
+      { name: 'Shopify Store', price: '₹14,999', period: '', tagline: 'An online shop that is easy to run.', features: ['Store set up on Shopify', 'Products, payments and orders built in', 'Easy to manage without technical help', 'Mobile-friendly theme'], note: 'Shopify charges a monthly subscription, paid by you directly to Shopify.', cta: 'Get Started' },
+      { name: 'Coded Store', price: '₹29,999', period: '', tagline: 'Your own online shop, built from code.', features: ['Online shop built completely in code', 'Payment integration included', 'Products, cart and checkout', 'No monthly platform fee: you pay us once for the build'], cta: 'Get Started' },
     ]
   },
   'landing-pages': {
@@ -581,7 +608,7 @@ export const serviceDetails = {
     howItHelped: 'For a national education provider, we split-tested their existing ad traffic landing pages against a custom-built, benefit-driven page with clear trust signals and streamlined forms. Our page outperformed the control by generating highly qualified prospects while lowering the CPA.',
     revenue: 'Decreased Cost Per Acquisition (CPA) by 62% resulting in a 3x increase in total leads with the exact same ad spend.',
     packages: [
-      { name: 'Single Flow', price: '₹3,999', oldPrice: '₹6,999', period: '', tagline: 'One page, one goal.', features: ['Conversion Focused Design', 'Mobile-First Layout', 'Lead Form Setup', 'Speed Optimisation', 'Thank You Page'], cta: 'Get Started', popular: true },
+      { name: 'Single Flow', price: '₹999', period: '', tagline: 'One page, one goal.', features: ['Conversion Focused Design', 'Mobile-First Layout', 'Lead Form Setup', 'Speed Optimisation', 'Thank You Page'], cta: 'Get Started', popular: true },
       { name: 'Funnel Build', price: 'Custom', period: '', tagline: 'Multi-step conversion flows.', features: ['Squeeze Pages', 'Up-sell/Down-sell Logic', 'Email Sequence Integration', 'Video Sales letters', 'Full CRM Integration'], cta: 'Contact Us' }
     ]
   },
