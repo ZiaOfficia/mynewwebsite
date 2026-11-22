@@ -356,7 +356,7 @@ export default function Home({ previews = [] }) {
       <Services />
       <Work previews={previews} />
       <Process />
-      <Quotes />
+      {/* <Quotes /> Hidden until there are real client reviews. Add them to QUOTES above, then remove the comment. */}
       <CTA />
     </main>
   );

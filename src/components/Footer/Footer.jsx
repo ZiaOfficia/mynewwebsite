@@ -46,14 +46,16 @@ export default function Footer() {
               <li><a href={`tel:${agency.phone.replace(/\s/g, '')}`} className="footer__link footer__link--big">{agency.phone}</a></li>
               <li className="footer__text">Based in {agency.address}, working with clients everywhere</li>
             </ul>
-            <div className="footer__socials">
-              {Object.entries(agency.social).map(([key, href]) => (
-                <a key={key} href={href} target="_blank" rel="noopener noreferrer"
-                   className="footer__social-link" aria-label={key}>
-                  <SocialIcon name={key} />
-                </a>
-              ))}
-            </div>
+            {Object.keys(agency.social).length > 0 && (
+              <div className="footer__socials">
+                {Object.entries(agency.social).map(([key, href]) => (
+                  <a key={key} href={href} target="_blank" rel="noopener noreferrer"
+                     className="footer__social-link" aria-label={`HiBrands on ${SOCIAL_LABELS[key] || key}`}>
+                    <SocialIcon name={key} />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -70,6 +72,8 @@ export default function Footer() {
   );
 }
 
+const SOCIAL_LABELS = { instagram: 'Instagram', facebook: 'Facebook', x: 'X', twitter: 'X', linkedin: 'LinkedIn', youtube: 'YouTube' };
+
 /* ── Inline Social Icons ─────────────────────────────────── */
 function SocialIcon({ name }) {
   const icons = {
@@ -82,6 +86,12 @@ function SocialIcon({ name }) {
     facebook: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+      </svg>
+    ),
+    x: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 4l11.733 16h4.267l-11.733-16z"/>
+        <path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772"/>
       </svg>
     ),
     twitter: (

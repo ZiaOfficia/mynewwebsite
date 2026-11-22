@@ -97,7 +97,11 @@ export default function ServiceDetail({ slug }) {
         </div>
       </section>
 
-      {/* ── Example ── */}
+      {/* ── Example ──
+          Hidden until there is a real project to show. To bring it back, write
+          howItHelped and revenue for this service in src/data/index.js (serviceDetails)
+          and set showExample: true there. */}
+      {service.showExample && (
       <section className="section band-white">
         <div className="container">
           <div className="example">
@@ -112,6 +116,7 @@ export default function ServiceDetail({ slug }) {
           </div>
         </div>
       </section>
+      )}
 
       {/* ── Pricing ── */}
       <section className="section" id="pricing">

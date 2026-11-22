@@ -10,12 +10,14 @@ export const agency = {
   email:       'hibrands.in@gmail.com',
   phone:       '+91 90649 90515',
   address:     'India',
+  /* Only the profiles listed here show in the footer.
+     Supported: instagram, facebook, x, linkedin, youtube */
   social: {
-    instagram: 'https://www.instagram.com/',
-    facebook:  'https://www.facebook.com/',
-    twitter:   'https://twitter.com/',
-    linkedin:  'https://www.linkedin.com/',
-    youtube:   'https://www.youtube.com/',
+    instagram: 'https://www.instagram.com/hibrands.in/',
+    x:         'https://x.com/hibrands_',
+    facebook:  'https://www.facebook.com/profile.php?id=61595383445932',
+    linkedin:  'https://www.linkedin.com/in/hi-brands-9a1913444/',
+    youtube:   'https://www.youtube.com/@hibrandss',
   },
 };
 

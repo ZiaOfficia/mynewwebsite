@@ -8,7 +8,7 @@
 
 export const SITE_URL   = 'https://hibrands.in';
 export const SITE_NAME  = 'HiBrands';
-export const TWITTER    = '@hibrands';
+export const TWITTER    = '@hibrands_';
 export const OG_IMAGE   = `${SITE_URL}/og-image.jpg`;
 export const OG_LOCALE  = 'en_IN';
 
