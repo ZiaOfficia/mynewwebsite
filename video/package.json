@@ -1,0 +1,25 @@
+{
+  "name": "hibrands-promo-video",
+  "version": "1.0.0",
+  "description": "HiBrands promo video, made with Remotion",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio",
+    "music": "python3 audio/make_music.py",
+    "render": "remotion render HiBrandsPromo out/hibrands-promo-16x9.mp4 && remotion render HiBrandsPromoVertical out/hibrands-promo-9x16.mp4"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@remotion/cli": "^4.0.535",
+    "@remotion/fonts": "^4.0.535",
+    "@remotion/media": "^4.0.535",
+    "@remotion/transitions": "^4.0.535",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "remotion": "^4.0.535"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "typescript": "^5.9.3"
+  }
+}
